@@ -34,7 +34,7 @@ CREATE TABLE Prommotions
 -- les utilisateur seront ajoutés dans cette table
 CREATE TABLE Utilisateurs
 (
-   	-- L'UTILISATEUR
+   -- L'UTILISATEUR
 	idUtilisateur				INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	pseudoUtilisateur			VARCHAR (50) NOT NULL,
 	-- SES INFORMATIONS
