@@ -12,7 +12,7 @@ CREATE TABLE Prommotions
 	 nouveauPrix      INT, -- nouveau prix du produit
 	 estimationStock      VARCHAR(50), -- estimation du stock
 	 dateCreation     TIMESTAMP, -- date ou la promo a ete postee
-	 dureeValidite   	       INT
+	 dureeValidite   	     	INT,
 	 -- LE MAGASIN
 	 magasin		VARCHAR(50), -- nom du magasin
 	 -- LOCALISATION POSTALE
