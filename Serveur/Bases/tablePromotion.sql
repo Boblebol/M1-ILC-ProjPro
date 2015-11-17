@@ -12,7 +12,11 @@ CREATE TABLE Prommotions
 	 nouveauPrix      INT, -- nouveau prix du produit
 	 estimationStock      VARCHAR(50), -- estimation du stock
 	 dateCreation     TIMESTAMP, -- date ou la promo a ete postee
+<<<<<<< HEAD:Bases/tablePromotion.sql
 	 dureeValidite   	       INT,
+=======
+	 dureeValidite   	     	INT,
+>>>>>>> origin/master:Serveur/Bases/tablePromotion.sql
 	 -- LE MAGASIN
 	 magasin		VARCHAR(50), -- nom du magasin
 	 -- LOCALISATION POSTALE
