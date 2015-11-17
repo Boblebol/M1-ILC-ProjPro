@@ -1,0 +1,9 @@
+CREATE TABLE Utilisateurs
+(
+	-- L'UTILISATEUR
+	idUtilisateur		INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	pseudoUtilisateur	VARCHAR (50) NOT NULL,
+	-- SES INFORMATIONS
+	nomUtilisateur		VARCHAR (50),
+	prenomUtilisateur	VARCHAR (50),
+	mailUtilisateur		VARCHAR (50) NOT NULL,
