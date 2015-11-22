@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
+  <display-name>SOciAL</display-name>
+  
+  <servlet>
+    <servlet-name>CreateUtilisateur</servlet-name>
+    <servlet-class>utilisateur.servlet.CreateUtilisateurServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CreateUtilisateur</servlet-name>
+    <url-pattern>/CreateUtilisateur</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>DeleteUtilisateur</servlet-name>
+    <servlet-class>utilisateur.servlet.DeleteUtilisateurServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DeleteUtilisateur</servlet-name>
+    <url-pattern>/DeleteUtilisateur</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>ListeUtilisateur</servlet-name>
+    <servlet-class>utilisateur.servlet.ListeUtilisateurServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ListeUtilisateur</servlet-name>
+    <url-pattern>/ListeUtilisateur</url-pattern>
+  </servlet-mapping>
+</web-app>
