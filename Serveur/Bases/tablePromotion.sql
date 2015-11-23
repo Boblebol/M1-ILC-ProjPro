@@ -6,7 +6,7 @@ CREATE TABLE Promotions
 	 -- LE PRODUIT
 	 nomProduit		VARCHAR(50), -- nom/ref du produit
 	 marque          	VARCHAR(50), -- marque du produit
-	 catégorie       	     VARCHAR(50), -- catégorie du produit -> les imposer dans le formulaire d'ajout de promo
+	 categorie       	     VARCHAR(50), -- catégorie du produit -> les imposer dans le formulaire d'ajout de promo
 	 description     	       BLOB, -- description du produit
  	 ancienPrix      	    FLOAT, -- ancien prix du produit
 	 nouveauPrix      FLOAT, -- nouveau prix du produit
