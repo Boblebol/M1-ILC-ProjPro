@@ -17,7 +17,7 @@ CREATE TABLE Promotions
 	 magasin		VARCHAR(50), -- nom du magasin
 	 -- LOCALISTAION SATELLITE
 	 longitude		FLOAT NOT NULL, -- longitude
-	 lattitude       	FLOAT NOT NULL, -- lattitude
+	 latitude       	FLOAT NOT NULL, -- lattitude
 	 -- STATUT
 	 active			BOOLEAN, -- Tant que la promo as moins de 24h par defaut ou que 3 personne l'aient signalee
 	 -- LE CREATEUR
