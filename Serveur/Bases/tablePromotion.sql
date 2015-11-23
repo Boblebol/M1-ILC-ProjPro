@@ -1,4 +1,4 @@
-CREATE TABLE PrommotionsA
+CREATE TABLE Promotions
 (
 	 -- LA PROMOTION
 	 idPromo		INT NOT NULL AUTO_INCREMENT PRIMARY KEY, -- id de la promotion
