@@ -15,11 +15,6 @@ CREATE TABLE Promotions
 	 dureeValidite   	       INT,
 	 -- LE MAGASIN
 	 magasin		VARCHAR(50), -- nom du magasin
-	 -- LOCALISATION POSTALE
-	 numRue		INT NOT NULL, -- addresse
-	 rue                VARCHAR(50) NOT NULL, -- addresse
-	 codePostal      		INT(5) NOT NULL, -- addresse
-	 ville           	VARCHAR(50) NOT NULL, -- addresse
 	 -- LOCALISTAION SATELLITE
 	 longitude		FLOAT NOT NULL, -- longitude
 	 lattitude       	FLOAT NOT NULL, -- lattitude
