@@ -44,7 +44,9 @@ angular.module('demo', [
   'demo.vibration.ctrl',
   'demo.upsPushNotifications.ctrl',
   // Persos
-  'demo.connexion.ctrl'  
+  'demo.connexion.ctrl',  
+  'demo.inscription.ctrl',  
+  'demo.offres.ctrl'  
 ])
 
   .run(function ($rootScope, $ionicPlatform, $cordovaNetwork, $cordovaBatteryStatus, $cordovaLocalNotification, $cordovaPush) {
@@ -134,11 +136,7 @@ angular.module('demo', [
 
     $stateProvider
 
-      .state('connexion', {
-        url: "/connexion",
-        templateUrl: "app/connexion/connexion.html",
-        controller: "ConnexionCtrl"
-      })
+
 
       .state('menu', {
         url: "/menu",
@@ -149,6 +147,25 @@ angular.module('demo', [
         url: "/about",
         templateUrl: "app/about.html"
       })
+
+      .state('connexion', {
+        url: "/connexion",
+        templateUrl: "app/connexion/connexion.html",
+        controller: "ConnexionCtrl"
+      })
+
+      .state('inscription', {
+        url: "/inscription",
+        templateUrl: "app/inscription/inscription.html",
+        controller: "InscriptionCtrl"
+      })
+      
+      .state('offres', {
+        url: "/offres",
+        templateUrl: "app/offres/offres.html",
+        controller: "OffresCtrl"
+      })      
+      
 
       .state('appAvailability', {
         url: '/appAvailability',

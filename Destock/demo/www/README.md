@@ -1,32 +1,21 @@
-This is an addon starter template for the [Ionic Framework](http://ionicframework.com/).
+Pour utiliser : installer Ionic : npm install -g ionic
 
-## How to use this template
+Pour tester : se mettre sur le dossier demo et faire "ionic serve", si vous avez une erreur c'est que vous avez
+une version non compatible (les joies des nouvelles technos !) donc pour ça :
+"npm install -g ionic@1.2.3-beta1" et ça marche !
 
-*This template does not work on its own*. It is missing the Ionic library, and AngularJS.
+On peut aussi faire "ionic platform add android/ios" puis
+"ionic emulate android/ios" (pour ios il faut un mac #pasLesSousMaisJaimeraiBien
+et enfin "ionic run android/ios"
 
-To use this, either create a new ionic project using the ionic node.js utility, or copy and paste this into an existing Cordova project and download a release of Ionic separately.
+Bien entendu le android/ios c'est l'un ou l'autre hein pas les deux...
 
-### With the Ionic tool:
+3 pages ont étés ajoutées pour le projet : offres, connexion, inscription 
+elles sont à implémenter, en html/css pour l'affichage et en angularJS pour le back-end,
+pour la connexion à la BDD faut voir avec Alex et Lansiné pour avoir une intéraction.
 
-Take the name after `ionic-starter-`, and that is the name of the template to be used when using the `ionic start` command below:
+Une autre solution : télécharger "ionic view" sur votre smartphone ios ou android, (voir WP)
+créer un compte, et faire ionic upload, il va demander le compte et magie ça se synchro et vous pouvez émuler
+sur votre tel directement, c'est quand même plus sympa.
 
-```bash
-$ sudo npm install -g ionic cordova
-$ ionic start myApp blank
-```
-
-Then, to run it, cd into `myApp` and run:
-
-```bash
-$ ionic platform add ios
-$ ionic build ios
-$ ionic emulate ios
-```
-
-Substitute ios for android if not on a Mac, but if you can, the ios development toolchain is a lot easier to work with until you need to do anything custom to Android.
-
-## Demo
-http://plnkr.co/edit/tpl:IUU30p?p=preview
-
-## Issues
-Issues have been disabled on this repo, if you do find an issue or have a question consider posting it on the [Ionic Forum](http://forum.ionicframework.com/).  Or else if there is truly an error, follow our guidelines for [submitting an issue](http://ionicframework.com/contribute/#issues) to the main Ionic repository. On the other hand, pull requests are welcome here!
+Sur ce, bon courages destockeurs !
