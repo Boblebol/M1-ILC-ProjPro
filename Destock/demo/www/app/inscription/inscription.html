@@ -1,7 +1,47 @@
-<ion-view title="Media">
-  <ion-content padding="true">
-<p>
-<input type="text" /> BLABLA</p>
-<input type="submit" 
+<ion-view title="Inscription">
+  <ion-content>
+    <div class="list card">
+
+    <div class="item item-icon-left justify">
+      <i class="icon ion-plus-round"></i>
+      <h2>Inscription</h2>
+      <p>Bienvenue dans le panneau d'inscription. Les informations suivies de "<span style="color:red">*</span>" sont obligatoires, merci de les renseigner pour valider l'inscription.</p>
+    </div>
+
+    <div class="item item-body">
+      <div class="list">
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Pseudo<span style="color:red">*</span></span>
+          <input type="text" placeholder="Veuillez saisir votre pseudo">
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Mot de passe<span style="color:red">*</span></span>
+          <input type="password" placeholder="Veuillez saisir votre mot de passe">
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Confirmation de mot de passe<span style="color:red">*</span></span>
+          <input type="password" placeholder="Veuillez saisir un mot de passe identique">
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Prénom</span>
+          <input type="text" placeholder="Veuillez saisir votre prénom">
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Nom</span>
+          <input type="text" placeholder="Veuillez saisir votre nom">
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Email</span>
+          <input type="email" name="user_email" placeholder="Veuillez saisir votre adresse email">
+        </label>
+      </div>
+    </div>
+
+    <div class="padding">
+      <button class="button button-block button-positive button-no-margin">Create account</button>
+    </div>
+
+  </div>
+    
   </ion-content>
 </ion-view>

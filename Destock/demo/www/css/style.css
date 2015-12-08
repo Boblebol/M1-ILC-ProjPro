@@ -3,3 +3,15 @@
 .ace_content {
   padding: 5px;
 }
+
+.item p {
+	white-space: normal;
+}
+
+.justify {
+	text-align: justify;
+}
+
+.button-no-margin {
+	margin:0px !important;
+}
