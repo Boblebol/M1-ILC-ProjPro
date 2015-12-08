@@ -1,7 +1,38 @@
-<ion-view title="Media">
-  <ion-content padding="true">
-<p>
-<input type="text" /> BLABLA</p>
-<input type="submit" 
+<ion-view title="Rechercher une offre de destockage">
+
+  
+    
+<ion-content padding="true">   
+
+
+<div class="bar bar-header item-input-inset has-tabs-top">
+  <label class="item-input-wrapper">
+    <i class="icon ion-ios-search placeholder-icon"></i>
+    <input type="search" placeholder="Rechercher" ng-model="searchText">
+  </label>
+  <button class="button button-clear">
+    Annuler
+  </button>
+</div>
+
+<div ng-init="promos = [{id:'1', nom:'Jambon carrefour date courte', description: 'Reduction -80% sur le jambon carrefour, date courte !!'},
+                         {id:'2', nom:'Dinde leclerc date courte', description: 'Reduction -80% sur le la DIIINDE date courte !!'},
+                         {id:'3', nom:'Pokemon Tartiflex', description: 'On vous l\'offree !!'},
+                         {id:'4', nom:'Jambon liddle date courte', description: 'Reduction -10% sur le jambon carrefour, date courte !!'},
+                         {id:'5', nom:'Jambon pokemon courte', description: 'Reduction -20% sur le jambon carrefour, date courte !!'},
+                        ]"></div>
+                         
+<div class="list">
+
+    <a class="item item-thumbnail-left" href="/#/offres/{{promo.id}}" ng-repeat="promo in promos | filter:searchText">
+      <img src="/img/Offres/nirvana.jpg">
+      <h2>{{promo.nom}}</h2>
+      <p>{{promo.description}}</p>
+    </a>
+
+
+
+</div>
+    
   </ion-content>
 </ion-view>
