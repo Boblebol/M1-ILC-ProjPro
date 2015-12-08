@@ -1,4 +1,6 @@
-Pour utiliser : installer Ionic : npm install -g ionic
+Pour utiliser : installer Ionic : 
+npm install -g cordova ionic
+npm -g install ios-sim
 
 Pour tester : se mettre sur le dossier demo et faire "ionic serve", si vous avez une erreur c'est que vous avez
 une version non compatible (les joies des nouvelles technos !) donc pour ça :
