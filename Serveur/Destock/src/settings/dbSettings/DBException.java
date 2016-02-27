@@ -1,4 +1,4 @@
-package dbSettings;
+package settings.dbSettings;
 
 /**
  * Exception de la base de donnee

@@ -1,4 +1,4 @@
-package traitement;
+package settings.traitementSettings;
 
 import org.json.JSONObject;
 

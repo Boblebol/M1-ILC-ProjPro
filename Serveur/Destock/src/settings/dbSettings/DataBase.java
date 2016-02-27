@@ -1,4 +1,4 @@
-package dbSettings;
+package settings.dbSettings;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
