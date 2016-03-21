@@ -1,4 +1,4 @@
-package clients.db;
+package promotions.db;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -8,12 +8,11 @@ import java.sql.Statement;
 import settings.dbSettings.DBException;
 import settings.dbSettings.DataBase;
 
+public class DBPromotionsTools {
 
-public class DBClientTools {
-
-	public static boolean clientExistance(String mail)throws DBException {
-		try {
-			String query = "SELECT * FROM Client WHERE mailClient=\"" + mail + "\"";
+	public static boolean PromotionExistance(String ref,int idmag)throws DBException {
+		try { 
+			String query = "SELECT * FROM Promotion WHERE referencePromo=\""+ref+"\",idMagasin=\""+idmag+"\"";
 
 			Connection c = DataBase.getMySQLConnection();
 			Statement s = c.createStatement();
@@ -22,22 +21,22 @@ public class DBClientTools {
 
 			boolean bool = rs.next();
 
+			// Fermeture de la connexion
 			rs.close();
 			s.close();
 			c.close();
 
 			return bool;
+
 		}catch (SQLException e) {
-			throw new DBException("DBClientTools.ClientExistance : " + e.getMessage());
+			throw new DBException("DBPromotionsTools.PromotionExistance : " + e.getMessage());
 		}
 	}
 
-	
-	
-	public static int getIdClient(String mail) throws DBException{
-		try {
-			int id = -1;
-			String query = "SELECT idClient FROM Client WHERE mailClient=\"" + mail + "\"";
+	public static int getIdPromo(String ref,int idmag)  throws DBException{
+		try { 
+			int retour = -1;
+			String query = "SELECT idPromo FROM Magasin WHERE referencePromo=\""+ref+"\",idMagasin=\""+idmag+"\"";
 			
 			Connection c = DataBase.getMySQLConnection();
 			Statement s = c.createStatement();
@@ -46,7 +45,8 @@ public class DBClientTools {
 
 			boolean bool = rs.next();
 			if (bool) {
-				id = rs.getInt("idClient"); 
+				retour = rs.getInt("idPromo"); 
+				
 			}
 
 			// Fermeture de la connexion
@@ -54,9 +54,9 @@ public class DBClientTools {
 			s.close();
 			c.close();
 
-			return id;
+			return retour;
 		}catch (SQLException e) {
-			throw new DBException("DBClientTools.getIdClient : " + e.getMessage());
+			throw new DBException("DBPromotionsTools.getIdPromo : " + e.getMessage());
 		}
 	}
 
