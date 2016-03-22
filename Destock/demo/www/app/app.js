@@ -46,7 +46,8 @@ angular.module('demo', [
   // Persos
   'demo.connexion.ctrl',  
   'demo.inscription.ctrl',  
-  'demo.offres.ctrl'  
+  'demo.offres.ctrl',
+  'demo.mon_compte.ctrl'
 ])
 
   .run(function ($rootScope, $ionicPlatform, $cordovaNetwork, $cordovaBatteryStatus, $cordovaLocalNotification, $cordovaPush) {
@@ -147,7 +148,13 @@ angular.module('demo', [
         url: "/about",
         templateUrl: "app/about.html"
       })
-
+		
+	  .state('mon_compte', {
+        url: '/mon_compte',
+        templateUrl: 'app/mon_compte/mon_compte.html',
+        controller: "Mon_compteCtrl"
+      })
+	  
       .state('connexion', {
         url: "/connexion",
         templateUrl: "app/connexion/connexion.html",
