@@ -1,7 +1,76 @@
-<ion-view title="Media">
+<ion-view title="connexion">
   <ion-content padding="true">
-<p>
-<input type="text" /> BLABLA TG hihjbjihoiihh(Tom gimenes)</p>
-<input type="submit" 
+
+    <head>
+        <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.10/angular.min.js"></script>
+        <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js"></script>
+        <script type="text/javascript" src="./scripts/controllers.js"></script>
+    </head>
+    
+  <body>
+     <!--     <div ng-controller='LoginController'>
+            <form ng-submit="connexion()">
+                <div>Login : <input ng-model="identifiants.login" /></div>
+                <div>Password : <input ng-model="identifiants.password" /></div>
+                
+                <button type="submit">Se connecter</button>
+            </form>
+            
+            <div>
+                {{resultat}}
+            </div>
+        </div> -->
+		
+		<div class="list" >
+		
+		  <form ng-submit="connexion()">
+		    <label class="item item-input">
+			  <span class="input-label">Username</span>
+			  <input type="text" name="user_nom">
+		    </label>
+		    <label class="item item-input">
+			  <span class="input-label">Password</span>
+			  <input type="password" name="user_password">
+		    </label>
+		  
+			<button class="button button-block button-positive" type="submit">
+				Connexion
+			</button>
+		  </form>
+		 
+		  <div>
+                {{resultat}}
+          </div>
+		</div>
+				
+  </body>
+
+<!--	  <?php 
+	// Hachage du mot de passe
+	$pass_hache = sha1($_POST['user_password']);
+
+	// Vérification des identifiants
+	$req = $bdd->prepare('SELECT id FROM membres WHERE user_nom = :user_nom AND user_password = :user_password');
+	$req->execute(array(
+		'user_nom' => $user_nom,
+		'user_password' => $pass_hache));
+
+	$resultat = $req->fetch();
+
+	if (!$resultat)
+	{
+		echo 'Mauvais identifiant ou mot de passe !';
+	}
+	else
+	{
+		session_start();
+		$_SESSION['id'] = $resultat['id'];
+		$_SESSION['user_nom'] = $user_nom;
+		echo 'Vous êtes connecté !';
+	}
+	?>
+-->
+
   </ion-content>
 </ion-view>
+
