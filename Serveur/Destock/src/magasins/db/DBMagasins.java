@@ -25,7 +25,7 @@ public class DBMagasins {
 	public static void AddMagasin (String mail,String mdp,String nom,String adresse) throws DBException, SQLException {
 		try {
 			// Requete
-			String requete = "INSERT INTO `Magasin`(`mailMagasin`, `motDePasseMagasin`, `nomMagasin`, `addresseMagasin`) VALUES (null,\""+mail+"\",\""+mdp+"\",\""+nom+"\",\""+adresse+"\")";
+			String requete = "INSERT INTO `Magasin`(`mailMagasin`, `motDePasseMagasin`, `nomMagasin`, `addresseMagasin`) VALUES (\""+mail+"\",\""+mdp+"\",\""+nom+"\",\""+adresse+"\")";
 
 			// Ouverture de la connexion
 			Connection c = DataBase.getMySQLConnection();
