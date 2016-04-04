@@ -1,6 +1,6 @@
-<ion-view title="connexion">
+<ion-view title="Connexion">
   <ion-content padding="true">
-
+	
     <head>
         <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.10/angular.min.js"></script>
         <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js"></script>
@@ -23,14 +23,15 @@
 		
 		<div class="list" >
 		
-		  <form ng-submit="connexion()">
+		  <form method="POST"  ng-submit="login()" novalidate>
+		  <!-- action="http://130.79.206.218/utilisateur/addClient" -->
 		    <label class="item item-input">
 			  <span class="input-label">Username</span>
-			  <input type="text" name="user_nom">
+			  <input type="text" name="nom" required ng-minlength="2" ng-maxlength="20">
 		    </label>
 		    <label class="item item-input">
 			  <span class="input-label">Password</span>
-			  <input type="password" name="user_password">
+			  <input type="password" name="mdp" required ng-minlength="2" ng-maxlength="20">
 		    </label>
 		  
 			<button class="button button-block button-positive" type="submit">
@@ -42,11 +43,7 @@
                 {{resultat}}
           </div>
 		</div>
-			
-            
-            
-
-            	
+				
   </body>
 
 <!--	  <?php 

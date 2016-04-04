@@ -416,3 +416,4 @@ angular.module('demo', [
 
     $urlRouterProvider.otherwise('/menu');
   });
+ 
