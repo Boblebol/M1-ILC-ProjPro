@@ -49,7 +49,7 @@ public class DBClient {
 	public static void DelClient (String mail,String mdp) throws DBException, SQLException {
 		try {
 			// Requete
-			String requete = "DELETE FROM `Client` WHERE mailClient=\""+mail+"\" AND motDePasseClient=\""+mdp+"\"";
+			String requete = "DELETE FROM `Client` WHERE `mailClient`=\""+mail+"\" AND `motDePasseClient`=\""+mdp+"\"";
 
 			// Ouverture de la connexion
 			Connection c = DataBase.getMySQLConnection();

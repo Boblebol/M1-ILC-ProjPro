@@ -52,7 +52,7 @@ public class DBMagasins {
 	public static void DelMagasin (String mail,String mdp) throws DBException, SQLException {
 		try {
 			// Requete
-			String requete = "DELETE FROM `Magasin` WHERE mailMagasin=\""+mail+"\" AND motDePasseMagasin=\""+mdp+"\"";
+			String requete = "DELETE FROM `Magasin` WHERE `mailMagasin`=\""+mail+"\" AND `motDePasseMagasin`=\""+mdp+"\"";
 
 			// Ouverture de la connexion
 			Connection c = DataBase.getMySQLConnection();

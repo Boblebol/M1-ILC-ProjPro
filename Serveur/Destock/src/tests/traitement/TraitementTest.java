@@ -1,8 +1,5 @@
 package tests.traitement;
 
-import java.sql.Date;
-import java.util.Calendar;
-
 import org.json.JSONException;
 
 import clients.db.DBClientTools;
@@ -67,7 +64,7 @@ public class TraitementTest {
 		System.out.println("### Suppression preference cli1 categorie lolo ###");
 		System.out.println(PreferencesTraitements.DelPrefCat(idcli1, "lolo"));
 		System.out.println("### Suppression preference cli1 mag1 ###");
-		System.out.println(PreferencesTraitements.AddPrefMagasin(idcli1, idmag1));
+		System.out.println(PreferencesTraitements.DelPrefMagasin(idcli1, idmag1));
 		
 		System.out.println("### Suppression promo p1 du mag1 ###");
 		System.out.println(PromotionsTraitements.DelPromotion("p1", idmag1));

@@ -15,7 +15,7 @@ public class ListeMagasinServlet extends HttpServlet  {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public void doPost(HttpServletRequest req, HttpServletResponse rep) {
+	public void doGet(HttpServletRequest req, HttpServletResponse rep) {
 		try { 
 			
 			rep.setContentType("text/plain");

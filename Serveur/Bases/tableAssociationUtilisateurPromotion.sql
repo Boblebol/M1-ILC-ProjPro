@@ -7,8 +7,8 @@ CREATE TABLE AssociationUtilisateurPromotion
 	idClient		INT NOT NULL,
 	-- LE SUIVI
 	marque		VARCHAR(50), -- marque du produit
-	catégorie              VARCHAR(50), -- catégorie du produit
-	magasin 	INT NOT NULL, -- un magasin
+	categorie              VARCHAR(50), -- catégorie du produit
+	magasin 	INT, -- un magasin
 	FOREIGN KEY (idClient)REFERENCES Client(idClient), -- id de l'utilisateur
 	FOREIGN KEY (magasin) REFERENCES Magasin(idMagasin) -- un magasin
 )

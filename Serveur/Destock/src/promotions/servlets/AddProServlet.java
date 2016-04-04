@@ -3,9 +3,6 @@ package promotions.servlets;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import java.sql.Date;
-import java.util.Calendar;
-
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -36,7 +33,7 @@ public class AddProServlet extends HttpServlet  {
 			int duree = Integer.parseInt(dureeStr);
 			int idmag = Integer.parseInt(idmagStr);
 			int active = Integer.parseInt(activeStr);
-			java.sql.Date creation = new Date(Calendar.getInstance().getTimeInMillis());
+			//java.sql.Date creation = new Date(Calendar.getInstance().getTimeInMillis());
 			
 			rep.setContentType("text/plain");
 			PrintWriter out = rep.getWriter();

@@ -47,11 +47,9 @@ public class PromotionsTraitements {
 	 */
 	public static JSONObject DelPromotion (String ref,int idmag) {
 		try {
-			if (DBPromotionsTools.PromotionExistance(ref, idmag)) {
+			//if (DBPromotionsTools.PromotionExistance(ref, idmag)) {
 				DBPromotions.DelPromotion(ref, idmag);
 				return TraitementTools.JSONok();
-			}
-			return TraitementTools.JSONerreur("Cette combinaison mail/mot de passe n'existe pas.", 2);
 		} catch (Exception e) {
 			return TraitementTools.JSONBDerreur(e.getMessage());
 		}

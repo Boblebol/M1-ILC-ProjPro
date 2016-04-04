@@ -15,7 +15,7 @@ public class DetailMagasinServlet extends HttpServlet  {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public void doPost(HttpServletRequest req, HttpServletResponse rep) {
+	public void doGet(HttpServletRequest req, HttpServletResponse rep) {
 		try {
 			String idStr = req.getParameter("id"); 
 			String nom = req.getParameter("nom");  

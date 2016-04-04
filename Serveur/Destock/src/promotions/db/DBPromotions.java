@@ -36,7 +36,6 @@ public class DBPromotions {
 					+ "VALUES (\""+ref+"\",\""+marque+"\",\""+nomprod+"\",\""+categorie+"\",\""+description+"\",\""+ancienprix+"\",\""+nouveauprix+"\",\""+creation+"\",\""+duree+"\",\""+active+"\","+idMagasin+")";*/
 			String requete = "INSERT INTO `Promotions`(`referencePromo`,`marquePromo`,`nomProduit`,`categorie`, `description`, `ancienPrix`,`nouveauPrix`,`dureeValidite`,`active`,`idMagasin`) "
 					+ "VALUES (\""+ref+"\",\""+marque+"\",\""+nomprod+"\",\""+categorie+"\",\""+description+"\",\""+ancienprix+"\",\""+nouveauprix+"\",\""+duree+"\",\""+active+"\","+idMagasin+")";
-		
 			// Ouverture de la connexion
 			Connection c = DataBase.getMySQLConnection();
 			Statement s = c.createStatement();
@@ -101,7 +100,7 @@ public class DBPromotions {
 	 public static void DelPromotion (String ref,int idmag) throws DBException, SQLException {
 		try {
 			// Requete
-			String requete = "DELETE FROM `Promotions` WHERE referencePromo=\""+ref+"\" AND idMagasin=\""+idmag+"\"";
+			String requete = "DELETE FROM `Promotions` WHERE `referencePromo`=\""+ref+"\" AND `idMagasin`="+idmag+"";
 
 			// Ouverture de la connexion
 			Connection c = DataBase.getMySQLConnection();
@@ -167,7 +166,7 @@ public class DBPromotions {
 			// Requete
 			String requete = "SELECT  `idPromo`,`referencePromo`,`marquePromo`,`nomProduit`,"
 					+ "`categorie`, `description`, `ancienPrix`,`nouveauPrix`,"
-					+ "`dateCreation`,`dureeValidite`,`active`,`idMagasin` FROM `Promotions`"
+					+ "`dureeValidite`,`active`,`idMagasin` FROM `Promotions`"
 					+ "WHERE idPromo=\""+idpromo+"\"";
 			// Ouverture de la connexion
 			Connection c = DataBase.getMySQLConnection();
@@ -186,7 +185,7 @@ public class DBPromotions {
 				String description = rs.getString("description"); 
 				Float ancienPrix  = rs.getFloat("ancienPrix"); 
 				Float nouveauPrix  = rs.getFloat("nouveauPrix");  
-				Date dateCreation = rs.getDate ("dateCreation"); 
+				//Date dateCreation = rs.getDate ("dateCreation"); 
 				int dureeValidite = rs.getInt("dureeValidite");
 				String statut = rs.getString("active");  
 				int idMagasin = rs.getInt("idMagasin");  
@@ -199,7 +198,7 @@ public class DBPromotions {
 				tmp.put("description" , description);
 				tmp.put("ancienPrix" ,ancienPrix );
 				tmp.put("nouveauPrix" , nouveauPrix);
-				tmp.put("dateCreation" ,dateCreation );
+				//tmp.put("dateCreation" ,dateCreation );
 				tmp.put("dureeValidite" ,dureeValidite );
 				tmp.put("statut" ,statut );
 				tmp.put("idMagasin", idMagasin);
@@ -213,7 +212,7 @@ public class DBPromotions {
 			return tmp;
 
 		}catch (SQLException e) {
-			throw new DBException("DBUtilisateurs.updatePosUtilisateur : " + e.getMessage());
+			throw new DBException("DBPromotions.detailPromotion : " + e.getMessage());
 		}
 	}
 	

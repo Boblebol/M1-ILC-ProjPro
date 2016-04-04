@@ -12,7 +12,7 @@ public class DBPromotionsTools {
 
 	public static boolean PromotionExistance(String ref,int idmag)throws DBException {
 		try { 
-			String query = "SELECT * FROM Promotion WHERE referencePromo=\""+ref+"\",idMagasin=\""+idmag+"\"";
+			String query = "SELECT * FROM Promotions WHERE referencePromo=\""+ref+"\" AND idMagasin="+idmag;
 
 			Connection c = DataBase.getMySQLConnection();
 			Statement s = c.createStatement();
@@ -36,7 +36,7 @@ public class DBPromotionsTools {
 	public static int getIdPromo(String ref,int idmag)  throws DBException{
 		try { 
 			int retour = -1;
-			String query = "SELECT idPromo FROM Magasin WHERE referencePromo=\""+ref+"\",idMagasin=\""+idmag+"\"";
+			String query = "SELECT idPromo FROM Promotions WHERE referencePromo=\""+ref+"\" AND idMagasin="+idmag;
 			
 			Connection c = DataBase.getMySQLConnection();
 			Statement s = c.createStatement();

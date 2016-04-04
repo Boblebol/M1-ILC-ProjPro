@@ -15,7 +15,7 @@ public class ClientsTraitements {
 	 * @param nom
 	 * @param prenom
 	 * @param longitude
-	 * @param lattitud
+	 * @param lattitude
 	 * @return return JSON ou Erreur
 	 */
 	public static JSONObject  AddClient(String mail,String mdp,String nom,String prenom,int longitude,int lattitude) {
@@ -50,11 +50,12 @@ public class ClientsTraitements {
 	
 	/**
 	 * Modification d'un client
-	 * @param idMagasin
 	 * @param mail
 	 * @param mdp
 	 * @param nom
-	 * @param adresse
+	 * @param prenom
+	 * @param longitude 
+	 * @param lattitude
 	 * @throws BDException
 	 */
 	public static JSONObject updateClient (String mail,String mdp,String nom,String prenom,int longitude,int lattitude) {
