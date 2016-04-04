@@ -7,40 +7,46 @@
       <h2>Inscription</h2>
       <p>Bienvenue dans le panneau d'inscription. Les informations suivies de "<span style="color:red">*</span>" sont obligatoires, merci de les renseigner pour valider l'inscription.</p>
     </div>
-
+            <form method="POST"  ng-submit="login()" novalidate>
+         <!-- action="http://130.79.206.218/utilisateur/addClient" -->
     <div class="item item-body">
       <div class="list">
         <label class="item item-input item-stacked-label">
           <span class="input-label">Email<span style="color:red">*</span></span>
-          <input type="email" name="user_email" placeholder="Veuillez saisir votre adresse email">
+          <input type="email" name="mail" placeholder="Veuillez saisir votre adresse email"  required ng-minlength="2" ng-maxlength="20" ">
         </label>
         <label class="item item-input item-stacked-label">
           <span class="input-label">Confirmation d'email<span style="color:red">*</span></span>
-          <input type="email" name="user_email" placeholder="Veuillez saisir à nouveau votre adresse email">
+          <input type="email" name="mail_confirm" placeholder="Veuillez saisir à nouveau votre adresse email"  required ng-minlength="2" ng-maxlength="20" >
         </label>
         <label class="item item-input item-stacked-label">
           <span class="input-label">Mot de passe<span style="color:red">*</span></span>
-          <input type="password" placeholder="Veuillez saisir votre mot de passe">
+          <input type="password" name="mdp" placeholder="Veuillez saisir votre mot de passe"  required ng-minlength="2" ng-maxlength="20" >
         </label>
         <label class="item item-input item-stacked-label">
           <span class="input-label">Confirmation de mot de passe<span style="color:red">*</span></span>
-          <input type="password" placeholder="Veuillez saisir un mot de passe identique">
+          <input type="password" name="mdp" placeholder="Veuillez saisir un mot de passe identique"  required ng-minlength="2" ng-maxlength="20" >
         </label>
         <label class="item item-input item-stacked-label">
           <span class="input-label">Nom</span>
-          <input type="text" placeholder="Veuillez saisir votre nom">
+          <input type="text" name="nom" placeholder="Veuillez saisir votre nom"  required ng-minlength="2" ng-maxlength="20" >
         </label>
         <label class="item item-input item-stacked-label">
           <span class="input-label">Prénom</span>
-          <input type="text" placeholder="Veuillez saisir votre prénom">
+          <input type="text" name="prenom" placeholder="Veuillez saisir votre prénom"  required ng-minlength="2" ng-maxlength="20" >
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Pseudo</span>
+          <input type="text" name="pseudo" placeholder="Veuillez saisir votre pseudo"  required ng-minlength="2" ng-maxlength="20" >
         </label>
       </div>
     </div>
 
     <div class="padding">
       <button class="button button-block button-positive button-no-margin">Créer votre compte</button>
+      <!-- <input type="submit" class="button button-block button-positive button-no-margin" value="Créer votre compte"" /> -->
     </div>
-
+   </form>
   </div>
     
   </ion-content>
