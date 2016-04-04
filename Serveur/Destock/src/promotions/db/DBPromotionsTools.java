@@ -19,7 +19,7 @@ public class DBPromotionsTools {
 			s.executeQuery(query);
 			ResultSet rs = s.getResultSet();
 
-			boolean bool = rs.next();
+			boolean bool = rs.isFirst() && rs.isLast();
 
 			// Fermeture de la connexion
 			rs.close();

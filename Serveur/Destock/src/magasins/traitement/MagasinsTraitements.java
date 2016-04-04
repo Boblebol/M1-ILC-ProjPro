@@ -11,6 +11,7 @@ import settings.traitementSettings.TraitementTools;
 
 
 public class MagasinsTraitements {
+	
 	/**
 	 * Ajoute un magasin dans la base de donnn�e
 	 * @param mail

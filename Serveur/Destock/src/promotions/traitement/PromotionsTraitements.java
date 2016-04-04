@@ -27,12 +27,12 @@ public class PromotionsTraitements {
 	 * @param magasin
 	 * @return return JSON ok ou erreur
 	 */
-	public static JSONObject  AddPromotion (String ref, String marque, String nomprod,String categorie,String description,Float ancienprix,Float nouveauprix,Date creation, int duree,String active, int idmag) {
+	public static JSONObject  AddPromotion (String ref, String marque, String nomprod,String categorie,String description,Float ancienprix,Float nouveauprix,/*Date creation,*/ int duree,int active, int idmag) {
 		try {
 			if (DBPromotionsTools.PromotionExistance(ref, idmag)) {
-				return TraitementTools.JSONerreur("Cette promotion existe déja.", 2);
+				return TraitementTools.JSONerreur("Cette promotion existe dï¿½ja.", 2);
 			}
-			DBPromotions.AddPromotion(ref, marque, nomprod, categorie, description, ancienprix, nouveauprix, creation, duree, active, idmag);
+			DBPromotions.AddPromotion(ref, marque, nomprod, categorie, description, ancienprix, nouveauprix, /*creation,*/ duree, active, idmag);
 			return TraitementTools.JSONok();
 		} catch (Exception e) {
 			return TraitementTools.JSONBDerreur(e.getMessage());

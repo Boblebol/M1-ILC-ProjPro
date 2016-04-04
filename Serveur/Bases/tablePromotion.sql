@@ -11,7 +11,7 @@ CREATE TABLE Promotions
 	 description     	       BLOB, -- description du produit
  	 ancienPrix      	    FLOAT, -- ancien prix du produit
 	 nouveauPrix      FLOAT, -- nouveau prix du produit
-	 dateCreation     TIMESTAMP, -- date ou la promo a ete postee
+	 --dateCreation     TIMESTAMP, -- date ou la promo a ete postee
 	 dureeValidite   	       INT,
 	 -- STATUT
 	 active			BOOLEAN, -- Tant que la promo as moins de 24h par defaut ou que 3 personne l'aient signalee

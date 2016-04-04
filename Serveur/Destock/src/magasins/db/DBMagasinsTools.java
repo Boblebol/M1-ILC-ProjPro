@@ -33,10 +33,37 @@ public class DBMagasinsTools {
 		}
 	}
 
-	public static int getIdMagasin(String mail) throws DBException{
+	public static int getIdMagasinFromMail(String mail) throws DBException{
 		try { 
 			int rez = -1;
 			String query = "SELECT idMagasin FROM Magasin WHERE mailMagasin=\"" + mail + "\"";
+			
+			Connection c = DataBase.getMySQLConnection();
+			Statement s = c.createStatement();
+			s.executeQuery(query);
+			ResultSet rs = s.getResultSet();
+
+			boolean bool = rs.next();
+			if (bool) {
+				rez = rs.getInt("idMagasin"); 
+				
+			}
+
+			// Fermeture de la connexion
+			rs.close();
+			s.close();
+			c.close();
+
+			return rez;
+		}catch (SQLException e) {
+			throw new DBException("DBMagasinTools.magasinExistance : " + e.getMessage());
+		}
+	}
+	
+	public static int getIdMagasinFromNom(String nom) throws DBException{
+		try { 
+			int rez = -1;
+			String query = "SELECT idMagasin FROM Magasin WHERE nomMagasin=\"" + nom + "\"";
 			
 			Connection c = DataBase.getMySQLConnection();
 			Statement s = c.createStatement();

@@ -29,12 +29,14 @@ public class DBPromotions {
 	 * @param magasin
 	 * @throws BDException
 	 */
-	public static void AddPromotion (String ref, String marque, String nomprod,String categorie,String description,Float ancienprix,Float nouveauprix,Date creation, int duree,String active, int idMagasin) throws DBException, SQLException {
+	public static void AddPromotion (String ref, String marque, String nomprod,String categorie,String description,Float ancienprix,Float nouveauprix,/*Date creation,*/ int duree,int active, int idMagasin) throws DBException, SQLException {
 		try {
 			// Requete
-			String requete = "INSERT INTO `Promotions`(`referencePromo`,`marquePromo`,`nomProduit`,`categorie`, `description`, `ancienPrix`,`nouveauPrix`,`dateCreation`,`dureeValidite`,`active`,`idMagasin`) "
-					+ "VALUES (\""+ref+"\",\""+marque+"\",\""+nomprod+"\",\""+categorie+"\",\""+description+"\",\""+ancienprix+"\",\""+nouveauprix+"\",\""+creation+"\",\""+duree+"\",\""+active+"\",\""+idMagasin+"\")";
-
+			/*String requete = "INSERT INTO `Promotions`(`referencePromo`,`marquePromo`,`nomProduit`,`categorie`, `description`, `ancienPrix`,`nouveauPrix`,`dateCreation`,`dureeValidite`,`active`,`idMagasin`) "
+					+ "VALUES (\""+ref+"\",\""+marque+"\",\""+nomprod+"\",\""+categorie+"\",\""+description+"\",\""+ancienprix+"\",\""+nouveauprix+"\",\""+creation+"\",\""+duree+"\",\""+active+"\","+idMagasin+")";*/
+			String requete = "INSERT INTO `Promotions`(`referencePromo`,`marquePromo`,`nomProduit`,`categorie`, `description`, `ancienPrix`,`nouveauPrix`,`dureeValidite`,`active`,`idMagasin`) "
+					+ "VALUES (\""+ref+"\",\""+marque+"\",\""+nomprod+"\",\""+categorie+"\",\""+description+"\",\""+ancienprix+"\",\""+nouveauprix+"\",\""+duree+"\",\""+active+"\","+idMagasin+")";
+		
 			// Ouverture de la connexion
 			Connection c = DataBase.getMySQLConnection();
 			Statement s = c.createStatement();

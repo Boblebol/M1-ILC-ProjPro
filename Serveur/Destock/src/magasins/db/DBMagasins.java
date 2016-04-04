@@ -11,6 +11,7 @@ import org.json.JSONObject;
 
 import settings.dbSettings.DBException;
 import settings.dbSettings.DataBase;
+import settings.traitementSettings.TraitementTools;
 
 public class DBMagasins {
 
@@ -25,7 +26,7 @@ public class DBMagasins {
 	public static void AddMagasin (String mail,String mdp,String nom,String adresse) throws DBException, SQLException {
 		try {
 			// Requete
-			String requete = "INSERT INTO `Magasin`(`mailMagasin`, `motDePasseMagasin`, `nomMagasin`, `addresseMagasin`) VALUES (\""+mail+"\",\""+mdp+"\",\""+nom+"\",\""+adresse+"\")";
+			String requete = "INSERT INTO `Magasin`(`mailMagasin`, `motDePasseMagasin`, `nomMagasin`, `addresseMagasin`,`LongitudeMagasin`, `LattitudeMagasin`) VALUES (\""+mail+"\",\""+mdp+"\",\""+nom+"\",\""+adresse+"\",\""+0+"\",\""+0+"\")";
 
 			// Ouverture de la connexion
 			Connection c = DataBase.getMySQLConnection();
@@ -80,7 +81,7 @@ public class DBMagasins {
 	public static void updateMagasin (String mail,String mdp,String nom,String adresse) throws DBException {
 		try { 
 			if (DBMagasinsTools.magasinExistance(mail)) {
-				int id = DBMagasinsTools.getIdMagasin(mail);
+				int id = DBMagasinsTools.getIdMagasinFromMail(mail);
 				// Requete
 				String requete = "UPDATE `Magasin` SET `mailMagasin`=\""+mail+"\",`motDePasseMagasin`=\""+mdp+"\",`nomMagasin`=\""+nom+"\",`addresseMagasin`=\""+adresse+"\" WHERE idMagasin=\"" + id + "\"";
 				// Ouverture de la connexion
@@ -152,7 +153,7 @@ public class DBMagasins {
 		try { 
 			// Requete
 			String requete = "SELECT `mailMagasin`, `addresseMagasin`, `LongitudeMagasin`, `LattitudeMagasin` FROM `Magasin` WHERE idMagasin=\""+id+"\" AND nomMagasin=\""+nom+"\"" ;
-
+			
 			// Ouverture de la connexion
 			Connection c = DataBase.getMySQLConnection();
 			Statement s = c.createStatement();
@@ -162,6 +163,7 @@ public class DBMagasins {
 			ResultSet rs = s.getResultSet();
 			JSONObject tmp = new JSONObject();
 			while (rs.next()) {
+			if (rs.isFirst() && rs.isLast() ) {
 				String adresse = rs.getString("addresseMagasin");
 				String mail = rs.getString("mailMagasin");
 				Double longitude = rs.getDouble("LongitudeMagasin");
@@ -174,6 +176,10 @@ public class DBMagasins {
 				tmp.put("LattitudeMagasin",lattitude);
 				tmp.put("addresseMagasin", adresse);
 				
+			}
+			else {
+				TraitementTools.JSONBDerreur("DBMagasin.detailMagasin: Il y a plusieur magasin pour les infos données");
+			}
 			}
 
 			// Fermeture de la connexion
