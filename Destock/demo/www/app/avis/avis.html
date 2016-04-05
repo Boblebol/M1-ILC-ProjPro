@@ -9,6 +9,7 @@
   
   
   <body>
+  <form method="POST" ng-submit="login()" novalidate action="http://destock.u-strasbg.fr:8080/Destock/">
 	<div class="item range">
 		<i class="icon ion-thumbsdown"></i>
 			<input type="range" name="like">
@@ -22,7 +23,8 @@
 	
 	<button class="button button-block button-positive" type="submit">
 				Envoyer votre avis
-	</button>	
+	</button>
+  </form>	
   </body>
 
   </ion-content>
