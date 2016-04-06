@@ -30,7 +30,7 @@
 		    </label>
 		    <label class="item item-input">
 			  <span class="input-label">Password</span>
-			  <input type="password" name="mdp" required ng-minlength="2" ng-maxlength="20">
+			  <input type="password" ng-model="text" name="mdp" required ng-minlength="2" ng-maxlength="20">
 		    </label>
 		  
 			<button class="button button-block button-positive" type="submit">
@@ -39,37 +39,11 @@
 		  </form>
 		 
 		  <div>
-                {{resultat}}
+                {{text}}
           </div>
 		</div>
 				
   </body>
-
-<!--	  <?php 
-	// Hachage du mot de passe
-	$pass_hache = sha1($_POST['user_password']);
-
-	// Vérification des identifiants
-	$req = $bdd->prepare('SELECT id FROM membres WHERE user_nom = :user_nom AND user_password = :user_password');
-	$req->execute(array(
-		'user_nom' => $user_nom,
-		'user_password' => $pass_hache));
-
-	$resultat = $req->fetch();
-
-	if (!$resultat)
-	{
-		echo 'Mauvais identifiant ou mot de passe !';
-	}
-	else
-	{
-		session_start();
-		$_SESSION['id'] = $resultat['id'];
-		$_SESSION['user_nom'] = $user_nom;
-		echo 'Vous êtes connecté !';
-	}
-	?>
--->
 
   </ion-content>
 </ion-view>
