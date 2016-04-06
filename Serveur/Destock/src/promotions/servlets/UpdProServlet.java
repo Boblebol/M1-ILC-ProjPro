@@ -2,9 +2,6 @@ package promotions.servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Date;
-import java.util.Calendar;
-
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -34,11 +31,10 @@ public class UpdProServlet extends HttpServlet  {
 			float nouveauprix = Float.parseFloat(nouveauprixStr);
 			int duree = Integer.parseInt(dureeStr);
 			int idmag = Integer.parseInt(idmagStr);
-			java.sql.Date creation = new Date(Calendar.getInstance().getTimeInMillis());
 			
 			rep.setContentType("text/plain");
 			PrintWriter out = rep.getWriter();
-			out.println(PromotionsTraitements.updatePromotion(ref, marque, nomprod, categorie, description, ancienprix, nouveauprix, creation, duree, active, idmag));
+			out.println(PromotionsTraitements.updatePromotion(ref, marque, nomprod, categorie, description, ancienprix, nouveauprix, duree, active, idmag));
 
 		} catch (Exception e) {
 			e.printStackTrace();

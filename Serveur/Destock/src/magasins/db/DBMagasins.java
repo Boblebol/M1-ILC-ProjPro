@@ -192,4 +192,47 @@ public class DBMagasins {
 			throw new DBException("DBUtilisateurs.updatePosUtilisateur : " + e.getMessage());
 		}
 	}
+	
+	/**
+	 * connecte un magasin
+	 * @param adresse mail
+	 * @param mdp
+	 * @return un json avec les informations d'un client si il est en base ou un json vide
+	 * @throws JSONException 
+	 * @throws BDException
+	 */
+	public static JSONObject connecteMagasin (String mail,String mdp) throws DBException, JSONException {
+		try {
+			JSONObject tmp = new JSONObject();
+			if (DBMagasinsTools.magasinExistance(mail)) {
+				// Requete
+				String requete = "SELECT `idMagasin`, `nomMagasin` FROM `Magasin` WHERE `mailMagasin` = \""+mail+"\" AND `motDePasseMagasin`=\""+mdp+"\"";
+
+				// Ouverture de la connexion
+				Connection c = DataBase.getMySQLConnection();
+				Statement s = c.createStatement();
+
+				s.executeQuery(requete);
+				ResultSet rs = s.getResultSet();
+
+				while (rs.next() && rs.isLast()) {
+					int id = rs.getInt("idMagasin");
+					String nom = rs.getString("nomMagasin");
+					tmp.put("id", id);
+					tmp.put("mail", mail);
+					tmp.put("nom", nom);
+				}
+
+				// Fermeture de la connexion
+				s.close();
+				c.close();
+
+				return tmp;
+			} else {
+				return tmp;
+			}
+		} catch (SQLException e) {
+			throw new DBException("DBClient.updateClient : " + e.getMessage());
+		}
+	}
 }

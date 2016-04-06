@@ -1,9 +1,11 @@
 package clients.traitement;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import clients.db.DBClient;
 import clients.db.DBClientTools;
+import settings.dbSettings.DBException;
 import settings.traitementSettings.TraitementTools;
 
 
@@ -69,4 +71,16 @@ public class ClientsTraitements {
 			return TraitementTools.JSONBDerreur(e.getMessage());
 		}
 	}
+	
+	/**
+	 * Connexion d'un client
+	 * @param mail
+	 * @param mdp
+	 * @return un json avec toute les information d'un client ou un json vide
+	 * @throws JSONException 
+	 * @throws DBException 
+	 */
+	public static JSONObject connexionClient (String mail,String mdp) throws DBException, JSONException {
+		return DBClient.connecteClient(mail, mdp);
+	}	
 }

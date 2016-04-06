@@ -1,4 +1,4 @@
-	package preferences.servlets;
+package promotions.servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -7,23 +7,22 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import preferences.traitement.PreferencesTraitements;
+import promotions.traitement.PromotionsTraitements;
 
-public class DelCatPrefServlet extends HttpServlet  {
+public class ListeProCatServlet extends HttpServlet  {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public void doPost(HttpServletRequest req, HttpServletResponse rep) {
+	public void doGet(HttpServletRequest req, HttpServletResponse rep) {
 		try {
-			String idClientStr = req.getParameter("idClient"); 
-			String categorie = req.getParameter("categorie");  
-			int idClient = Integer.parseInt(idClientStr);
 
+			String cat = req.getParameter("cat"); 
+			
 			rep.setContentType("text/plain");
 			PrintWriter out = rep.getWriter();
-			out.println(PreferencesTraitements.DelPrefCat(idClient, categorie));
+			out.println(PromotionsTraitements.listePrommotionsCat(cat));
 
 		} catch (Exception e) {
 			e.printStackTrace();

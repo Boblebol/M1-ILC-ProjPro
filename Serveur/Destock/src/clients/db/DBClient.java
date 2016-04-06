@@ -1,8 +1,12 @@
 package clients.db;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import settings.dbSettings.DBException;
 import settings.dbSettings.DataBase;
@@ -94,6 +98,52 @@ public class DBClient {
 				c.close();
 			}
 		}catch (SQLException e) {
+			throw new DBException("DBClient.updateClient : " + e.getMessage());
+		}
+	}
+	
+	/**
+	 * connecte un client
+	 * @param adresse mail
+	 * @param mdp
+	 * @return un json avec les informations d'un client si il est en base ou un json vide
+	 * @throws JSONException 
+	 * @throws BDException
+	 */
+	public static JSONObject connecteClient (String mail,String mdp) throws DBException, JSONException {
+		try {
+			JSONObject tmp = new JSONObject();
+			if (DBClientTools.clientExistance(mail)) {
+				// Requete
+				String requete = "SELECT `idClient`, `nomClient`, `prenomClient` FROM `Client` WHERE `mailClient` = \""+mail+"\" AND `motDePasseClient`=\""+mdp+"\"";
+
+				// Ouverture de la connexion
+				Connection c = DataBase.getMySQLConnection();
+				Statement s = c.createStatement();
+
+				s.executeQuery(requete);
+				ResultSet rs = s.getResultSet();
+
+				while (rs.next() && rs.isLast()) {
+					int id = rs.getInt("idClient");
+					String nom = rs.getString("nomClient");
+					String prenom = rs.getString("prenomClient");
+					tmp.put("id", id);
+					tmp.put("mail", mail);
+					tmp.put("nom", nom);
+					tmp.put("prenom", prenom);
+				}
+				
+
+				// Fermeture de la connexion
+				s.close();
+				c.close();
+
+				return tmp;
+			} else {
+				return tmp;
+			}
+		} catch (SQLException e) {
 			throw new DBException("DBClient.updateClient : " + e.getMessage());
 		}
 	}

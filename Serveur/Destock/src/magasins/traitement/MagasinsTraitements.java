@@ -90,4 +90,16 @@ public class MagasinsTraitements {
 	public static JSONObject detailMagasin (int id,String nom) throws DBException, JSONException {
 		return DBMagasins.detailMagasin(id, nom);
 	}
+	
+	/**
+	 * Connexion d'un magasin
+	 * @param mail
+	 * @param mdp
+	 * @return un json avec toute les information d'un magasin ou un json vide
+	 * @throws JSONException 
+	 * @throws DBException 
+	 */
+	public static JSONObject connexionMagasin (String mail,String mdp) throws DBException, JSONException {
+		return DBMagasins.connecteMagasin(mail, mdp);
+	}	
 }

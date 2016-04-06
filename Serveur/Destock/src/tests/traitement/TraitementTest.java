@@ -18,6 +18,9 @@ public class TraitementTest {
 		System.out.println("### Création client cli2 ###");
 		System.out.println(ClientsTraitements.AddClient("client2@gmail.com","mdp","nom2","prenom2",0,0));
 		
+		System.out.println("### Connection client cli2 ###");
+		System.out.println(ClientsTraitements.connexionClient("client2@gmail.com","mdp"));
+		
 		System.out.println("### Modification client cli2 ###");
 		System.out.println(ClientsTraitements.updateClient("client2@gmail.com", "mdp", "nom2", "prenom2", 10,10));
 		
@@ -26,7 +29,10 @@ public class TraitementTest {
 		System.out.println("### Création magasin mag2 ###");
 		System.out.println(MagasinsTraitements.AddMagasin("magasin2@gmail.com", "mdp", "mag2", "adresse2"));
 		
-		System.out.println("### Liste des maasin ###");
+		System.out.println("### Connection du magasin mag2 ###");
+		System.out.println(MagasinsTraitements.connexionMagasin("magasin2@gmail.com", "mdp"));
+		
+		System.out.println("### Liste des magasins ###");
 		System.out.println(MagasinsTraitements.listeMagasin());
 		
 		System.out.println("### Modification magasin mag2 ###");
@@ -47,6 +53,9 @@ public class TraitementTest {
 		
 		System.out.println("### Liste promos ###");
 		System.out.println(PromotionsTraitements.listePrommotions());
+		
+		System.out.println("### Liste promos Actives###");
+		System.out.println(PromotionsTraitements.listePrommotionsActives ());
 		
 		System.out.println("### Modification promo p2 du mag1 ###");
 		System.out.println("Refaire update promotions");
