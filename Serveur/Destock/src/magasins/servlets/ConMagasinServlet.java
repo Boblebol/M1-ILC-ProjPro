@@ -1,4 +1,4 @@
-	package preferences.servlets;
+package magasins.servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -7,23 +7,22 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import preferences.traitement.PreferencesTraitements;
+import magasins.traitement.MagasinsTraitements;
 
-public class DelCatPrefServlet extends HttpServlet  {
+public class ConMagasinServlet  extends HttpServlet  {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public void doPost(HttpServletRequest req, HttpServletResponse rep) {
+	public void doGet(HttpServletRequest req, HttpServletResponse rep) {
 		try {
-			String idClientStr = req.getParameter("idClient"); 
-			String categorie = req.getParameter("categorie");  
-			int idClient = Integer.parseInt(idClientStr);
-
+			String mail = req.getParameter("mail");  
+			String mdp = req.getParameter("mdp");  
+			
 			rep.setContentType("text/plain");
 			PrintWriter out = rep.getWriter();
-			out.println(PreferencesTraitements.DelPrefCat(idClient, categorie));
+			out.println(MagasinsTraitements.connexionMagasin(mail, mdp));
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -37,4 +36,5 @@ public class DelCatPrefServlet extends HttpServlet  {
 			}
 		}
 	}
+
 }

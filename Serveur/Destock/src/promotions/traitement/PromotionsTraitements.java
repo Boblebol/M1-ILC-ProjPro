@@ -1,7 +1,5 @@
 package promotions.traitement;
 
-import java.sql.Date;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -13,6 +11,7 @@ import settings.traitementSettings.TraitementTools;
 
 
 public class PromotionsTraitements {
+	
 	/**
 	 * Ajoute une promotion dans la base de donnn�e
 	 * @param referencePromo
@@ -22,7 +21,6 @@ public class PromotionsTraitements {
 	 * @param description
 	 * @param ancienPrix
 	 * @param nouveauPrix
-	 * @param dateCreation
 	 * @param dureeValidite
 	 * @param magasin
 	 * @return return JSON ok ou erreur
@@ -38,6 +36,7 @@ public class PromotionsTraitements {
 			return TraitementTools.JSONBDerreur(e.getMessage());
 		}
 	}
+	
 	
 	/**
 	 * Supprime une promotion dans la base de donnn�e
@@ -55,8 +54,9 @@ public class PromotionsTraitements {
 		}
 	}
 	
+	
 	/**
-	* Modification une promotion
+	 * Modification une promotion
 	 * @param referencePromo
 	 * @param marquePromo
 	 * @param nomProduit
@@ -64,15 +64,14 @@ public class PromotionsTraitements {
 	 * @param description
 	 * @param ancienPrix
 	 * @param nouveauPrix
-	 * @param dateCreation
 	 * @param dureeValidite
 	 * @param magasin
 	 * @return return JSON ok ou erreur
 	 */
-	public static JSONObject updatePromotion (String ref, String marque, String nomprod,String categorie,String description,Float ancienprix,Float nouveauprix,Date creation, int duree,String active, int idmag) {
+	public static JSONObject updatePromotion (String ref, String marque, String nomprod,String categorie,String description,Float ancienprix,Float nouveauprix, int duree,String active, int idmag) {
 		try {
 			if (DBPromotionsTools.PromotionExistance(ref, idmag)) {
-				DBPromotions.updatePromotion(ref, marque, nomprod, categorie, description, ancienprix, nouveauprix, creation, duree, active, idmag);
+				DBPromotions.updatePromotion(ref, marque, nomprod, categorie, description, ancienprix, nouveauprix, duree, active, idmag);
 				return TraitementTools.JSONok();
 			}
 			return TraitementTools.JSONerreur("Cette promotion n'existe pas.", 2);
@@ -81,13 +80,47 @@ public class PromotionsTraitements {
 		}
 	}
 	
+	
 	/**
-	* lister les promotions
+	 * lister les promotions
 	 * @return un json array avec tous les promotions avec les magasins
 	 */
 	public static JSONArray listePrommotions () throws DBException, JSONException {
 		return DBPromotions.listePromotion();
 	}
+	
+	
+	/**
+	 * lister les promotions actives
+	 * @return un json array avec tous les promotions actives
+	 *  avec les magasins
+	 */
+	public static JSONArray listePrommotionsActives () throws DBException, JSONException {
+		return  DBPromotions.listePromotionActives();
+	}
+	
+	
+	/**
+	 * lister les promotions d'une categorie actives
+	 * @param une categorie
+	 * @return un json array avec tous les promotions actives
+	 *  avec les magasins
+	 */
+	public static JSONArray listePrommotionsCat (String cat) throws DBException, JSONException {
+		return  DBPromotions.listePromotionActives();
+	}
+	
+	
+	/**
+	 * lister les promotions d'un magasin donnée qui sont actives
+	 * @param idMagasin
+	 * @return un json array avec tous les promotions actives d'une catégorie
+	 * @throws BDException
+	 */
+	public static JSONArray listePromotionMagasin (int idMag) throws DBException, JSONException {
+		return  DBPromotions.listePromotionMagasin(idMag);
+	}
+	
 	
 	/**
 	 * Obtenir les details sur une promotion

@@ -1,7 +1,6 @@
 package promotions.db;
 
 import java.sql.Connection;
-import  java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -66,14 +65,14 @@ public class DBPromotions {
 	 * @throws BDException
 	 */ 
 
-	public static void updatePromotion (String ref, String marque, String nomprod,String categorie,String description,Float ancienprix,Float nouveauprix,Date creation, int duree,String active, int idMagasin) throws DBException, SQLException {
+	public static void updatePromotion (String ref, String marque, String nomprod,String categorie,String description,Float ancienprix,Float nouveauprix, int duree,String active, int idMagasin) throws DBException, SQLException {
 		try {
 			if (DBPromotionsTools.PromotionExistance(ref,idMagasin)){
 				int id = DBPromotionsTools.getIdPromo(ref,idMagasin);
 				// Requete
 				String requete = 
 				"UPDATE `Promotions` SET `referencePromo`=\""+ref+"\",`marquePromo`=\""+marque+"\",`nomProduit`=\""+nomprod+"\",`categorie`=\""+categorie+"\",`description`=\""+description+"\","
-						+ "`ancienPrix`=\""+ancienprix+"\",`nouveauPrix`=\""+nouveauprix+"\",`dateCreation`=\""+creation+"\",`dureeValidite`=\""+duree+"\",`active`=\""+active+"\",`idMagasin`=\""+idMagasin+"\" WHERE idClient=\"" + id + "\"";
+						+ "`ancienPrix`=\""+ancienprix+"\",`nouveauPrix`=\""+nouveauprix+"\",`dureeValidite`=\""+duree+"\",`active`=\""+active+"\",`idMagasin`=\""+idMagasin+"\" WHERE idClient=\"" + id + "\"";
 				// Ouverture de la connexion
 				Connection c = DataBase.getMySQLConnection();
 				Statement s = c.createStatement();
@@ -120,7 +119,7 @@ public class DBPromotions {
  
 	 /**
 	 * lister les promotions
-	 * @return un json array avec tous les promotions avec les magasins
+	 * @return un json array avec tous les promotions
 	 * @throws BDException
 	 */
 	public static JSONArray listePromotion () throws DBException, JSONException {
@@ -160,7 +159,139 @@ public class DBPromotions {
 		}
 	}
 	
+	/**
+	 * lister les promotions actives
+	 * @return un json array avec tous les promotions actives
+	 * @throws BDException
+	 */
+	public static JSONArray listePromotionActives () throws DBException, JSONException {
+		try { 
+			// Requete
+			String requete = "SELECT  `idPromo`,`referencePromo`,`idMagasin` FROM `Promotions` WHERE `active`=1";
+
+			// Ouverture de la connexion
+			Connection c = DataBase.getMySQLConnection();
+			Statement s = c.createStatement();
+
+			s.executeQuery(requete);
+
+			ResultSet rs = s.getResultSet();
+			JSONArray js = new JSONArray();
+
+			while (rs.next()) {
+				int idPromo = rs.getInt("idPromo");
+				String referencePromo = rs.getString("referencePromo");
+				int idMagasin = rs.getInt("idMagasin");  
+
+				JSONObject tmp = new JSONObject();
+				tmp.put("idPromo", idPromo);
+				tmp.put("referencePromo", referencePromo);
+				tmp.put("idMagasin", idMagasin);
+				js.put(tmp);
+			}
+
+			// Fermeture de la connexion
+			s.close();
+			c.close();
+
+			return js;
+
+		}catch (SQLException e) {
+			throw new DBException("DBPromotions.listePromotion : " + e.getMessage());
+		}
+	}
 	
+	/**
+	 * lister les promotions d'une categorie donnée qui sont actives
+	 * @param String categorie
+	 * @return un json array avec tous les promotions actives d'une catégorie
+	 * @throws BDException
+	 */
+	public static JSONArray listePromotionCategorie (String cat) throws DBException, JSONException {
+		try { 
+			// Requete
+			String requete = "SELECT  `idPromo`,`referencePromo`,`idMagasin` FROM `Promotions` WHERE `categorie`=\""+cat+"\" AND `active`=1";
+
+			// Ouverture de la connexion
+			Connection c = DataBase.getMySQLConnection();
+			Statement s = c.createStatement();
+
+			s.executeQuery(requete);
+
+			ResultSet rs = s.getResultSet();
+			JSONArray js = new JSONArray();
+
+			while (rs.next()) {
+				int idPromo = rs.getInt("idPromo");
+				String referencePromo = rs.getString("referencePromo");
+				int idMagasin = rs.getInt("idMagasin");  
+
+				JSONObject tmp = new JSONObject();
+				tmp.put("idPromo", idPromo);
+				tmp.put("referencePromo", referencePromo);
+				tmp.put("idMagasin", idMagasin);
+				js.put(tmp);
+			}
+
+			// Fermeture de la connexion
+			s.close();
+			c.close();
+
+			return js;
+
+		}catch (SQLException e) {
+			throw new DBException("DBPromotions.listePromotion : " + e.getMessage());
+		}
+	}
+	
+	/**
+	 * lister les promotions d'un magasin donnée qui sont actives
+	 * @param idMagasin
+	 * @return un json array avec tous les promotions actives d'une catégorie
+	 * @throws BDException
+	 */
+	public static JSONArray listePromotionMagasin (int idMag) throws DBException, JSONException {
+		try { 
+			// Requete
+			String requete = "SELECT  `idPromo`,`referencePromo`,`idMagasin` FROM `Promotions` WHERE `idMagasin`=\""+idMag+"\" AND `active`=1";
+
+			// Ouverture de la connexion
+			Connection c = DataBase.getMySQLConnection();
+			Statement s = c.createStatement();
+
+			s.executeQuery(requete);
+
+			ResultSet rs = s.getResultSet();
+			JSONArray js = new JSONArray();
+
+			while (rs.next()) {
+				int idPromo = rs.getInt("idPromo");
+				String referencePromo = rs.getString("referencePromo");
+				int idMagasin = rs.getInt("idMagasin");  
+
+				JSONObject tmp = new JSONObject();
+				tmp.put("idPromo", idPromo);
+				tmp.put("referencePromo", referencePromo);
+				tmp.put("idMagasin", idMagasin);
+				js.put(tmp);
+			}
+
+			// Fermeture de la connexion
+			s.close();
+			c.close();
+
+			return js;
+
+		}catch (SQLException e) {
+			throw new DBException("DBPromotions.listePromotion : " + e.getMessage());
+		}
+	}
+	
+	/**
+	 * Renvoie le detail d'une promotion
+	 * @return un json avec tous les details d'une promotions
+	 * @throws BDException
+	 */
 	public static JSONObject detailPromotion (int idpromo) throws DBException, JSONException {
 		try { 
 			// Requete
