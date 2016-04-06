@@ -23,11 +23,10 @@
 		
 		<div class="list" >
 		
-		  <form method="POST"  ng-submit="login()" novalidate>
-		  <!-- action="http://130.79.206.218/utilisateur/addClient" -->
+		  <form method="GET" ng-submit="login()" novalidate action="http://destock.u-strasbg.fr:8080/Destock/client/con">
 		    <label class="item item-input">
-			  <span class="input-label">Username</span>
-			  <input type="text" name="nom" required ng-minlength="2" ng-maxlength="20">
+			  <span class="input-label">Adresse mail</span>
+			  <input type="mail" name="mail" required ng-minlength="2" ng-maxlength="20">
 		    </label>
 		    <label class="item item-input">
 			  <span class="input-label">Password</span>
