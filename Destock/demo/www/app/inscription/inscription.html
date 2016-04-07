@@ -1,5 +1,5 @@
 <ion-view title="Inscription">
-  <ion-content>
+  <ion-content  ng-app="demo" ng-controller="InscriptionCtrl">
     <div class="list card">
 
     <div class="item item-icon-left justify">
@@ -7,56 +7,57 @@
       <h2>Inscription</h2>
       <p>Bienvenue dans le panneau d'inscription. Les informations suivies de "<span style="color:red">*</span>" sont obligatoires, merci de les renseigner pour valider l'inscription.</p>
     </div>
-            
-	<form name="formInscr" method="POST" ng-submit="login()" novalidate action="http://destock.u-strasbg.fr:8080/Destock/client/add">
     <div class="item item-body">
       <div class="list">
         <label class="item item-input item-stacked-label">
           <span class="input-label">Email<span style="color:red">*</span></span>
-          <input type="email" name="mail" placeholder="Veuillez saisir votre adresse email"  required ng-minlength="2" ng-maxlength="20">
-		  <div ng-messages="formInscr.mail.$error" ng-messages-include="erreurs.html"></div>
+          <input type="email" name="mail" ng-model="mail" placeholder="Veuillez saisir votre adresse email">
+
         </label>
 		
         <label class="item item-input item-stacked-label">
           <span class="input-label">Confirmation d'email<span style="color:red">*</span></span>
-          <input type="email" name="mail_confirm" placeholder="Veuillez saisir à nouveau votre adresse email"  required ng-minlength="2" ng-maxlength="20">
-		  <div ng-messages="formInscr.mail_confirm.$error" ng-messages-include="erreurs.html"></div>
+          <input type="email" name="mail_confirm" ng-model="mail_confirm" placeholder="Veuillez saisir à nouveau votre adresse email" >
 		</label>
 		
         <label class="item item-input item-stacked-label">
           <span class="input-label">Mot de passe<span style="color:red">*</span></span>
-          <input type="password" name="mdp" placeholder="Veuillez saisir votre mot de passe"  required ng-minlength="2" ng-maxlength="20" >
-          <div ng-messages="formInscr.mdp.$error" ng-messages-include="erreurs.html"></div>
+          <input type="password" name="mdp" ng-model="mdp" placeholder="Veuillez saisir votre mot de passe" >
+       
 		</label>
 		
         <label class="item item-input item-stacked-label">
           <span class="input-label">Confirmation de mot de passe<span style="color:red">*</span></span>
-          <input type="password" name="mdp_confirm" placeholder="Veuillez saisir un mot de passe identique"  required ng-minlength="2" ng-maxlength="20" >
-          <div ng-messages="formInscr.mdp_confirm.$error" ng-messages-include="erreurs.html"></div>
+          <input type="password" name="mdp_confirm" ng-model="mdp_confirm" placeholder="Veuillez saisir un mot de passe identique">
 		</label>
 		
         <label class="item item-input item-stacked-label">
           <span class="input-label">Nom</span>
-          <input type="text" name="nom" placeholder="Veuillez saisir votre nom"  required ng-minlength="2" ng-maxlength="20" >
+          <input type="text" name="nom" ng-model="nom" placeholder="Veuillez saisir votre nom">
         </label>
 		
         <label class="item item-input item-stacked-label">
           <span class="input-label">Prénom</span>
-          <input type="text" name="prenom" placeholder="Veuillez saisir votre prénom"  required ng-minlength="2" ng-maxlength="20" >
+          <input type="text" name="prenom" ng-model="prenom" placeholder="Veuillez saisir votre prénom">
         </label>
 		
         <label class="item item-input item-stacked-label">
           <span class="input-label">Pseudo</span>
-          <input type="text" name="pseudo" placeholder="Veuillez saisir votre pseudo"  required ng-minlength="2" ng-maxlength="20" >
+          <input type="text" name="pseudo" ng-model="pseudo" placeholder="Veuillez saisir votre pseudo">
         </label>
       </div>
     </div>
 
     <div class="padding">
-      <button class="button button-block button-positive button-no-margin">Créer votre compte</button>
-      <!-- <input type="submit" class="button button-block button-positive button-no-margin" value="Créer votre compte"" /> -->
+      <button class="button button-block button-positive button-no-margin" ng-click="SendData()">Créer votre compte</button>
     </div>
-   </form>
+Données envoyées : {{ Donnees }}<br />    <br />
+    
+Données après envoi : {{ PostDataResponse }}<br /><br />
+ 
+ 
+Reponse donnée : {{ ResponseDetails }}
+    
   </div>
     
   </ion-content>
