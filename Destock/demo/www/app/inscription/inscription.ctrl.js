@@ -3,6 +3,16 @@ angular.module('demo.inscription.ctrl', [])
   .controller('InscriptionCtrl', function ($scope, $http) {
 
 
+	
+   $scope.verifMdp= function () {
+	   if($scope.mdp != $scope.mdp_confirm) {
+		   $scope.erreur = 'Vous n"avez pas renseigné le même mot de passe';
+		   return false;
+	   }
+		   
+	   else return true;
+	  
+   };
 
    $scope.SendData = function () {
    
@@ -35,11 +45,17 @@ angular.module('demo.inscription.ctrl', [])
             });
             
             
-            
+            if($scope.mdp != $scope.mdp_confirm) {
+		   $scope.erreur = 'Vous n"avez pas renseigné le même mot de passe';
+		   return false;
+	   }
+		   
+	   else return true;
             
         };
+		
         
-        
+			
   });
   
  
