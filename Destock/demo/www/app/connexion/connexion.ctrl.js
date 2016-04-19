@@ -4,8 +4,8 @@ angular.module('demo.connexion.ctrl', [])
 	
    
    $scope.mail = {
-        text : 'me@example.com',
-		regex :'[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$'
+        text : 'testme@example.com',
+		regex :'[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{1}$'
       };
 	  
    $scope.SendData = function () {

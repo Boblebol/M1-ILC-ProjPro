@@ -9,7 +9,12 @@
     
   <body>		
 	<div class="list" >	
-		  <form name="form" method="GET" ng-submit="login()" novalidate action="http://destock.u-strasbg.fr:8080/Destock/client/con">
+		  <form name="form" method="GET" novalidate>
+		  
+		  
+		  
+
+		  
 		    <label class="item item-input">
 			  <span class="input-label">Adresse mail</span>
 			  <input type="mail" ng-model="mail.text" name="mail" ng-pattern="mail.regex" required ng-minlength="2" ng-maxlength="20">
@@ -25,8 +30,10 @@
 		  </form>
 	</div>
 	
-	input valid? = <code>{{form.mail.$valid}}</code><br>
-    model = <code>{{model}}</code>
+    
+    
+{{ ResponseDetails }} 
+     {{ PostDataResponse }}
 				
   </body>
 
