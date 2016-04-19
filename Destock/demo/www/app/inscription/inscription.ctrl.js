@@ -2,21 +2,49 @@ angular.module('demo.inscription.ctrl', [])
 
   .controller('InscriptionCtrl', function ($scope, $http) {
 
-
+	//Verification MAIL
+	$scope.verifSyntMail = function() {
+		
+		if (/^([a-z0-9._-]+)@([a-z0-9._-]+)\.([a-z]{2,6})$/.test($scope.mail)) {
+			$scope.erreur = 'MAIL VALIDE !';
+			return true;
+		}	 
+			
+		else 
+		{
+			$scope.erreur = 'MAIL INVALIDE !';
+			return false;	
+		}
+	}
 	
-   $scope.verifMdp= function () {
-	   if($scope.mdp != $scope.mdp_confirm) {
-		   $scope.erreur = 'Vous n"avez pas renseigné le même mot de passe';
+	//Verification mail et mail_confirm
+   $scope.verifMail= function () {
+	   if($scope.mail != $scope.mail_confirm) {
+		   $scope.erreur = 'Vous n"avez pas renseigné le même mail !';
 		   return false;
 	   }
 		   
-	   else return true;
-	  
+	   else {
+		   $scope.erreur = 'Vous même mail !';
+			return true;
+	   }
    };
-
+	
+    //Verification mot de passe
+   $scope.verifMdp= function () {
+	   if($scope.mdp != $scope.mdp_confirm) {
+		   $scope.erreur = 'Vous n"avez pas renseigné le même mot de passe !';
+		   return false;
+	   }
+		   
+	   else {
+		   $scope.erreur = 'Vous même mot de passe !';
+			return true;
+	   }
+   };
+   
+   //
    $scope.SendData = function () {
-   
-   
    
            // use $.param jQuery function to serialize data from JSON 
             var dataOBJ = {
@@ -43,19 +71,9 @@ angular.module('demo.inscription.ctrl', [])
                 $scope.ResponseDetails = "Data: " + data +
                     " Status: " + status;
             });
-            
-            
-            if($scope.mdp != $scope.mdp_confirm) {
-		   $scope.erreur = 'Vous n"avez pas renseigné le même mot de passe';
-		   return false;
-	   }
-		   
-	   else return true;
-            
+		            
         };
-		
-        
-			
+				
   });
   
  

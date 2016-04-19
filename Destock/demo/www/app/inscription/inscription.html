@@ -12,13 +12,13 @@
       <div class="list">
         <label class="item item-input item-stacked-label">
           <span class="input-label">Email<span style="color:red">*</span></span>
-          <input type="email" name="mail" ng-model="mail" placeholder="Veuillez saisir votre adresse email">
+          <input type="email" name="mail" ng-model="mail" ng-keypress="verifSyntMail()" placeholder="Veuillez saisir votre adresse email">
 
         </label>
 		
         <label class="item item-input item-stacked-label">
           <span class="input-label">Confirmation d'email<span style="color:red">*</span></span>
-          <input type="email" name="mail_confirm" ng-model="mail_confirm" placeholder="Veuillez saisir à nouveau votre adresse email" >
+          <input type="email" name="mail_confirm" ng-model="mail_confirm" ng-keypress="verifMail()" placeholder="Veuillez saisir à nouveau votre adresse email" >
 		</label>
 		
         <label class="item item-input item-stacked-label">
@@ -29,10 +29,10 @@
 		
         <label class="item item-input item-stacked-label">
           <span class="input-label">Confirmation de mot de passe<span style="color:red">*</span></span>
-          <input type="password" name="mdp_confirm" ng-model="mdp_confirm" ng-minlength="6" placeholder="Veuillez saisir un mot de passe identique">
+          <input type="password" name="mdp_confirm" ng-model="mdp_confirm" ng-keypress="verifMdp()" ng-minlength="6" placeholder="Veuillez saisir un mot de passe identique">
 		</label>
 		
-        <label class="item item-input item-stacked-label">
+        <label class="item item-input item-stacked-label"> 
           <span class="input-label">Nom</span>
           <input type="text" name="nom" ng-model="nom" placeholder="Veuillez saisir votre nom">
         </label>
