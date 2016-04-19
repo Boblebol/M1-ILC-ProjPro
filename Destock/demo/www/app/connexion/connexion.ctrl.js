@@ -1,10 +1,9 @@
 angular.module('demo.connexion.ctrl', [])
 
-  .controller('ConnexionCtrl', function ($scope, $http) {
+  .controller('ConnexionCtrl', function ($scope, $http, $httpParamSerializer) {
 	  
    $scope.SendData = function () {
    
-           // use $.param jQuery function to serialize data from JSON 
             var dataOBJ = {
                 mail: $scope.mail,
                 mdp: $scope.mdp
@@ -17,10 +16,38 @@ angular.module('demo.connexion.ctrl', [])
             }
 
                 console.log("Donnes envoyees au serveur : " + JSON.stringify(dataOBJ) );
-                   
-            $http.post('http://destock.u-strasbg.fr:8080/Destock/client/con', dataOBJ, config)
+                   $http.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded";
+            $http.post('http://destock.u-strasbg.fr:8080/Destock/client/con',  $httpParamSerializer(dataOBJ))
+            
+            var req = {
+ method: 'POST',
+ url: 'http://destock.u-strasbg.fr:8080/Destock/client/con',
+ headers: {
+   'Content-Type': 'application/x-www-form-urlencoded'
+ },
+ data: $httpParamSerializer(dataOBJ)
+};
+
+$http(req)
+            
+            
+            
+            
             .success(function (data, status, headers, config) {
                 console.log("Donnes recues par le serveur : " + JSON.stringify(data) );
+                
+                
+                if (JSON.stringify(data) != "{}")
+                {
+                        $scope.Resultat = "Connexion reussie !!!!!";
+                }
+                else
+                {
+                        $scope.Resultat = "Connexion echouee :'( !!!!!";
+                
+                }
+                
+                
             })
             .error(function (data, status, header, config) {
                 console.log("ERREUR : " + JSON.stringify(data) + JSON.stringify(status) );
@@ -30,7 +57,4 @@ angular.module('demo.connexion.ctrl', [])
         
         
   });
-  
  
-        
-//action="http://destock.u-strasbg.fr:8080/Destock/client/add"

@@ -22,7 +22,8 @@
     "CODE_OF_CONDUCT.md"
   ],
   "dependencies": {
-    "angular": ">= 1.2.23"
+    "angular": ">= 1.5.5"
+    "ionic": ">= 1.2"
   },
   "keywords": [
     "ngCordova",
@@ -39,8 +40,8 @@
   "license": "MIT",
   "private": false,
   "devDependencies": {
-    "angular": ">= 1.2.23",
-    "angular-mocks": ">= 1.2.23",
+    "angular": ">= 1.5.5",
+    "angular-mocks": ">= 1.5.5",
     "jquery": "~2.1.1"
   }
 }
