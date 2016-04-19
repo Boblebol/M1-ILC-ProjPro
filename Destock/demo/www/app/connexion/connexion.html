@@ -7,22 +7,21 @@
         <script type="text/javascript" src="./scripts/controllers.js"></script>
     </head>
     
-  <body>		
+  <body>	 	
 	<div class="list" >	
 		  <form name="form" method="GET" novalidate>
 		  
 		  
-		  
+		          <label class="item item-input">
+          <span class="input-label">Email</span>
+          <input type="email" name="mail" ng-model="mail" placeholder="Veuillez saisir votre adresse email"  required ng-minlength="2" ng-maxlength="20">
+        </label>
 
-		  
-		    <label class="item item-input">
-			  <span class="input-label">Adresse mail</span>
-			  <input type="mail" ng-model="mail.text" name="mail" ng-pattern="mail.regex" required ng-minlength="2" ng-maxlength="20">
-		    </label>
-		    <label class="item item-input">
-			  <span class="input-label">Password</span>
-			  <input type="password" ng-model="mdp" name="mdp" required ng-minlength="6" ng-maxlength="20">
-		    </label>
+		          <label class="item item-input">
+          <span class="input-label">Mot de passe</span>
+          <input type="password" name="mdp" ng-model="mdp" placeholder="Veuillez saisir votre mot de passe"  required ng-minlength="2" ng-maxlength="20">
+        </label>		  
+
 		  
 			<button class="button button-block button-positive" type="submit" ng-disabled="!form.$valid" ng-click="SendData()">
 				Connexion

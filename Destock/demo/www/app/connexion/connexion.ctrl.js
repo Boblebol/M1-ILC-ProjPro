@@ -1,12 +1,6 @@
 angular.module('demo.connexion.ctrl', [])
 
   .controller('ConnexionCtrl', function ($scope, $http) {
-	
-   
-   $scope.mail = {
-        text : 'testme@example.com',
-		regex :'[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{1}$'
-      };
 	  
    $scope.SendData = function () {
    
@@ -22,15 +16,14 @@ angular.module('demo.connexion.ctrl', [])
                 }
             }
 
-                $scope.Donnees = dataOBJ;
+                console.log("Donnes envoyees au serveur : " + JSON.stringify(dataOBJ) );
                    
             $http.post('http://destock.u-strasbg.fr:8080/Destock/client/con', dataOBJ, config)
             .success(function (data, status, headers, config) {
-                $scope.PostDataResponse = data;
+                console.log("Donnes recues par le serveur : " + JSON.stringify(data) );
             })
             .error(function (data, status, header, config) {
-                $scope.ResponseDetails = "Data: " + data +
-                    " Status: " + status;
+                console.log("ERREUR : " + JSON.stringify(data) + JSON.stringify(status) );
             });
                   
         };
