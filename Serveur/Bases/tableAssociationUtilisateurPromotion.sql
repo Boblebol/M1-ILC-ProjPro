@@ -9,6 +9,6 @@ CREATE TABLE AssociationUtilisateurPromotion
 	marque		VARCHAR(50), -- marque du produit
 	categorie              VARCHAR(50), -- catégorie du produit
 	idMagasin 	INT, -- un magasin
-	FOREIGN KEY (idClient)REFERENCES Client(idClient), -- id de l'utilisateur
+	FOREIGN KEY (idClient)REFERENCES Client(idClient) -- id de l'utilisateur
 )
 	  
