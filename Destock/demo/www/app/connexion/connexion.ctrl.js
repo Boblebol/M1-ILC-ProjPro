@@ -16,8 +16,6 @@ angular.module('demo.connexion.ctrl', [])
             }
 
                 console.log("Donnes envoyees au serveur : " + JSON.stringify(dataOBJ) );
-                   $http.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded";
-            $http.post('http://destock.u-strasbg.fr:8080/Destock/client/con',  $httpParamSerializer(dataOBJ))
             
             var req = {
  method: 'POST',
