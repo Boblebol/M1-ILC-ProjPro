@@ -1,0 +1,7 @@
+{
+  "name": "Destock API",
+  "version": "2.0.0",
+  "description": "API de Destock",
+  "title": "Destock API",
+  "url" : "http://destock.u-strasbg.fr:8080/Destock"
+}

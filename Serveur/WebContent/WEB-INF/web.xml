@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+	id="WebApp_ID" version="3.1">
+
+	<!-- filtre CORS -->
+
+	<filter>
+		<filter-name>CorsFilter</filter-name>
+		<filter-class>org.apache.catalina.filters.CorsFilter</filter-class>
+		<init-param>
+			<param-name>cors.allowed.origins</param-name>
+			<param-value>*</param-value>
+		</init-param>
+		<init-param>
+			<param-name>cors.allowed.methods</param-name>
+			<param-value>GET,POST,HEAD,OPTIONS,PUT</param-value>
+		</init-param>
+		<init-param>
+			<param-name>cors.allowed.headers</param-name>
+			<param-value>Content-Type,X-Requested-With,accept,Origin,Access-Control-Request-Method,Access-Control-Request-Headers</param-value>
+		</init-param>
+		<init-param>
+			<param-name>cors.exposed.headers</param-name>
+			<param-value>Access-Control-Allow-Origin,Access-Control-Allow-Credentials</param-value>
+		</init-param>
+		<init-param>
+			<param-name>cors.support.credentials</param-name>
+			<param-value>true</param-value>
+		</init-param>
+		<init-param>
+			<param-name>cors.supportedHeaders</param-name>
+			<param-value>Accept, Origin, X-Requested-With, Content-Type, Last-Modified</param-value>
+		</init-param>
+		<init-param>
+			<param-name>cors.preflight.maxage</param-name>
+			<param-value>10</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>CorsFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+	<!-- Les servlets de gestion de clients -->
+
+	<servlet>
+		<servlet-name>AddClient</servlet-name>
+		<servlet-class>clients.servlets.AddClientServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AddClient</servlet-name>
+		<url-pattern>/client/add</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>ConClient</servlet-name>
+		<servlet-class>clients.servlets.ConClientServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ConClient</servlet-name>
+		<url-pattern>/client/con</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>UpdPosClient</servlet-name>
+		<servlet-class>clients.servlets.UpdPosClientServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>UpdPosClient</servlet-name>
+		<url-pattern>/client/updPos</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>UpdClient</servlet-name>
+		<servlet-class>clients.servlets.UpdClientServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>UpdClient</servlet-name>
+		<url-pattern>/client/upd</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>DelClient</servlet-name>
+		<servlet-class>clients.servlets.SupClientServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DelClient</servlet-name>
+		<url-pattern>/client/del</url-pattern>
+	</servlet-mapping>
+
+
+
+	<!-- Les servlets de gestion de magasin -->
+	<servlet>
+		<servlet-name>AddMagasin</servlet-name>
+		<servlet-class>magasins.servlets.AddMagasinServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AddMagasin</servlet-name>
+		<url-pattern>/magasin/add</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>ConMagasin</servlet-name>
+		<servlet-class>magasins.servlets.ConMagasinServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ConMagasin</servlet-name>
+		<url-pattern>/magasin/con</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>ListeMagasin</servlet-name>
+		<servlet-class>magasins.servlets.ListeMagasinServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ListeMagasin</servlet-name>
+		<url-pattern>/magasin/liste</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>UpdateMagasin</servlet-name>
+		<servlet-class>magasins.servlets.UpdMagasinServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>UpdateMagasin</servlet-name>
+		<url-pattern>/magasin/upd</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>DetMagasin</servlet-name>
+		<servlet-class>magasins.servlets.DetailMagasinServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DetMagasin</servlet-name>
+		<url-pattern>/magasin/det</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>DelMagasin</servlet-name>
+		<servlet-class>magasins.servlets.SupMagasinServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DelMagasin</servlet-name>
+		<url-pattern>/magasin/del</url-pattern>
+	</servlet-mapping>
+
+
+	<!-- Les servlets de gestion de préférences -->
+	<servlet>
+		<servlet-name>AddPrefMag</servlet-name>
+		<servlet-class>preferences.servlets.AddMagPrefServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AddPrefMag</servlet-name>
+		<url-pattern>/pref/addMag</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>AddPrefCat</servlet-name>
+		<servlet-class>preferences.servlets.AddCatPrefServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AddPrefCat</servlet-name>
+		<url-pattern>/pref/addCat</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>ListePrefClient</servlet-name>
+		<servlet-class>preferences.servlets.ListePrefClientServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ListePrefClient</servlet-name>
+		<url-pattern>/pref/liste</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>DelPrefMag</servlet-name>
+		<servlet-class>preferences.servlets.DelMagPrefServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DelPrefMag</servlet-name>
+		<url-pattern>/pref/delMag</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>DelPrefCat</servlet-name>
+		<servlet-class>preferences.servlets.DelCatPrefServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DelPrefCat</servlet-name>
+		<url-pattern>/pref/delCat</url-pattern>
+	</servlet-mapping>
+
+
+	<!-- Les servlets de gestion de promotion -->
+
+	<servlet>
+		<servlet-name>AddPromo</servlet-name>
+		<servlet-class>promotions.servlets.AddProServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AddPromo</servlet-name>
+		<url-pattern>/promo/add</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>ListePromoMag</servlet-name>
+		<servlet-class>promotions.servlets.ListeProMagServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ListePromoMag</servlet-name>
+		<url-pattern>/promo/listeMag</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>UpdatePromo</servlet-name>
+		<servlet-class>promotions.servlets.UpdProServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>UpdatePromo</servlet-name>
+		<url-pattern>/promo/upd</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>ListeGeoProAct</servlet-name>
+		<servlet-class>promotions.servlets.ListeGeoProActServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ListeGeoProAct</servlet-name>
+		<url-pattern>/promo/listeGeoAct</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>ListePromoActives</servlet-name>
+		<servlet-class>promotions.servlets.ListeProActiveServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ListePromoActives</servlet-name>
+		<url-pattern>/promo/listeActives</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>ListeGeoProCat</servlet-name>
+		<servlet-class>promotions.servlets.ListeGeoProCatServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ListeGeoProCat</servlet-name>
+		<url-pattern>/promo/ListeGeoCat</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>ListePromoCat</servlet-name>
+		<servlet-class>promotions.servlets.ListeProCatServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ListePromoCat</servlet-name>
+		<url-pattern>/promo/listeCat</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>ListePromo</servlet-name>
+		<servlet-class>promotions.servlets.ListeProServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ListePromo</servlet-name>
+		<url-pattern>/promo/liste</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>DetailPromo</servlet-name>
+		<servlet-class>promotions.servlets.DetailProServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DetailPromo</servlet-name>
+		<url-pattern>/promo/det</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>DelPromo</servlet-name>
+		<servlet-class>promotions.servlets.DelProServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DelPromo</servlet-name>
+		<url-pattern>/promo/del</url-pattern>
+	</servlet-mapping>
+
+</web-app>
