@@ -147,6 +147,16 @@ public class PromotionsTraitements {
 		return  DBPromotions.listePromotionMagasin(idMag);
 	}
 	
+	/**
+	 * lister le promotions issues des préférences d'un utilisateur
+	 * @param int IDUtilisateur
+	 * @return un json array avec tous les promotions issues des préférences d'un utilisateur
+	 * @throws BDException
+	 */
+	public static JSONArray listePromotionPréférences (int id) throws DBException, JSONException {
+		return  DBPromotions.listePromotionPréférences(id);
+	}
+		
 	
 	/**
 	 * Obtenir les details sur une promotion

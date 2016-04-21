@@ -259,6 +259,15 @@
 		<servlet-name>ListePromoCat</servlet-name>
 		<url-pattern>/promo/listeCat</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>ListeProPref</servlet-name>
+		<servlet-class>promotions.servlets.ListeProPrefServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ListeProPref</servlet-name>
+		<url-pattern>/promo/ListePref</url-pattern>
+	</servlet-mapping>
 
 	<servlet>
 		<servlet-name>ListePromo</servlet-name>

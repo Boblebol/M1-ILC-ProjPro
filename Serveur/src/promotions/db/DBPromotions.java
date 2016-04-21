@@ -11,6 +11,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import magasins.traitement.MagasinsTraitements;
+import preferences.db.DBPreferencesTools;
 import settings.dbSettings.DBException;
 import settings.dbSettings.DataBase;
 
@@ -202,7 +203,7 @@ public class DBPromotions {
 			throw new DBException("DBPromotions.listePromotion : " + e.getMessage());
 		}
 	}
-	
+
 	/**
 	 * lister les promotions actives dans un periemtre donné par rapport a une longitude et une latitude
 	 * @param distace
@@ -224,19 +225,19 @@ public class DBPromotions {
 
 			ResultSet rs = s.getResultSet();
 			JSONArray js = new JSONArray();
-			
+
 			JSONArray magasinsProches = MagasinsTraitements.listeMagasinProche(distance, longitude, latitude);
 			ArrayList<Integer> listeMag = new ArrayList <Integer>();
 			for (int i = 0; i < magasinsProches.length(); i++) {
-			    JSONObject jsonobject = magasinsProches.getJSONObject(i);
-			    listeMag.add (jsonobject.getInt("idMagasin"));
+				JSONObject jsonobject = magasinsProches.getJSONObject(i);
+				listeMag.add (jsonobject.getInt("idMagasin"));
 			}
-			
+
 			while (rs.next()) {
 				int idPromo = rs.getInt("idPromo");
 				String referencePromo = rs.getString("referencePromo");
 				int idMagasin = rs.getInt("idMagasin");  
-				
+
 				if (listeMag.contains(idMagasin)) {
 					JSONObject tmp = new JSONObject();
 					tmp.put("idPromo", idPromo);
@@ -299,7 +300,7 @@ public class DBPromotions {
 			throw new DBException("DBPromotions.listePromotion : " + e.getMessage());
 		}
 	}
-	
+
 	/**
 	 * lister les promotions d'une categorie donnée qui sont actives dans un perimetre donné
 	 * @param categorie
@@ -326,20 +327,20 @@ public class DBPromotions {
 			JSONArray magasinsProches = MagasinsTraitements.listeMagasinProche(distance, longitude, latitude);
 			ArrayList<Integer> listeMag = new ArrayList <Integer>();
 			for (int i = 0; i < magasinsProches.length(); i++) {
-			    JSONObject jsonobject = magasinsProches.getJSONObject(i);
-			    listeMag.add (jsonobject.getInt("idMagasin"));
+				JSONObject jsonobject = magasinsProches.getJSONObject(i);
+				listeMag.add (jsonobject.getInt("idMagasin"));
 			}
-			
+
 			while (rs.next()) {
 				int idPromo = rs.getInt("idPromo");
 				String referencePromo = rs.getString("referencePromo");
 				int idMagasin = rs.getInt("idMagasin");  
 				if (listeMag.contains(idMagasin)) {
-				JSONObject tmp = new JSONObject();
-				tmp.put("idPromo", idPromo);
-				tmp.put("referencePromo", referencePromo);
-				tmp.put("idMagasin", idMagasin);
-				js.put(tmp);
+					JSONObject tmp = new JSONObject();
+					tmp.put("idPromo", idPromo);
+					tmp.put("referencePromo", referencePromo);
+					tmp.put("idMagasin", idMagasin);
+					js.put(tmp);
 				}
 			}
 
@@ -396,8 +397,53 @@ public class DBPromotions {
 			throw new DBException("DBPromotions.listePromotion : " + e.getMessage());
 		}
 	}
-	
-	
+	/**
+	 * lister le promotions issues des préférences d'un utilisateur
+	 * @param int IDUtilisateur
+	 * @return un json array avec tous les promotions issues des préférences d'un utilisateur
+	 * @throws BDException
+	 */
+	public static JSONArray listePromotionPréférences (int id) throws DBException, JSONException {
+		try { 
+			// Requete
+			String requete = "SELECT  `idPromo`,`referencePromo`,`idMagasin`,`categorie` FROM `Promotions` WHERE `active`=1";
+			ArrayList<Integer> mag = DBPreferencesTools.ListePrefMagasin(id);
+			ArrayList<String> cat = DBPreferencesTools.ListePrefCat(id);
+			// Ouverture de la connexion
+			Connection c = DataBase.getMySQLConnection();
+			Statement s = c.createStatement();
+
+			s.executeQuery(requete);
+
+			ResultSet rs = s.getResultSet();
+			JSONArray js = new JSONArray();
+
+			while (rs.next()) {
+				int idPromo = rs.getInt("idPromo");
+				String referencePromo = rs.getString("referencePromo");
+				int idMagasin = rs.getInt("idMagasin"); 
+				String cate = rs.getString("categorie");
+
+				if (mag.contains(idMagasin)||cat.contains(cate)) {
+					JSONObject tmp = new JSONObject();
+					tmp.put("idPromo", idPromo);
+					tmp.put("referencePromo", referencePromo);
+					tmp.put("idMagasin", idMagasin);
+					js.put(tmp);
+				}
+			}
+
+			// Fermeture de la connexion
+			s.close();
+			c.close();
+
+			return js;
+
+		}catch (SQLException e) {
+			throw new DBException("DBPromotions.listePromotion : " + e.getMessage());
+		}
+	}
+
 	/**
 	 * Renvoie le detail d'une promotion
 	 * @return un json avec tous les details d'une promotions et de son magasin
@@ -460,7 +506,7 @@ public class DBPromotions {
 				Float longitude  = rs.getFloat("LongitudeMagasin");
 				String nomMagasin = rs.getString("nomMagasin"); 
 				String adresseMagasin = rs.getString("addresseMagasin"); 
-				
+
 				tmp.put("nomMagasin", nomMagasin);
 				tmp.put("adresseMagasin", adresseMagasin);
 				tmp.put("latitude", latitude);

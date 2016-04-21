@@ -114,7 +114,13 @@ public class DBPreferences {
 			throw new DBException("DBPreferences.DelPrefCat : " + e.getMessage());
 		}
 	}
-
+	
+	/**
+	 * Retourne la liste des préférences d'un utilisateur
+	 * @param idClient
+	 * @return JSONArray avec toutes les preferences d'un utilisater
+	 * @throws BDException
+	 */
 	public static JSONArray ListePref(int idClient) throws DBException, JSONException {
 		try { 
 			// Requete
