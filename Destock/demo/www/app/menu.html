@@ -1,5 +1,5 @@
 <ion-view title="Menu">
-  <ion-content>
+  <ion-content ng-app="demo" ng-controller="InitCtrl" ng-init="Init()">
     <div class="list">
 	
 	  <a class="item item-icon-right" ui-sref="mon_compte">
@@ -7,10 +7,20 @@
         Mon compte
       </a>
 	  
-      <a class="item item-icon-right" ui-sref="connexion">
-        <i class="icon ion-person-stalker balanced"></i>
-        Connexion
-      </a>
+	  <div ng-if="CookieConnecte == 'oui'">
+		  <a class="item item-icon-right" ng-click="Deconnexion()">
+			<i class="icon ion-person-stalker balanced"></i>
+			Deconnexion
+		  </a>
+	  </div>
+	  
+	  Cookie : {{ CookieConnecte }} 
+	  <div ng-if="CookieConnecte != 'oui'">	  
+		  <a class="item item-icon-right" ui-sref="connexion">
+			<i class="icon ion-person-stalker balanced"></i>
+			Connexion
+		  </a>
+	  </div>
 
       <a class="item item-icon-right" ui-sref="inscription">
         <i class="icon ion-ios7-copy"></i>

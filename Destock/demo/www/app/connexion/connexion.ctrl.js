@@ -2,6 +2,8 @@ angular.module('demo.connexion.ctrl', [])
 
   .controller('ConnexionCtrl', function ($scope, $http, $httpParamSerializer) {
 	  
+
+	  
    $scope.SendData = function () {
    
             var dataOBJ = {
@@ -16,15 +18,34 @@ angular.module('demo.connexion.ctrl', [])
             }
 
                 console.log("Donnes envoyees au serveur : " + JSON.stringify(dataOBJ) );
-            
-            var req = {
+   
+			if (angular.equals($scope.type, "particulier\""))
+			{
+			
+			 var req = {
  method: 'POST',
  url: 'http://destock.u-strasbg.fr:8080/Destock/client/con',
  headers: {
    'Content-Type': 'application/x-www-form-urlencoded'
  },
  data: $httpParamSerializer(dataOBJ)
-};
+};			
+			}
+			else
+			{
+			
+			 var req = {
+ method: 'POST',
+ url: 'http://destock.u-strasbg.fr:8080/Destock/magasin/con',
+ headers: {
+   'Content-Type': 'application/x-www-form-urlencoded'
+ },
+ data: $httpParamSerializer(dataOBJ)
+};			
+			}
+			
+           
+
 
 $http(req)
             
@@ -38,10 +59,19 @@ $http(req)
                 if (JSON.stringify(data) != "{}")
                 {
                         $scope.Resultat = "Connexion reussie !!!!!";
+						window.localStorage.setItem('CookieEmail', data.mail);
+						window.localStorage.setItem('CookieType', $scope.type);
+						window.localStorage.setItem('CookieConnecte', 'oui');
+							$scope.CookieConnecte = 'oui';
+							$scope.CookieEmail = window.localStorage.getItem('CookieEmail');
+							$scope.CookieType = window.localStorage.getItem('CookieType');
+						//TODO : 
+						
+						
                 }
-                else
+                else // TODO : gestion d'erreur
                 {
-                        $scope.Resultat = "Connexion echouee :'( !!!!!";
+                        $scope.Resultat = "<span style='color:red;'>Mauvais Login/Mot de passe</span>";
                 
                 }
                 

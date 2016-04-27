@@ -48,10 +48,13 @@ angular.module('demo', [
   'demo.inscription.ctrl',  
   'demo.offres.ctrl',
   'demo.mon_compte.ctrl',
-  'demo.avis.ctrl'
+  'demo.avis.ctrl',
+  'demo.init.ctrl'
 ])
 
   .run(function ($rootScope, $ionicPlatform, $cordovaNetwork, $cordovaBatteryStatus, $cordovaLocalNotification, $cordovaPush) {
+
+ 
 
     $ionicPlatform.ready(function () {
       if (window.cordova && window.cordova.plugins.Keyboard) {
@@ -104,6 +107,8 @@ angular.module('demo', [
       $rootScope.$on("$cordovaNetwork:online", function (event, result) {
         alert("Device is Online!");
       });
+      
+ 
 
       $rootScope.$on("$cordovaBatteryStatus:status", function (event, status) {
         //alert("status: " + status);
@@ -142,7 +147,8 @@ angular.module('demo', [
 
       .state('menu', {
         url: "/menu",
-        templateUrl: "app/menu.html"
+        templateUrl: "app/menu.html",
+        controller: "InitCtrl"
       })
 
       .state('about', {
@@ -415,5 +421,7 @@ angular.module('demo', [
       });
 
     $urlRouterProvider.otherwise('/menu');
+    
+    
   });
  
