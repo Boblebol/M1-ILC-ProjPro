@@ -49,6 +49,7 @@ angular.module('demo', [
   'demo.offres.ctrl',
   'demo.mon_compte.ctrl',
   'demo.avis.ctrl',
+  'demo.admin.ctrl',
   'demo.init.ctrl'
 ])
 
@@ -186,7 +187,22 @@ angular.module('demo', [
         controller: "OffresCtrl"
       })      
       
-
+      .state('admin', {
+        url: '/admin',
+        templateUrl: 'app/admin/admin.html',
+        controller: "AdminCtrl"
+      })
+      .state('adminAjouter', {
+        url: '/admin/ajouter',
+        templateUrl: 'app/admin/ajouter.html',
+        controller: "AdminCtrl"
+      })
+            .state('adminModifier', {
+        url: '/admin/modifier',
+        templateUrl: 'app/admin/modifier.html',
+        controller: "AdminCtrl"
+      })
+      
       .state('appAvailability', {
         url: '/appAvailability',
         templateUrl: 'app/appAvailability/appAvailability.html',

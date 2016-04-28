@@ -1,11 +1,7 @@
 <ion-view title="Menu">
   <ion-content ng-app="demo" ng-controller="InitCtrl" ng-init="Init()">
     <div class="list">
-	
-	  <a class="item item-icon-right" ui-sref="mon_compte">
-        <i class="icon ion-home"></i>
-        Mon compte
-      </a>
+
 	  
 	  <div ng-if="CookieConnecte == 'oui'">
 		  <a class="item item-icon-right" ng-click="Deconnexion()">
@@ -14,45 +10,43 @@
 		  </a>
 	  </div>
 	  
-	  Cookie : {{ CookieConnecte }} 
 	  <div ng-if="CookieConnecte != 'oui'">	  
 		  <a class="item item-icon-right" ui-sref="connexion">
 			<i class="icon ion-person-stalker balanced"></i>
 			Connexion
 		  </a>
-	  </div>
-
-      <a class="item item-icon-right" ui-sref="inscription">
+		  
+	      <a class="item item-icon-right" ui-sref="inscription">
         <i class="icon ion-edit"></i>
         Inscription
-      </a>
+      </a>	  
+		  
+	  </div>
+
+
             
       <a class="item item-icon-right" ui-sref="offres">
         <i class="icon ion-location"></i>
-        Offres
-      </a>
-
-
-      <a class="item item-icon-right" ui-sref="facebook">
-        <i class="icon ion-social-facebook positive"></i>
-        Facebook
+        Toutes les offres de destockage
       </a>
 
 
       <a class="item item-icon-right" ui-sref="geolocation">
         <i class="icon ion-pin assertive"></i>
-        GeoLocation
+        Autour de moi
       </a>
-
-      <a class="item item-icon-right" ui-sref="localNotification">
-        <i class="icon ion-alert assertive"></i>
-        Notifications locales
-      </a>
-      <a class="item item-icon-right" ui-sref="oauth">
-        <i class="icon ion-arrow-expand"></i>
-        Oauth
-      </a>
-
+      
+      
+	  <div ng-if="CookieType == 'entreprise'">
+		  <a class="item item-icon-right" ui-sref="admin">
+			<i class="icon ion-person-stalker balanced"></i>
+			Mes offres de destockage
+		  </a>
+	  </div>
+	  <a class="item item-icon-right" ui-sref="admin">
+			<i class="icon ion-person-stalker balanced"></i>
+			Mes offres de destockage
+		  </a>	  
       <a class="item item-icon-right" ui-sref="preferences">
         <i class="icon ion-settings"></i>
         Preferences
@@ -60,7 +54,7 @@
 
 	  <a class="item item-icon-right" ui-sref="avis">
         <i class="icon ion-chatbubble-working"></i>
-        Donnez son avis
+        Donner son avis
       </a>
 	  
       <a class="item item-icon-right" ui-sref="about">
