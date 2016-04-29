@@ -1,0 +1,41 @@
+<ion-view title="Rechercher une offre de destockage">
+
+  
+    
+<ion-content padding="true" ng-app="demo" ng-controller="OffresCtrl" ng-init="GetData()">   
+
+
+<div class="bar bar-header item-input-inset has-tabs-top" >
+  <label class="item-input-wrapper">
+    <i class="icon ion-ios-search placeholder-icon"></i>
+    <input type="search" placeholder="Rechercher" ng-model="recherche.$"><br />
+  </label>
+  
+  
+  <button class="button button-clear">
+    Annuler
+  </button>
+</div>
+
+<!--  SELECT * FROM promotions ORDER BY dateDebut LIMIT 20 -->
+
+
+                         
+<div class="list">
+
+
+
+
+    <a class="item item-thumbnail-left" href="/#/offres/{{Resultat.idPromo}}" ng-repeat="promo in Resultat | filter:search">
+      <img src="/img/Offres/nirvana.jpg"> <!-- TODO: Image avec idPromo comme nom de l'image -->
+      <h2>{{promo.referencePromo}}</h2>
+      <p>Id magasin : {{promo.idMagasin}}</p>
+      <p>Id promo : {{promo.idPromo}}</p> <!-- TODO: Ajouter les données manquantes -->
+    </a>
+
+
+
+</div>
+    
+  </ion-content>
+</ion-view>
