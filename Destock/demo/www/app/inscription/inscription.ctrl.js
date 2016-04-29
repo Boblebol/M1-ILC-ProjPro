@@ -1,17 +1,19 @@
 angular.module('demo.inscription.ctrl', [])
+	
 
-  .controller('InscriptionCtrl', function ($scope, $http, $httpParamSerializer) {
+	  
+  .controller('InscriptionCtrl', function ($scope, $http, $httpParamSerializer, $location, $timeout) {
 	
 	//Verification champs remplis
    $scope.veriftype= function () {
 	   if($scope.type == "provider" || $scope.type == "customer") {
 		   $scope.erreur = 'Selection valide !!';
-		   return false;
+		   return true;
 	   }
 		   
 	   else {
 		   $scope.erreur = 'Selection invalide !';
-			return true;
+			return false;
 	   }
    };
    
@@ -88,37 +90,46 @@ angular.module('demo.inscription.ctrl', [])
 				data: $httpParamSerializer(dataOBJ)
 			};
 			
-			var reqq = {
-				method: 'POST',
-				url: 'http://192.168.1.28:8100',
-				headers: {
-						'Content-Type': 'application/x-www-form-urlencoded'
-						},
-				data: $httpParamSerializer(dataOBJ)
-			};
-			
 			$http(req)
             
+			
 			
             .success(function (data, status, headers, config) {
                 console.log("Donnes recues par le serveur : " + JSON.stringify(data) );
                 
-                
+				var page = function () {
+					
+					if($arg == true) {
+						alert('Inscription réussie ! Vous allez être redirigé vers le menu.');
+						$location.path('menu'); 
+					}
+					else {
+						alert('Inscription échouée !');
+					}
+				  
+				}  
+			  
                 if (JSON.stringify(data) != "{}")
                 {
-                        $scope.Resultat = "Inscription reussie !!!!!";
-						$state.go('https://docs.angularjs.org');
+						$arg = false;
+                        $scope.Resultat = "Inscription echouee !!!!!";	
+						alert('Chargement...');
+						$timeout(page, 3000);
                 }
                 else
                 {
-                        $scope.Resultat = "Inscription echouee !!!!!";
-                
+					    $arg = true;
+                        $scope.Resultat = "Inscription reussie !!!!!";
+						alert('Chargement...');
+						$timeout(page, 3000);						
                 }
                 
                 
             })
             .error(function (data, status, header, config) {
                 console.log("ERREUR : " + JSON.stringify(data) + JSON.stringify(status) );
-            });                
+            });       
+
+			
         };		           				
   });
