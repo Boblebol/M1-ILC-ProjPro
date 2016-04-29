@@ -12,13 +12,13 @@
       <div class="list">
         <label class="item item-input item-stacked-label">
           <span class="input-label">Email<span style="color:red">*</span></span>
-          <input type="email" name="mail" ng-model="mail" required ng-keypress="verifSyntMail()" placeholder="Veuillez saisir votre adresse email">
+          <input type="email" name="mail" ng-model="mail" required placeholder="Veuillez saisir votre adresse email">
 
         </label>
 		
         <label class="item item-input item-stacked-label">
           <span class="input-label">Confirmation d'email<span style="color:red">*</span></span>
-          <input type="email" name="mail_confirm" ng-model="mail_confirm" required ng-keypress="verifMail()" placeholder="Veuillez saisir à nouveau votre adresse email" >
+          <input type="email" name="mail_confirm" ng-model="mail_confirm" required placeholder="Veuillez saisir à nouveau votre adresse email" >
 		</label>
 		
         <label class="item item-input item-stacked-label">
@@ -29,22 +29,29 @@
 		
         <label class="item item-input item-stacked-label">
           <span class="input-label">Confirmation de mot de passe<span style="color:red">*</span></span>
-          <input type="password" name="mdp_confirm" ng-model="mdp_confirm" required ng-keypress="verifMdp()" ng-minlength="6" placeholder="Veuillez saisir un mot de passe identique">
+          <input type="password" name="mdp_confirm" ng-model="mdp_confirm" required ng-minlength="6" placeholder="Veuillez saisir un mot de passe identique">
 		</label>
 		
 		<label class="item item-input item-select">
 			<span class="input-label">Type d'utilisateur<span style="color:red">*</span></span>
-			<select name="type" ng-model="type" required ng-mouseleave="veriftype()">
-			  <option value="" selected>Choisissez</option>
-			  <option value="provider">Destovider (vendeur)</option>
-			  <option value="customer">Destomer (acheteur)</option>
+			<select name="type" ng-model="type" required>
+			  <option ng-selected="true" value="customer" >Destomer (Particulier)</option>
+			  <option value="provider">Destovider (Entreprise)</option>
 			</select>
 		</label>
   
+  
+
+	  <div ng-if="type == 'provider'">
+
         <label class="item item-input item-stacked-label"> 
-          <span class="input-label">Nom</span>
-          <input type="text" name="nom" ng-model="nom" placeholder="Veuillez saisir votre nom">
+          <span class="input-label">Nom de l'entreprise</span>
+          <input type="text" name="nom" ng-model="nom" placeholder="Veuillez saisir le nom">
         </label>
+        
+        	
+	  </div>
+		  <div ng-if="type != 'provider'">  
 		
         <label class="item item-input item-stacked-label">
           <span class="input-label">Prénom</span>
@@ -55,24 +62,19 @@
           <span class="input-label">Pseudo</span>
           <input type="text" name="pseudo" ng-model="pseudo" placeholder="Veuillez saisir votre pseudo">
         </label>
+        
+        </div>
       </div>
     </div>
 
+<div style="text-align:center;">{{ Resultat }}<br />
+<span style="color:red;">{{ Erreur }}</span></div>
     <div class="padding">
-      <button class="button button-block button-positive button-no-margin" type="submit" ng-disabled="!form.$valid" ng-click="SendData()">
+      <button class="button button-block button-positive button-no-margin" type="submit" ng-click="SendData()">
 		Créer votre compte
 	  </button>
     </div> 
   </form>
-input valid? = {{form.$valid}}	
-Données envoyées : {{ Donnees }}<br />    <br />
-    
-Données après envoi : {{ PostDataResponse }}<br /><br />
- 
-Erreur : {{ erreur }}<br /><br />
-Reponse donnée : {{ ResponseDetails }}
-{{ Resultat }}
-{{ type }}
     
   </div>
     
