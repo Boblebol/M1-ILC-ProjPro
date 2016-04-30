@@ -1,7 +1,13 @@
 <ion-view title="Connexion">
-  <ion-content padding="true" ng-app="demo" ng-controller="ConnexionCtrl" >
-
- 	 	
+  <ion-content padding="true" ng-app="demo" ng-controller="ConnexionCtrl">
+	
+    <head>
+        <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.10/angular.min.js"></script>
+        <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js"></script>
+        <script type="text/javascript" src="./scripts/controllers.js"></script>
+    </head>
+    
+  <body>	 	
 	<div class="list" >	
 		  <form name="form" method="GET" novalidate>
 		  
@@ -16,28 +22,15 @@
           <input type="password" name="mdp" ng-model="mdp" placeholder="Veuillez saisir votre mot de passe"  required ng-minlength="2" ng-maxlength="20">
         </label>		  
 
-		          <label class="item item-input">
-          <span class="input-label">Vous êtes</span>
 		  
-		  <select name="type" ng-model="type" required>
-  <option value="particulier">Particulier</option>
-  <option value="entreprise">Entreprise</option>
-</select>
-        </label>		  
-
-		
 			<button class="button button-block button-positive" type="submit" ng-disabled="!form.$valid" ng-click="SendData()">
 				Connexion
 			</button>
 		  </form>
 	</div>
-	<span style="color:green;">{{ Resultat }}</span>
-	<span style="color:red;">{{ Erreur }}</span>
-	<br />
-
-
 	
-
+    
+  </body>
 
   </ion-content>
 </ion-view>

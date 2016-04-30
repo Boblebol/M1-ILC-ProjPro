@@ -26,7 +26,7 @@
 
 
 
-    <a class="item item-thumbnail-left" href="/#/offres/{{promo.idPromo}}" ng-repeat="promo in Resultat | filter:recherche">
+    <a class="item item-thumbnail-left" href="/#/offres/{{Resultat.idPromo}}" ng-repeat="promo in Resultat | filter:search">
       <img src="/img/Offres/nirvana.jpg"> <!-- TODO: Image avec idPromo comme nom de l'image -->
       <h2>{{promo.referencePromo}}</h2>
       <p>Id magasin : {{promo.idMagasin}}</p>
