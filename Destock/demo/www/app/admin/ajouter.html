@@ -1,12 +1,89 @@
+<ion-view title="Ajouter une offre de destockage">
+<ion-content padding="true" ng-app="demo" ng-controller="AdminCtrl" ng-init="GetData()">   
 
-  
-    
-<ion-content padding="true" ng-app="demo" ng-controller="AdminCtrl">   
+<div class="card">
+  <div class="item item-divider">
+    Formulaire d'ajout d'offre
+  </div>
+  <div class="item item-text-wrap">
+    /!\ Tout les champs sont à remplir /!\
+  </div>
 
+<form name="formAjout" method="POST" novalidate>
+    <div class="item item-body">
+      <div class="list">
+        <label class="item item-input item-stacked-label">
+		<span class="input-label">Réference</span>
+          <input type="text" name="ref" ng-model="ref" required placeholder="Veuillez saisir la référence de votre produit">
+        </label>
+		
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Marque</span>
+          <input type="text" name="marque" ng-model="marque" required placeholder="Veuillez saisir la marque du produit" >     
+		</label>
+		
+		<label class="item item-input item-stacked-label">
+          <span class="input-label">Nom</span>
+          <input type="text" name="nomprod" ng-model="nomprod" required placeholder="Veuillez saisir le nom du produit" >
+		</label>
+		
+		<label class="item item-input item-select">
+			<span class="input-label">Categorie</span>
+			<select name="categorie" ng-model="categorie" required>
+			  <option value="" selected>Choisissez la categorie</option>
+			  <option value="alimentaire">Alimentaire</option>
+			  <option value="multimedia">Multimedia</option>
+			  <option value="textile">Textile</option>
+			  <option value="sport">Sport</option>
+			</select>
+		</label>
+		
+		<label class="item item-input item-stacked-label">
+          <span class="input-label">Description</span>
+          <input type="textarea" name="description" ng-model="description" required placeholder="Veuillez saisir une description du produit">
+		</label>
+		
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Ancien prix</span>
+          <input type="text" name="ancienprix" ng-model="ancienprix" required placeholder="Veuillez saisir l'ancien prix du produit">
+		</label>
+		
+		<label class="item item-input item-stacked-label">
+          <span class="input-label">Nouveau prix</span>
+          <input type="text" name="nouveauprix" ng-model="nouveauprix" required placeholder="Veuillez saisir le nouveau prix du produit">
+		</label>
+		
+		<label class="item item-input item-stacked-label">
+          <span class="input-label">Durée (en jours)</span>
+          <input type="text" name="duree" ng-model="duree" required placeholder="Veuillez saisir la durée de validité de l'offre">
+		</label>
+		
+		<label class="item item-input item-stacked-label">
+          <span class="input-label">Active</span>
+          <input type="text" name="active" ng-model="active" required placeholder="Offre active(1) ou non-active(0)">
+		</label>
+		
+		<label class="item item-input item-stacked-label">
+          <span class="input-label">Identifiant magasin</span>
+          <input type="text" name="idmag" ng-model="idmag" required placeholder="Votre identifiant">
+		</label>
+	  
+    </div>
+	</div>
 
-<div class="bar bar-header item-input-inset has-tabs-top" >
-  <label class="item-input-wrapper">
-  
-  
+<<<<<<< HEAD
+<div style="text-align:center;">{{ Resultat }}<br />
+<span style="color:red;">{{ Erreur }}</span></div>
+=======
+<div style="text-align:center;">{{ Resultat }}<br />
+<span style="color:red;">{{ Erreur }}</span></div>
+>>>>>>> origin/master
+    <div class="padding">
+      <button class="button button-block button-positive button-no-margin" type="submit" ng-click="AjoutOffre()">
+		Souscrire votre offre
+	  </button>
+    </div> 
+  </form>
+</div>  
   </ion-content>
 </ion-view>
