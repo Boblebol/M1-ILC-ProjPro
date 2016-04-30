@@ -5,7 +5,8 @@ angular.module('demo.connexion.ctrl', [])
 
 	  
    $scope.SendData = function () {
-   
+   $scope.Resultat = null;
+   $scope.Erreur = null;
             var dataOBJ = {
                 mail: $scope.mail,
                 mdp: $scope.mdp
@@ -17,9 +18,9 @@ angular.module('demo.connexion.ctrl', [])
                 }
             }
 
-                console.log("Donnes envoyees au serveur : " + JSON.stringify(dataOBJ) );
+                console.log("Donnes envoyees au serveur : " + JSON.stringify(dataOBJ) + " type : " + $scope.type );
    
-			if (angular.equals($scope.type, "particulier\""))
+			if (angular.equals($scope.type, "particulier"))
 			{
 			
 			 var req = {
@@ -31,7 +32,7 @@ angular.module('demo.connexion.ctrl', [])
  data: $httpParamSerializer(dataOBJ)
 };			
 			}
-			else
+			else if (angular.equals($scope.type, "entreprise"))
 			{
 			
 			 var req = {
@@ -42,36 +43,41 @@ angular.module('demo.connexion.ctrl', [])
  },
  data: $httpParamSerializer(dataOBJ)
 };			
+
 			}
-			
+			else
+			{
+			        $scope.Resultat = "Vous devez indiquer votre status ! (Entreprise ou client)";		
+			}
            
 
 
+            
+            
+            
 $http(req)
-            
-            
-            
             
             .success(function (data, status, headers, config) {
                 console.log("Donnes recues par le serveur : " + JSON.stringify(data) );
                 
                 
-                if (JSON.stringify(data) != "{}")
+                if (($scope.type == "entreprise" && data.id != null) || ($scope.type == "particulier" && data.id != null))
                 {
-                        $scope.Resultat = "Connexion reussie !!!!!";
+                        $scope.Resultat = "Connexion reussie !!!!!" + data.infos;
 						window.localStorage.setItem('CookieEmail', data.mail);
 						window.localStorage.setItem('CookieType', $scope.type);
 						window.localStorage.setItem('CookieConnecte', 'oui');
+						window.localStorage.setItem('CookieId', data.id);
 							$scope.CookieConnecte = 'oui';
 							$scope.CookieEmail = window.localStorage.getItem('CookieEmail');
 							$scope.CookieType = window.localStorage.getItem('CookieType');
 						//TODO : 
 						
 						
-                }
+                }         
                 else // TODO : gestion d'erreur
                 {
-                        $scope.Resultat = "<span style='color:red;'>Mauvais Login/Mot de passe</span>";
+                        $scope.Erreur = "Mauvais Login/Mot de passe";
                 
                 }
                 
