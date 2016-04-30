@@ -71,6 +71,7 @@ $http(req)
 							$scope.CookieConnecte = 'oui';
 							$scope.CookieEmail = window.localStorage.getItem('CookieEmail');
 							$scope.CookieType = window.localStorage.getItem('CookieType');
+							$scope.CookieId = window.localStorage.getItem('CookieId');
 						//TODO : 
 						
 						

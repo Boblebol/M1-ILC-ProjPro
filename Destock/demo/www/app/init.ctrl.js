@@ -8,6 +8,7 @@ angular.module('demo.init.ctrl', [])
 							$scope.CookieConnecte = 'oui';
 							$scope.CookieEmail = window.localStorage.getItem('CookieEmail');
 							$scope.CookieType = window.localStorage.getItem('CookieType');
+							$scope.CookieId = window.localStorage.getItem('CookieId');
 						}    
 						
 						
@@ -20,9 +21,11 @@ angular.module('demo.init.ctrl', [])
 					        window.localStorage.removeItem('CookieConnecte');
 					        window.localStorage.removeItem('CookieEmail');
 					        window.localStorage.removeItem('CookieType');
+					        window.localStorage.removeItem('CookieId');
 							$scope.CookieConnecte = null;
 							$scope.CookieEmail = null;
 							$scope.CookieType = null;
+							$scope.CookieId = null;
 					
 					}	
 						
