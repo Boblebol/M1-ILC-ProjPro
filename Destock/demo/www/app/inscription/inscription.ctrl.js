@@ -74,13 +74,8 @@ function MyCtrl($scope) {
                 nom: $scope.nom,            
                 lattitude: 0,
                 longitude: 0,
-<<<<<<< HEAD
-                adresse: null
-                
-=======
                 adresse: $scope.chosenPlace,
                 mdp: $scope.mdp
->>>>>>> origin/master
             };
            
            console.log("Donnes envoyees au serveur provider: " + JSON.stringify(dataOBJ) );
