@@ -15,6 +15,7 @@ angular.module('demo.admin.ctrl', [])
 						
 						}
 						
+
 	  $scope.GetData = function () {
    
             var dataOBJ = null;
@@ -292,6 +293,5 @@ $http(req)
 		  		
         };
      
-  });
-  
-  
+  });  
+	
