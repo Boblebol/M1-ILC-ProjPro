@@ -33,7 +33,7 @@ function MyCtrl($scope) {
 	   }
 	   
 
-		if (!/^([a-z0-9._-]+)@([a-z0-9._-]+)\.([a-zA-Z]{2,6})$/.test($scope.mail)) {
+		if (!/^([a-zA-Z0-9._-]+)@([a-zA-Z0-9._-]+)\.([a-zA-Z]{2,6})$/.test($scope.mail)) {
 			$scope.Erreur = 'Format de mail invalide';
 		        formulaireValide = false;
 		}			   

@@ -53,7 +53,6 @@ $http(req)
 
  
     var latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-    var test = new google.maps.LatLng(49.6019858, 7.8835216999999375);
  
     var mapOptions = {
       center: latLng,
@@ -69,33 +68,44 @@ $http(req)
 google.maps.event.addListenerOnce($scope.map, 'idle', function(){
  
  
- 
- 
-
-
-
-
-
 var geocoder = new google.maps.Geocoder();
-geocoder.geocode( { "address": Resultat.adresse }, function(results, status) {
+ 
+ 
+angular.forEach($scope.Resultat, function(valeur, cle){
+
+
+
+geocoder.geocode( { "address": valeur.adresse }, function(results, status) {
 
 if (status == google.maps.GeocoderStatus.OK)
 {
 
-  var infoWindow = new google.maps.InfoWindow({
-      content: "Here I am!"
+  var infowindow = new google.maps.InfoWindow({
+      content: valeur.referencePromo
   });
 
   var marker = new google.maps.Marker({
       map: $scope.map,
       animation: google.maps.Animation.DROP,
-      position: results[0].geometry.location
-  });      
+      position: results[0].geometry.location,
+      title: valeur.referencePromo
+  });   
+  
+
 
      } else {
       alert("Le geocodage n\'a pu etre effectue pour la raison suivante: " + status);
      }
     });
+
+
+
+
+});
+
+
+
+
 
 
  
