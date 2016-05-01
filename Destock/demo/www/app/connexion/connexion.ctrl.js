@@ -1,6 +1,6 @@
 angular.module('demo.connexion.ctrl', [])
 
-  .controller('ConnexionCtrl', function ($scope, $http, $httpParamSerializer) {
+  .controller('ConnexionCtrl', function ($scope, $http, $httpParamSerializer, $location, $timeout) {
 	  
 
 	  
@@ -60,10 +60,22 @@ $http(req)
             .success(function (data, status, headers, config) {
                 console.log("Donnes recues par le serveur : " + JSON.stringify(data) );
                 
+				var page = function () {
+					
+					if($arg == true) {
+						alert('Connexion réussie ! Vous allez être redirigé vers le menu.');
+						$location.path('menu'); 
+					}
+					else {
+						alert('Connexion échouée !');
+					}
+				  
+				} 
                 
                 if (($scope.type == "entreprise" && data.id != null) || ($scope.type == "particulier" && data.id != null))
                 {
                         $scope.Resultat = "Connexion reussie !!!!!" + data.infos;
+						$arg = true;
 						window.localStorage.setItem('CookieEmail', data.mail);
 						window.localStorage.setItem('CookieType', $scope.type);
 						window.localStorage.setItem('CookieConnecte', 'oui');
@@ -72,6 +84,8 @@ $http(req)
 							$scope.CookieEmail = window.localStorage.getItem('CookieEmail');
 							$scope.CookieType = window.localStorage.getItem('CookieType');
 							$scope.CookieId = window.localStorage.getItem('CookieId');
+							alert('Chargement...');
+							$timeout(page, 2000);
 						//TODO : 
 						
 						
@@ -79,6 +93,9 @@ $http(req)
                 else // TODO : gestion d'erreur
                 {
                         $scope.Erreur = "Mauvais Login/Mot de passe";
+						$arg = false;
+						alert('Chargement...');
+						$timeout(page, 2000);
                 
                 }
                 
