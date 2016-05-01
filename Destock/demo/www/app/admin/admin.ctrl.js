@@ -2,6 +2,20 @@ angular.module('demo.admin.ctrl', [])
 
   .controller('AdminCtrl', function ($scope, $http,$httpParamSerializer, $location, $stateParams) {
 	  
+	  
+	  
+	  
+  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
 	  $scope.GetData = function () {
    
             var dataOBJ = null;
@@ -277,6 +291,5 @@ $http(req)
 		  		
         };
      
-  });
-  
-  
+  });  
+	

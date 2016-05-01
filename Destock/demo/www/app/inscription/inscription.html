@@ -49,7 +49,15 @@
           <input type="text" name="nom" ng-model="nom" placeholder="Veuillez saisir le nom">
         </label>
         
-        	
+
+
+        <label class="item item-input item-stacked-label"> 
+          <span class="input-label">Adresse du magasin :</span>
+          <input type="text"  ng-model="chosenPlace" googleplace placeholder="Adresse de l'entreprise">
+        </label>
+ 
+
+
 	  </div>
 		  <div ng-if="type != 'provider'">  
 		
@@ -66,6 +74,13 @@
         </div>
       </div>
     </div>
+
+
+
+
+
+
+
 
 <div style="text-align:center;">{{ Resultat }}<br />
 <span style="color:red;">{{ Erreur }}</span></div>
