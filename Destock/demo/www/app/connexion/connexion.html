@@ -20,14 +20,15 @@
           <span class="input-label">Vous êtes</span>
 		  
 		  <select name="type" ng-model="type" required>
-  <option value="particulier">Particulier</option>
-  <option value="entreprise">Entreprise</option>
+  <option value="particulier">Destomer (Particulier)</option>
+  <option value="entreprise">Destovider (Entreprise)</option>
 </select>
         </label>		  
 
 		
 			<button class="button button-block button-positive" type="submit" ng-disabled="!form.$valid" ng-click="SendData()">
 				Connexion
+				<i class="icon ion-locked"></i>
 			</button>
 		  </form>
 	</div>

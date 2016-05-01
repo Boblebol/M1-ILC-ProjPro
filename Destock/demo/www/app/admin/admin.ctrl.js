@@ -2,20 +2,20 @@ angular.module('demo.admin.ctrl', [])
 
   .controller('AdminCtrl', function ($scope, $http,$httpParamSerializer, $location, $stateParams) {
 	  
-	  
-	  
-	  
-  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
+	    $scope.Init = function(){
+
+      						if (window.localStorage.getItem('CookieEmail') != null)
+						{
+							$scope.CookieConnecte = 'oui';
+							$scope.CookieEmail = window.localStorage.getItem('CookieEmail');
+							$scope.CookieType = window.localStorage.getItem('CookieType');
+							$scope.CookieId = window.localStorage.getItem('CookieId');
+						}    
+						
+						
+						}
+						
+
 	  $scope.GetData = function () {
    
             var dataOBJ = null;
@@ -89,8 +89,10 @@ $http(req)
 		
 		
 		 $scope.AjoutOffre = function () {
-   
+			
            // use $.param jQuery function to serialize data from JSON 
+
+
             var dataOBJ = {
                 ref: $scope.ref,
                 marque: $scope.marque,
@@ -101,9 +103,9 @@ $http(req)
                 nouveauprix: $scope.nouveauprix,				
 				duree: $scope.duree,
 				active: $scope.active,
-				idmag: $scope.idmag
+				idmag: $scope.CookieId
             };
-        
+			
             var config = {
                 headers : {
                     'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'

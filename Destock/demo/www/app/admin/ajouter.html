@@ -1,5 +1,5 @@
 <ion-view title="Ajouter une offre de destockage">
-<ion-content padding="true" ng-app="demo" ng-controller="AdminCtrl" ng-init="GetData()">   
+<ion-content padding="true" ng-app="demo" ng-controller="AdminCtrl" ng-init="Init()">   
 
 <div class="card">
   <div class="item item-divider">
@@ -61,11 +61,6 @@
 		<label class="item item-input item-stacked-label">
           <span class="input-label">Active</span>
           <input type="text" name="active" ng-model="active" required placeholder="Offre active(1) ou non-active(0)">
-		</label>
-		
-		<label class="item item-input item-stacked-label">
-          <span class="input-label">Identifiant magasin</span>
-          <input type="text" name="idmag" ng-model="idmag" required placeholder="Votre identifiant">
 		</label>
 	  
     </div>

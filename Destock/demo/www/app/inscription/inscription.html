@@ -3,52 +3,55 @@
     <div class="list card">
 
     <div class="item item-icon-left justify">
-      <i class="icon ion-plus-round"></i>
+      <i class="icon ion-ionic"></i>
       <h2>Inscription</h2>
       <p>Bienvenue dans le panneau d'inscription. Les informations suivies de "<span style="color:red">*</span>" sont obligatoires, merci de les renseigner pour valider l'inscription.</p>
     </div>
+  	
 	<form name="form" method="POST" novalidate>
     <div class="item item-body">
       <div class="list">
-        <label class="item item-input item-stacked-label">
-          <span class="input-label">Email<span style="color:red">*</span></span>
-          <input type="email" name="mail" ng-model="mail" required placeholder="Veuillez saisir votre adresse email">
-
-        </label>
-		
-        <label class="item item-input item-stacked-label">
-          <span class="input-label">Confirmation d'email<span style="color:red">*</span></span>
-          <input type="email" name="mail_confirm" ng-model="mail_confirm" required placeholder="Veuillez saisir à nouveau votre adresse email" >
-		</label>
-		
-        <label class="item item-input item-stacked-label">
-          <span class="input-label">Mot de passe<span style="color:red">*</span></span>
-          <input type="password" name="mdp" ng-model="mdp" required ng-minlength="6" placeholder="Veuillez saisir votre mot de passe" >
-       
-		</label>
-		
-        <label class="item item-input item-stacked-label">
-          <span class="input-label">Confirmation de mot de passe<span style="color:red">*</span></span>
-          <input type="password" name="mdp_confirm" ng-model="mdp_confirm" required ng-minlength="6" placeholder="Veuillez saisir un mot de passe identique">
-		</label>
-		
-		<label class="item item-input item-select">
+	  
+	  <label class="item item-input item-select">
 			<span class="input-label">Type d'utilisateur<span style="color:red">*</span></span>
 			<select name="type" ng-model="type" required>
-			  <option ng-selected="true" value="customer" >Destomer (Particulier)</option>
+			  <option ng-selected="true" value="">Choisissez</option>
+			  <option value="customer" >Destomer (Particulier)</option>
 			  <option value="provider">Destovider (Entreprise)</option>
 			</select>
 		</label>
-  
-  
 
-	  <div ng-if="type == 'provider'">
+		
+		<div ng-if="type == 'provider'">
 
-        <label class="item item-input item-stacked-label"> 
-          <span class="input-label">Nom de l'entreprise</span>
-          <input type="text" name="nom" ng-model="nom" placeholder="Veuillez saisir le nom">
-        </label>
+			<label class="item item-input item-stacked-label">
+			  <span class="input-label">Email<span style="color:red">*</span></span>
+			  <input type="email" name="mail" ng-model="mail" required placeholder="Veuillez saisir votre adresse email">
+
+			</label>
+			
+			<label class="item item-input item-stacked-label">
+			  <span class="input-label">Confirmation d'email<span style="color:red">*</span></span>
+			  <input type="email" name="mail_confirm" ng-model="mail_confirm" required placeholder="Veuillez saisir à nouveau votre adresse email" >
+			</label>
+			
+			<label class="item item-input item-stacked-label">
+			  <span class="input-label">Mot de passe<span style="color:red">*</span></span>
+			  <input type="password" name="mdp" ng-model="mdp" required ng-minlength="6" placeholder="Veuillez saisir votre mot de passe" >
+		   
+			</label>
+			
+			<label class="item item-input item-stacked-label">
+			  <span class="input-label">Confirmation de mot de passe<span style="color:red">*</span></span>
+			  <input type="password" name="mdp_confirm" ng-model="mdp_confirm" required ng-minlength="6" placeholder="Veuillez saisir un mot de passe identique">
+			</label>
+		  
+			<label class="item item-input item-stacked-label"> 
+			  <span class="input-label">Nom de l'entreprise</span>
+			  <input type="text" name="nom" ng-model="nom" placeholder="Veuillez saisir le nom">
+			</label>
         
+
 
 
         <label class="item item-input item-stacked-label"> 
@@ -59,19 +62,46 @@
 
 
 	  </div>
-		  <div ng-if="type != 'provider'">  
+	  
+	
+		  
+		<div ng-if="type == 'customer'">  
+
 		
-        <label class="item item-input item-stacked-label">
-          <span class="input-label">Prénom</span>
-          <input type="text" name="prenom" ng-model="prenom" placeholder="Veuillez saisir votre prénom">
-		</label>
-		
-        <label class="item item-input item-stacked-label">
-          <span class="input-label">Pseudo</span>
-          <input type="text" name="pseudo" ng-model="pseudo" placeholder="Veuillez saisir votre pseudo">
-        </label>
+			<label class="item item-input item-stacked-label">
+			  <span class="input-label">Email<span style="color:red">*</span></span>
+			  <input type="email" name="mail" ng-model="mail" required placeholder="Veuillez saisir votre adresse email">
+
+			</label>
+			
+			<label class="item item-input item-stacked-label">
+			  <span class="input-label">Confirmation d'email<span style="color:red">*</span></span>
+			  <input type="email" name="mail_confirm" ng-model="mail_confirm" required placeholder="Veuillez saisir à nouveau votre adresse email" >
+			</label>
+			
+			<label class="item item-input item-stacked-label">
+			  <span class="input-label">Mot de passe<span style="color:red">*</span></span>
+			  <input type="password" name="mdp" ng-model="mdp" required ng-minlength="6" placeholder="Veuillez saisir votre mot de passe" >
+		   
+			</label>
+			
+			<label class="item item-input item-stacked-label">
+			  <span class="input-label">Confirmation de mot de passe<span style="color:red">*</span></span>
+			  <input type="password" name="mdp_confirm" ng-model="mdp_confirm" required ng-minlength="6" placeholder="Veuillez saisir un mot de passe identique">
+			</label>
+				
+			<label class="item item-input item-stacked-label">
+			  <span class="input-label">Prénom</span>
+			  <input type="text" name="prenom" ng-model="prenom" placeholder="Veuillez saisir votre prénom">
+			</label>
+			
+			<label class="item item-input item-stacked-label">
+			  <span class="input-label">Pseudo</span>
+			  <input type="text" name="pseudo" ng-model="pseudo" placeholder="Veuillez saisir votre pseudo">
+			</label>
         
         </div>
+		
       </div>
     </div>
 
