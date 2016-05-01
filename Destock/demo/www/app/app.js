@@ -205,10 +205,10 @@ angular.module('demo', [
         controller: "AdminCtrl"
       })
             .state('adminModifier', {
-        url: '/admin/:id',
+        url: '/admin/modifier/:id/:mag',
         templateUrl: 'app/admin/modifier.html',
         controller: "AdminCtrl"
-      })
+      })  
       
       .state('appAvailability', {
         url: '/appAvailability',

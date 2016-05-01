@@ -2,6 +2,10 @@
 <ion-content padding="true" ng-app="demo" ng-controller="AdminCtrl" ng-init="GetData()">   
 
 
+<button class="button button-block button-positive" type="submit" ng-click="Ajout()">
+  Ajouter une nouvelle offre  	
+  <i class="ion-paper-airplane"></i>
+</button>
 <div class="bar bar-header item-input-inset has-tabs-top" >
   <label class="item-input-wrapper">
     <i class="icon ion-ios-search placeholder-icon"></i>
@@ -13,33 +17,23 @@
   </button>
 </div>
 
-<button class="button button-block button-positive" type="submit" ng-click="Ajout()">
-  Ajouter une nouvelle offre  	
-  <i class="ion-paper-airplane"></i>
-</button>
-<div class="list">
-<span class="input-label">Réference</span>
-<input type="text" name="ref" ng-model="ref" placeholder="Reference de l'offre">
-<span class="input-label">Identifiant</span>
-<input type="text" name="idMag" ng-model="idMag" placeholder="Identifiant de votre magasin">
-<button class="button button-small" type="submit" ng-click="Del()"> Supprimer cette offre </button>
-<button class="button button-small" type="submit" ng-click="Modif()"> Modifier cette offre </button>
-</div>
 
 <div class="list">
 
-    <a class="item item-thumbnail-left" href="/#/offres/{{Resultat.idPromo}}" ng-repeat="promo in Resultat | filter:recherche">
+    <div class="item item-thumbnail-left" ng-repeat="promo in Resultat | filter:recherche">
       <img src="/img/Offres/nirvana.jpg"> <!-- TODO: Image avec idPromo comme nom de l'image -->
       <h2>Ref promo : {{promo.referencePromo}}</h2>
       <p>Id magasin : {{promo.idMagasin}}</p>
       <p>Id promo : {{promo.idPromo}}</p>
+     <a href="/#/admin/modifier/{{ promo.idPromo }}/{{ promo.idMagasin }}">Modifier</a>
+     <button class="button button-block button-positive" type="submit" style="width:10%;" ng-click="Del({{ promo.referencePromo }},{{ promo.idMagasin }});">Supprimer</button>
 	  
 	
 	
 	  <!-- TODO: Ajouter les données manquantes -->
       <!-- TODO : Tom ajoute un lien "Modifier" et un "Supprimer" qui redirigent vers /admin/modifier et /admin/supprimer -->
       <!-- il faut modifier le controlleur pour récupérer la liste des offres de l'entreprise uniquement -->
-    </a>
+    </div>
 
 </div>
     

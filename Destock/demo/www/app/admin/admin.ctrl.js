@@ -23,6 +23,7 @@ angular.module('demo.admin.ctrl', [])
                 console.log("Donnes recues par le serveur : " + JSON.stringify(data) );
                 
                         $scope.Resultat = data;
+                        $scope.nomprod = data.nomProduit;
                 
             })
             .error(function (data, status, header, config) {
@@ -137,7 +138,7 @@ $http(req)
 		
 		
 		
-		$scope.ModifOffre = function () {
+		$scope.ModifOffre = function ($id, $mag) {
    
            // use $.param jQuery function to serialize data from JSON 
             var dataOBJ = {
@@ -223,11 +224,11 @@ $http(req)
 		
 		
 		
-		$scope.Del = function () { 
+		$scope.Del = function ($ref, $mag) { 
            // use $.param jQuery function to serialize data from JSON 
             var dataOBJ = {
-                ref: $scope.ref,
-				idmag: $scope.idMag
+                ref: $ref,
+				idmag: $mag
             };
         
 		
