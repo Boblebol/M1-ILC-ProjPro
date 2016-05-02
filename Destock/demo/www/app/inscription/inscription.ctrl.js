@@ -75,6 +75,7 @@ function MyCtrl($scope) {
             
             
 
+var geocoder = new google.maps.Geocoder();
   geocoder.geocode({'address': $scope.chosenPlace}, function(results, status) {
     if (status === google.maps.GeocoderStatus.OK) {
     
@@ -83,22 +84,17 @@ function MyCtrl($scope) {
       
       
       
-    } else {
-      alert('Geocode was not successful for the following reason: ' + status);
-    }
-  });
+      
+      
+      
 
-
-
-
-            
             
 				var dataOBJ = {
 				mail: $scope.mail,
 				mdp: $scope.mdp,
                 nom: $scope.nom,            
-                latitude: 0,
-                longitude: 0,
+                latitude: results[0].geometry.location.lat(),
+                longitude: results[0].geometry.location.lng(),
                 adresse: $scope.chosenPlace
 				};
            
@@ -112,12 +108,7 @@ function MyCtrl($scope) {
 						},
 				data: $httpParamSerializer(dataOBJ)
 			};         
-           }
-		   
-           else
-           {
-                $scope.Erreur = "ERREUR type";
-           }
+     
    
 			
 	
@@ -158,7 +149,27 @@ function MyCtrl($scope) {
             })
             .error(function (data, status, header, config) {
                 console.log("ERREUR : " + JSON.stringify(data) + JSON.stringify(status) );
-            });
+            });      
+      
+      
+      
+      
+      
+      
+    } else {
+      alert('Geocode was not successful for the following reason: ' + status);
+    }
+  });
+
+
+
+      }
+		   
+           else
+           {
+                $scope.Erreur = "ERREUR type";
+           }
+            
             
             }                
         };		           				
