@@ -21,8 +21,6 @@
 			</select>
 		</label>
 
-		
-		<div ng-if="type == 'provider'">  
 
 			<label class="item item-input item-stacked-label">
 			  <span class="input-label">Email<span style="color:red">*</span></span>
@@ -46,72 +44,21 @@
 			  <input type="password" name="mdp_confirm" ng-model="mdp_confirm" required ng-minlength="6" placeholder="Veuillez saisir un mot de passe identique">
 			</label>
 		  
-		  
-		  
-		  
-		  
-		  
-			<label class="item item-input item-stacked-label"> 
-			  <span class="input-label">Nom de l'entreprise</span>
-			  <input type="text" name="nom" ng-model="nom" placeholder="Veuillez saisir le nom">
-			</label>
-        
-
-
-
-
-        <label class="item item-input item-stacked-label"> 
-          <span class="input-label">Adresse du magasin :</span>
-          <input type="text"  ng-model="chosenPlace" googleplace placeholder="Adresse de l'entreprise">
-        </label>
- 
-
-
-	  </div>
-	  
-	
-		  
-		<div ng-if="type == 'customer'">  
-
-		
-			<label class="item item-input item-stacked-label">
-			  <span class="input-label">Email<span style="color:red">*</span></span>
-			  <input type="email" name="mail" ng-model="mail" required placeholder="Veuillez saisir votre adresse email">
-
-			</label>
-			
-			<label class="item item-input item-stacked-label">
-			  <span class="input-label">Confirmation d'email<span style="color:red">*</span></span>
-			  <input type="email" name="mail_confirm" ng-model="mail_confirm" required placeholder="Veuillez saisir à nouveau votre adresse email" >
-			</label>
-			
-			<label class="item item-input item-stacked-label">
-			  <span class="input-label">Mot de passe<span style="color:red">*</span></span>
-			  <input type="password" name="mdp" ng-model="mdp" required ng-minlength="6" placeholder="Veuillez saisir votre mot de passe" >
-		   
-			</label>
-			
-			<label class="item item-input item-stacked-label">
-			  <span class="input-label">Confirmation de mot de passe<span style="color:red">*</span></span>
-			  <input type="password" name="mdp_confirm" ng-model="mdp_confirm" required ng-minlength="6" placeholder="Veuillez saisir un mot de passe identique">
-			</label>
-			
-			<label class="item item-input item-stacked-label"> 
+		  	<label class="item item-input item-stacked-label"> 
 			  <span class="input-label">Nom</span>
-			  <input type="text" name="nom" ng-model="nom" placeholder="Veuillez saisir votre nom">
+			  <input type="text" name="nom" ng-model="nom" required placeholder="Veuillez saisir votre nom">
 			</label>
 		
 			<label class="item item-input item-stacked-label">
 			  <span class="input-label">Prénom</span>
-			  <input type="text" name="prenom" ng-model="prenom" placeholder="Veuillez saisir votre prénom">
+			  <input type="text" name="prenom" ng-model="prenom" required placeholder="Veuillez saisir votre prénom">
 			</label>
-			
-			<label class="item item-input item-stacked-label">
-			  <span class="input-label">Pseudo</span>
-			  <input type="text" name="pseudo" ng-model="pseudo" placeholder="Veuillez saisir votre pseudo">
+   
+			<label class="item item-input item-stacked-label"> 
+			  <span class="input-label">Adresse du magasin :</span>
+			  <input type="text" ng-model="chosenPlace" required googleplace placeholder="Adresse de l'entreprise">
 			</label>
-        
-        </div>
+      
 		
       </div>
     </div>
@@ -126,9 +73,9 @@
 <div style="text-align:center;">{{ Resultat }}<br />
 <span style="color:red;">{{ Erreur }}</span></div>
     <div class="padding">
-      <button class="button button-block button-positive button-no-margin" type="submit"  ng-click="SendData()">
+      <button class="button button-block button-positive button-no-margin" ng-disabled="!form.$valid" type="submit" ng-click="SendData()">
 		Créer votre compte
-	  </button>
+	  </button> 
     </div> 
   </form>
     

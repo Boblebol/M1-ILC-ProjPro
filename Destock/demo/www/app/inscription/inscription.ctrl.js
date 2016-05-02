@@ -54,7 +54,7 @@ function MyCtrl($scope) {
 					mdp: $scope.mdp
 				};
 				
-				console.log("Donnes envoyees au serveur cusotmer: " + JSON.stringify(dataOBJ) );
+				console.log("Donnes envoyees au serveur customer: " + JSON.stringify(dataOBJ) );
 				
 			   var req = {
 					method: 'POST',
@@ -72,11 +72,10 @@ function MyCtrl($scope) {
 				mail: $scope.mail,
 				mdp: $scope.mdp,
                 nom: $scope.nom,            
-                lattitude: 0,
+                latitude: 0,
                 longitude: 0,
-                adresse: $scope.chosenPlace,
-                mdp: $scope.mdp
-            };
+                adresse: $scope.chosenPlace
+				};
            
            console.log("Donnes envoyees au serveur provider: " + JSON.stringify(dataOBJ) );
 		   
@@ -89,6 +88,7 @@ function MyCtrl($scope) {
 				data: $httpParamSerializer(dataOBJ)
 			};         
            }
+		   
            else
            {
                 $scope.Erreur = "ERREUR type";
@@ -117,14 +117,14 @@ function MyCtrl($scope) {
                 if (JSON.stringify(data) == "{}")
                 {
                         $arg = true;
-                        $scope.Resultat = "Inscription echouee !!!!!";	
+                        $scope.Resultat = "Inscription reussie !!!!!";	
 						alert('Chargement...');
 						$timeout(page, 3000);
                 }
                 else
                 {
                         $arg = true;
-                        $scope.Resultat = "Inscription reussie !!!!!";
+                        $scope.Resultat = "Inscription echoue !!!!!";
 						alert('Chargement...');
 						$timeout(page, 3000);	
                         $scope.Erreur = data.error;
