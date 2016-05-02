@@ -18,17 +18,19 @@ angular.module('demo.admin.ctrl', [])
 
 	  $scope.GetData = function () {
    
-            var dataOBJ = null;
+			$scope.CookieId = window.localStorage.getItem('CookieId');
+            var dataOBJ = {idMag: $scope.CookieId};
         
 
                 console.log("Recuperation des donnees");
             
             var req = {
-			 method: 'GET',
-			 url: 'http://destock.u-strasbg.fr:8080/Destock/promo/liste',
+			 method: 'POST',
+			 url: 'http://destock.u-strasbg.fr:8080/Destock/promo/listeMag',
 			 headers: {
 			   'Content-Type': 'application/x-www-form-urlencoded'
-			 }
+			 },
+			 data : $httpParamSerializer(dataOBJ)
 			};
 
 			$http(req)
