@@ -63,18 +63,19 @@ $http(req)
 				var page = function () {
 					
 					if($arg == true) {
-						alert('Connexion réussie ! Vous allez être redirigé vers le menu.');
+						$scope.Resultat = "Connexion reussie !!!!!";
 						$location.path('menu'); 
+						location.reload();
 					}
 					else {
-						alert('Connexion échouée !');
+						$scope.Resultat = "Connexion echouee !!!!!";
+						$scope.Erreur = "Mauvais Login/Mot de passe";
 					}
 				  
 				} 
                 
                 if (($scope.type == "entreprise" && data.id != null) || ($scope.type == "particulier" && data.id != null))
                 {
-                        $scope.Resultat = "Connexion reussie !!!!!" + data.infos;
 						$arg = true;
 						window.localStorage.setItem('CookieEmail', data.mail);
 						window.localStorage.setItem('CookieType', $scope.type);
@@ -84,19 +85,14 @@ $http(req)
 							$scope.CookieEmail = window.localStorage.getItem('CookieEmail');
 							$scope.CookieType = window.localStorage.getItem('CookieType');
 							$scope.CookieId = window.localStorage.getItem('CookieId');
-							alert('Chargement...');
-							$timeout(page, 2000);
-						//TODO : 
-						
-						
+							$scope.Loading = "Chargement...";
+							$timeout(page, 2000);																		
                 }         
                 else // TODO : gestion d'erreur
                 {
-                        $scope.Erreur = "Mauvais Login/Mot de passe";
+                        $scope.Loading = "Chargement...";
 						$arg = false;
-						alert('Chargement...');
-						$timeout(page, 2000);
-                
+						$timeout(page, 2000);						
                 }
                 
                 
