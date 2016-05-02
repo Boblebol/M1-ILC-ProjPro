@@ -11,15 +11,13 @@
 
 
 
-Magasin : {{ Resultat.nomMagasin}} <br />
-Adresse : {{ Resultat.adresseMagasin }}<br />
-Prix : {{ Resultat.acienPrix }} -> {{ Resultat.nouveauPrix}} <br />
-Categorie : {{ Resultat.categorie }}<br />
-Valable : {{ Resultat.dureeValidite }}<br />
-Latitude :  {{ Resultat.latitude }}<br />
-Longitude :  {{ Resultat.longitude }}<br />
-<br /><br />Produit : {{ Resultat.nomProduit }}<br />
-<br /><br />Description : <br />
+<b>Produit :</b> {{ Resultat.nomProduit }}<br />
+<b>Magasin :</b> {{ Resultat.nomMagasin}} <br />
+<b>Prix :</b> <strike style='color:red;'><b>{{ Resultat.ancienPrix }}€</b></strike> -> <b style='color:green;'>{{ Resultat.nouveauPrix}}€</b> <br />
+<b>Categorie :</b> {{ Resultat.categorie }}<br />
+<b>Adresse :</b> {{ Resultat.adresseMagasin }}<br />
+<br /><br />
+<b>Description :</b> <br />
 {{ Resultat.description }}<br />
 
 
@@ -29,6 +27,9 @@ Longitude :  {{ Resultat.longitude }}<br />
 
 
 </div>
+
+
+		        <div id="map" data-tap-disabled="true"></div>
     
   </ion-content>
 </ion-view>

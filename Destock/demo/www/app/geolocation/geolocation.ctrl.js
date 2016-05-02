@@ -52,7 +52,7 @@ $http(req)
 
 
  
-    var latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+    var latLng = new     google.maps.LatLng(position.coords.latitude, position.coords.longitude);
  
     var mapOptions = {
       center: latLng,
@@ -62,7 +62,21 @@ $http(req)
  
     $scope.map = new google.maps.Map(document.getElementById("map"), mapOptions);
     
-    
+ var marker = new google.maps.Marker({
+      map: $scope.map,
+      animation: google.maps.Animation.DROP,
+      position: latLng
+  });      
+ 
+  var infoWindow = new google.maps.InfoWindow({
+      content: "C'est vous !"
+  });
+ 
+  google.maps.event.addListener(marker, 'click', function () {
+      infoWindow.open($scope.map, marker);
+  });
+  
+      
     
    //Wait until the map is loaded
 google.maps.event.addListenerOnce($scope.map, 'idle', function(){
@@ -80,9 +94,7 @@ geocoder.geocode( { "address": valeur.adresse }, function(results, status) {
 if (status == google.maps.GeocoderStatus.OK)
 {
 
-  var infowindow = new google.maps.InfoWindow({
-      content: valeur.referencePromo
-  });
+
 
   var marker = new google.maps.Marker({
       map: $scope.map,
@@ -91,7 +103,15 @@ if (status == google.maps.GeocoderStatus.OK)
       title: valeur.referencePromo
   });   
   
+        var contenu = " <img src='/img/Offres/nirvana.jpg' style='width:100px;'/> <br /><b>" + valeur.referencePromo + "<br /><br />Description :</b><br />" + valeur.description;
+  var infowindow = new google.maps.InfoWindow({
+    content: contenu
+  });
 
+  marker.addListener('click', function() {
+    infowindow.open($scope.map, marker);
+  });
+ 
 
      } else {
       alert("Le geocodage n\'a pu etre effectue pour la raison suivante: " + status);
