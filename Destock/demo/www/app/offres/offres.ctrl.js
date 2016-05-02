@@ -155,16 +155,38 @@ if (status == google.maps.GeocoderStatus.OK)
    $scope.GetData = function () {
    
     
+var options = {timeout: 10000, enableHighAccuracy: true};
+ 
+  $cordovaGeolocation.getCurrentPosition(options).then(function(position){
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            var dataOBJ = {
+                distance: 50000,
+                latitude: position.coords.latitude,
+                longitude: position.coords.longitude
+            };      
         
 
-                console.log("Recuperation des donnees");
+                console.log("Envoi au serveur : " + JSON.stringify(dataOBJ));
             
             var req = {
- method: 'GET',
- url: 'http://destock.u-strasbg.fr:8080/Destock/promo/liste',
+ method: 'POST',
+ url: 'http://destock.u-strasbg.fr:8080/Destock/promo/listeGeoAct',
  headers: {
    'Content-Type': 'application/x-www-form-urlencoded'
- }
+ },      
+ data : $httpParamSerializer(dataOBJ)
 };
 
 $http(req)
@@ -184,9 +206,12 @@ $http(req)
                 console.log("ERREUR : " + JSON.stringify(data) + JSON.stringify(status) );
             });
                   
-        };
+        });
         
+    
      
+  };
+  
   });
   
-  
+ 

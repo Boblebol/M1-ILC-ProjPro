@@ -88,7 +88,6 @@ var geocoder = new google.maps.Geocoder();
 angular.forEach($scope.Resultat, function(valeur, cle){
 
 
-
 geocoder.geocode( { "address": valeur.adresse }, function(results, status) {
 
 if (status == google.maps.GeocoderStatus.OK)

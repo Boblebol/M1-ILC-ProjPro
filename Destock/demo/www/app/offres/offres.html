@@ -26,12 +26,12 @@
 
 
 
-    <a class="item item-thumbnail-left" href="/#/offres/{{promo.idPromo}}" ng-repeat="promo in Resultat | filter:recherche">
-      <img src="/img/Offres/nirvana.jpg"> <!-- TODO: Image avec idPromo comme nom de l'image -->
+    <a class="item item-thumbnail-left" ng-repeat="promo in Resultat track by $index | filter:recherche" href="/#/offres/{{promo.idPromo}}" >
+      <img src="http://img1.lesnumeriques.com/produits/71/30989/apple-iphone-se_969b397dba526fb4_450x400.jpg" />
       <h2>{{promo.referencePromo}}</h2>
       <p>Id magasin : {{promo.idMagasin}}</p>
       <p>Adresse : {{promo.adresse}}</p>
-      <p>Id promo : {{promo.idPromo}}</p> <!-- TODO: Ajouter les données manquantes -->
+      <p>Id promo : {{promo.idPromo}}</p> 
     </a>
 
 

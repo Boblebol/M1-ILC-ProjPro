@@ -68,6 +68,28 @@ function MyCtrl($scope) {
 			
             else if ($scope.type == 'provider')
             {
+            
+            
+            
+
+  geocoder.geocode({'address': $scope.chosenPlace}, function(results, status) {
+    if (status === google.maps.GeocoderStatus.OK) {
+    
+
+      console.log(results[0].geometry.location);
+      
+      
+      
+    } else {
+      alert('Geocode was not successful for the following reason: ' + status);
+    }
+  });
+
+
+
+
+            
+            
 				var dataOBJ = {
 				mail: $scope.mail,
 				mdp: $scope.mdp,
