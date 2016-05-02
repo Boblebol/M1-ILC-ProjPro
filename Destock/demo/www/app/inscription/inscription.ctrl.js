@@ -2,13 +2,16 @@ angular.module('demo.inscription.ctrl', [])
 
   .controller('InscriptionCtrl', function ($scope, $http, $httpParamSerializer, $location, $timeout) {
 
-
+$scope.reloadRoute = function() {
+   location.reload(); 
+}
 
 function MyCtrl($scope) {
     $scope.gPlace;
 }
 
    $scope.SendData = function () {
+	   
                 var formulaireValide = true;
                         $scope.Resultat = null;
                         $scope.Erreur = null; 
@@ -106,29 +109,27 @@ function MyCtrl($scope) {
                 var page = function () {
 					
 					if($arg == true) {
-						alert('Inscription réussie ! Vous allez être redirigé vers le menu.');
-						$location.path('menu'); 
+						$scope.Resultat = "Inscription reussie !!!!!";	
+						$location.path('menu'); 						
 					}
+					
 					else {
-						alert('Inscription échouée !');
+						$scope.Resultat = "Inscription echoue !!!!!";
+						$scope.Erreur = data.error;  
 					}				  
 				}  
 				
                 if (JSON.stringify(data) == "{}")
                 {
-                        $arg = true;
-                        $scope.Resultat = "Inscription reussie !!!!!";	
-						alert('Chargement...');
-						$timeout(page, 3000);
+                        $arg = true;                      
+						$scope.Loading = "Chargement...";
+						$timeout(page, 2000);				
                 }
                 else
                 {
-                        $arg = true;
-                        $scope.Resultat = "Inscription echoue !!!!!";
-						alert('Chargement...');
-						$timeout(page, 3000);	
-                        $scope.Erreur = data.error;
-                
+                        $arg = false;                      
+						$scope.Loading = "Chargement...";
+						$timeout(page, 2000);						                                   
                 }
                 
                 
