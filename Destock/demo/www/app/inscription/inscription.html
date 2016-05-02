@@ -45,17 +45,17 @@
 			</label>
 		  
 		  	<label class="item item-input item-stacked-label"> 
-			  <span class="input-label">Nom</span>
+			  <span class="input-label">Nom<span style="color:red">*</span></span>
 			  <input type="text" name="nom" ng-model="nom" required placeholder="Veuillez saisir votre nom">
 			</label>
 		
 			<label class="item item-input item-stacked-label">
-			  <span class="input-label">Prénom</span>
+			  <span class="input-label">Prénom<span style="color:red">*</span></span>
 			  <input type="text" name="prenom" ng-model="prenom" required placeholder="Veuillez saisir votre prénom">
 			</label>
    
 			<label class="item item-input item-stacked-label"> 
-			  <span class="input-label">Adresse du magasin :</span>
+			  <span class="input-label">Adresse du magasin :<span style="color:red">*</span></span>
 			  <input type="text" ng-model="chosenPlace" required googleplace placeholder="Adresse de l'entreprise">
 			</label>
       
@@ -71,6 +71,7 @@
 
 
 <div style="text-align:center;">{{ Resultat }}<br />
+<div style="text-align:center;">{{ Loading }}<br />
 <span style="color:red;">{{ Erreur }}</span></div>
     <div class="padding">
       <button class="button button-block button-positive button-no-margin" ng-disabled="!form.$valid" type="submit" ng-click="SendData()">
