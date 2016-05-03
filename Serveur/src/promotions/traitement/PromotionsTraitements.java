@@ -68,7 +68,7 @@ public class PromotionsTraitements {
 	 * @param magasin
 	 * @return return JSON ok ou erreur
 	 */
-	public static JSONObject updatePromotion (String ref, String marque, String nomprod,String categorie,String description,Float ancienprix,Float nouveauprix, int duree,String active, int idmag) {
+	public static JSONObject updatePromotion (String ref, String marque, String nomprod,String categorie,String description,Float ancienprix,Float nouveauprix, int duree,int active, int idmag) {
 		try {
 			if (DBPromotionsTools.PromotionExistance(ref, idmag)) {
 				DBPromotions.updatePromotion(ref, marque, nomprod, categorie, description, ancienprix, nouveauprix, duree, active, idmag);

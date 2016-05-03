@@ -49,7 +49,7 @@ public class DBPreferences {
 	public static void DelPrefMagasin (int idClient,int idMagasin) throws DBException, SQLException {
 		try {
 			// Requete
-			String requete = "DELETE FROM `AssociationUtilisateurPromotion` WHERE `idClient`="+idClient+" AND `iMagasin`="+idMagasin+"";
+			String requete = "DELETE FROM `AssociationUtilisateurPromotion` WHERE `idClient`="+idClient+" AND `idMagasin`="+idMagasin+"";
 			// Ouverture de la connexion
 			Connection c = DataBase.getMySQLConnection();
 			Statement s = c.createStatement();

@@ -5,6 +5,7 @@ import org.json.JSONObject;
 
 import clients.db.DBClient;
 import clients.db.DBClientTools;
+import preferences.db.DBPreferencesTools;
 import settings.dbSettings.DBException;
 import settings.traitementSettings.TraitementTools;
 
@@ -41,6 +42,8 @@ public class ClientsTraitements {
 	public static JSONObject DelClient (String mail,String mdp) {
 		try {
 			if (DBClientTools.clientExistance(mail)) {
+				int id  = DBClientTools.getIdClient(mail);
+				DBPreferencesTools.DelPrefIdUser (id);
 				DBClient.DelClient(mail, mdp);
 				return TraitementTools.JSONok();
 			}
@@ -80,7 +83,7 @@ public class ClientsTraitements {
 	 * @param lattitude
 	 * @throws BDException
 	 */
-	public static JSONObject updatePosClient (String mail,int longitude,int lattitude) {
+	public static JSONObject updatePosClient (String mail,float longitude,float lattitude) {
 		try {
 			if (DBClientTools.clientExistance(mail)) {
 				DBClient.updatePosClient(mail,longitude,lattitude);

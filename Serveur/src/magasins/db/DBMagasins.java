@@ -22,14 +22,14 @@ public class DBMagasins {
 	 * @param nom
 	 * @param adresse
 	 * @param longitude
-	 * @param lattitude
+	 * @param Latitude
 	 * @throws BDException
 	 */
 	public static void AddMagasin (String mail,String mdp,String nom,String adresse, float latitude, float longitude) throws DBException, SQLException {
 		try {
 			// Requete
-			String requete = "INSERT INTO `Magasin`(`mailMagasin`, `motDePasseMagasin`, `nomMagasin`, `addresseMagasin`, `LattitudeMagasin`,`LongitudeMagasin`) VALUES (\""+mail+"\",\""+mdp+"\",\""+nom+"\",\""+adresse+"\",\""+latitude+"\",\""+longitude+"\")";
-
+			String requete = "INSERT INTO `Magasin`(`mailMagasin`, `motDePasseMagasin`, `nomMagasin`, `addresseMagasin`, `LatitudeMagasin`,`LongitudeMagasin`) VALUES (\""+mail+"\",\""+mdp+"\",\""+nom+"\",\""+adresse+"\","+latitude+","+longitude+")";
+			
 			// Ouverture de la connexion
 			Connection c = DataBase.getMySQLConnection();
 			Statement s = c.createStatement();
@@ -140,7 +140,7 @@ public class DBMagasins {
 			return js;
 
 		}catch (SQLException e) {
-			throw new DBException("DBUtilisateurs.updatePosUtilisateur : " + e.getMessage());
+			throw new DBException("DBMagasin.listeMagasin : " + e.getMessage());
 		}
 	}
 	
@@ -189,7 +189,7 @@ public class DBMagasins {
 			return js;
 
 		}catch (SQLException e) {
-			throw new DBException("DBUtilisateurs.updatePosUtilisateur : " + e.getMessage());
+			throw new DBException("DBMagasin.listeMagasinProche : " + e.getMessage());
 		}
 	}
 	
@@ -204,7 +204,7 @@ public class DBMagasins {
 	public static JSONObject detailMagasin (int id,String nom) throws DBException, JSONException {
 		try { 
 			// Requete
-			String requete = "SELECT `mailMagasin`, `addresseMagasin`, `LongitudeMagasin`, `LattitudeMagasin` FROM `Magasin` WHERE idMagasin=\""+id+"\" AND nomMagasin=\""+nom+"\"" ;
+			String requete = "SELECT `mailMagasin`, `addresseMagasin`, `LongitudeMagasin`, `LatitudeMagasin` FROM `Magasin` WHERE idMagasin=\""+id+"\" AND nomMagasin=\""+nom+"\"" ;
 			
 			// Ouverture de la connexion
 			Connection c = DataBase.getMySQLConnection();
@@ -219,13 +219,13 @@ public class DBMagasins {
 				String adresse = rs.getString("addresseMagasin");
 				String mail = rs.getString("mailMagasin");
 				Double longitude = rs.getDouble("LongitudeMagasin");
-				Double lattitude = rs.getDouble("LattitudeMagasin");
+				Double Latitude = rs.getDouble("LatitudeMagasin");
 				
 				tmp.put("nomMagasin", nom);
 				tmp.put("idMagasin", id);
 				tmp.put("mailMagasin", mail);
 				tmp.put("LongitudeMagasin",longitude);
-				tmp.put("LattitudeMagasin",lattitude);
+				tmp.put("LatitudeMagasin",Latitude);
 				tmp.put("addresseMagasin", adresse);
 				
 			}
@@ -284,7 +284,7 @@ public class DBMagasins {
 				return tmp;
 			}
 		} catch (SQLException e) {
-			throw new DBException("DBClient.updateClient : " + e.getMessage());
+			throw new DBException("DBUtilisateurs.connecteMagasin : " + e.getMessage());
 		}
 	}
 }

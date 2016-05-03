@@ -23,7 +23,7 @@ import promotions.traitement.PromotionsTraitements;
  * @apiParam {Float} ancienprix Ancien prix du produit.
  * @apiParam {Float} nouveauprix Nouveau prix du produit.
  * @apiParam {Integer} duree Durée en jour de la promotion.
- * @apiParam {Integer} active La promotion est-elle active ?
+ * @apiParam {Integer} active La promotion est-elle active ? (1 ou 0)
  * @apiParam {Integer} idmag Numero d'identification du magasin qui poste la promotion en base.
  * 
  * @apiSuccess {JSON} JSON Un JSON vide qui signifie que l'ajout s'est bien déroulé

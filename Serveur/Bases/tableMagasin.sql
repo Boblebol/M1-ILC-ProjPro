@@ -8,6 +8,6 @@ CREATE TABLE Magasin
 	nomMagasin			VARCHAR (50),
 	addresseMagasin		VARCHAR (200),
 	-- LOCALISATION SATELLITE
-	LongitudeMagasin	INT NOT NULL, -- derniere longitude lors de la synchronisation
-	LattitudeMagasin  	INT NOT NULL -- derniere lattitude lors de la synchronisation
+	LongitudeMagasin	FLOAT NOT NULL, -- derniere longitude lors de la synchronisation
+	LatitudeMagasin  	FLOAT NOT NULL -- derniere lattitude lors de la synchronisation
 )

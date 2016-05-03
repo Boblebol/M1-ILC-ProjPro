@@ -144,7 +144,7 @@ public class DBClient {
 				return tmp;
 			}
 		} catch (SQLException e) {
-			throw new DBException("DBClient.updateClient : " + e.getMessage());
+			throw new DBException("DBClient.connecteClient : " + e.getMessage());
 		}
 	}
 	/**
@@ -156,7 +156,7 @@ public class DBClient {
 	 * @throws DBException 
 	 * @throws BDException
 	 */
-	public static void updatePosClient(String mail, int longitude, int lattitude) throws DBException {
+	public static void updatePosClient(String mail, float longitude, float lattitude) throws DBException {
 		try { 
 			if (DBClientTools.clientExistance(mail)) {
 				int id = DBClientTools.getIdClient(mail);
@@ -175,7 +175,7 @@ public class DBClient {
 				c.close();
 			}
 		}catch (SQLException e) {
-			throw new DBException("DBClient.updateClient : " + e.getMessage());
+			throw new DBException("DBClient.updatePosClient : " + e.getMessage());
 		}
 	}
 

@@ -8,6 +8,6 @@ CREATE TABLE Client
 	nomClient				VARCHAR (50),
 	prenomClient			VARCHAR (50),
 	-- LOCALISATION SATELLITE
-	lastLongitudeClient		INT NOT NULL, -- derniere longitude lors de la synchronisation
-	lastLattitudeClient  	INT NOT NULL -- derniere lattitude lors de la synchronisation
+	lastLongitudeClient		FLOAT NOT NULL, -- derniere longitude lors de la synchronisation
+	lastLattitudeClient  	FLOAT NOT NULL -- derniere lattitude lors de la synchronisation
 )

@@ -10,6 +10,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import magasins.db.DBMagasinsTools;
 import magasins.traitement.MagasinsTraitements;
 import preferences.db.DBPreferencesTools;
 import settings.dbSettings.DBException;
@@ -68,14 +69,14 @@ public class DBPromotions {
 	 * @throws BDException
 	 */ 
 
-	public static void updatePromotion (String ref, String marque, String nomprod,String categorie,String description,Float ancienprix,Float nouveauprix, int duree,String active, int idMagasin) throws DBException, SQLException {
+	public static void updatePromotion (String ref, String marque, String nomprod,String categorie,String description,Float ancienprix,Float nouveauprix, int duree,int active, int idMagasin) throws DBException, SQLException {
 		try {
 			if (DBPromotionsTools.PromotionExistance(ref,idMagasin)){
 				int id = DBPromotionsTools.getIdPromo(ref,idMagasin);
 				// Requete
 				String requete = 
 						"UPDATE `Promotions` SET `referencePromo`=\""+ref+"\",`marquePromo`=\""+marque+"\",`nomProduit`=\""+nomprod+"\",`categorie`=\""+categorie+"\",`description`=\""+description+"\","
-								+ "`ancienPrix`=\""+ancienprix+"\",`nouveauPrix`=\""+nouveauprix+"\",`dureeValidite`=\""+duree+"\",`active`=\""+active+"\",`idMagasin`=\""+idMagasin+"\" WHERE idClient=\"" + id + "\"";
+								+ "`ancienPrix`=\""+ancienprix+"\",`nouveauPrix`=\""+nouveauprix+"\",`dureeValidite`=\""+duree+"\",`active`=\""+active+"\",`idMagasin`=\""+idMagasin+"\" WHERE idPromo=\"" + id + "\"";
 				// Ouverture de la connexion
 				Connection c = DataBase.getMySQLConnection();
 				Statement s = c.createStatement();
@@ -128,7 +129,7 @@ public class DBPromotions {
 	public static JSONArray listePromotion () throws DBException, JSONException {
 		try { 
 			// Requete
-			String requete = "SELECT  `idPromo`,`referencePromo`,`idMagasin` FROM `Promotions`";
+			String requete = "SELECT  `idPromo`,`referencePromo`,`idMagasin`,`description` FROM `Promotions`";
 
 			// Ouverture de la connexion
 			Connection c = DataBase.getMySQLConnection();
@@ -143,11 +144,15 @@ public class DBPromotions {
 				int idPromo = rs.getInt("idPromo");
 				String referencePromo = rs.getString("referencePromo");
 				int idMagasin = rs.getInt("idMagasin");  
+				String desc = rs.getString("description");
+				String adresse = DBMagasinsTools.getAdresseMagasinFromId(idMagasin);
 
 				JSONObject tmp = new JSONObject();
 				tmp.put("idPromo", idPromo);
 				tmp.put("referencePromo", referencePromo);
 				tmp.put("idMagasin", idMagasin);
+				tmp.put("description", desc);
+				tmp.put("adresse", adresse);
 				js.put(tmp);
 			}
 
@@ -170,7 +175,7 @@ public class DBPromotions {
 	public static JSONArray listePromotionActives () throws DBException, JSONException {
 		try { 
 			// Requete
-			String requete = "SELECT  `idPromo`,`referencePromo`,`idMagasin` FROM `Promotions` WHERE `active`=1";
+			String requete = "SELECT  `idPromo`,`referencePromo`,`idMagasin`,`description` FROM `Promotions` WHERE `active`=1";
 
 			// Ouverture de la connexion
 			Connection c = DataBase.getMySQLConnection();
@@ -184,12 +189,16 @@ public class DBPromotions {
 			while (rs.next()) {
 				int idPromo = rs.getInt("idPromo");
 				String referencePromo = rs.getString("referencePromo");
-				int idMagasin = rs.getInt("idMagasin");  
+				int idMagasin = rs.getInt("idMagasin"); 
+				String desc = rs.getString("description");
+				String adresse = DBMagasinsTools.getAdresseMagasinFromId(idMagasin);
 
 				JSONObject tmp = new JSONObject();
 				tmp.put("idPromo", idPromo);
 				tmp.put("referencePromo", referencePromo);
 				tmp.put("idMagasin", idMagasin);
+				tmp.put("description", desc);
+				tmp.put("adresse", adresse);
 				js.put(tmp);
 			}
 
@@ -208,14 +217,14 @@ public class DBPromotions {
 	 * lister les promotions actives dans un periemtre donné par rapport a une longitude et une latitude
 	 * @param distace
 	 * @param longitude
-	 * @param lattitude
+	 * @param Latitude
 	 * @return un json array avec tous les promotions actives d'une catégorie
 	 * @throws BDException
 	 */
 	public static JSONArray listePromotionActivesProche ( int distance, float latitude, float longitude ) throws DBException, JSONException {
 		try { 
 			// Requete
-			String requete = "SELECT  `idPromo`,`referencePromo`,`idMagasin` FROM `Promotions` WHERE `active`=1";
+			String requete = "SELECT  `idPromo`,`referencePromo`,`idMagasin`,`description` FROM `Promotions` WHERE `active`=1";
 
 			// Ouverture de la connexion
 			Connection c = DataBase.getMySQLConnection();
@@ -236,13 +245,17 @@ public class DBPromotions {
 			while (rs.next()) {
 				int idPromo = rs.getInt("idPromo");
 				String referencePromo = rs.getString("referencePromo");
-				int idMagasin = rs.getInt("idMagasin");  
+				int idMagasin = rs.getInt("idMagasin");
+				String desc = rs.getString("description");
+				String adresse = DBMagasinsTools.getAdresseMagasinFromId(idMagasin);
 
 				if (listeMag.contains(idMagasin)) {
 					JSONObject tmp = new JSONObject();
 					tmp.put("idPromo", idPromo);
 					tmp.put("referencePromo", referencePromo);
 					tmp.put("idMagasin", idMagasin);
+					tmp.put("description", desc);
+					tmp.put("adresse", adresse);
 					js.put(tmp);
 				}
 			}
@@ -267,7 +280,7 @@ public class DBPromotions {
 	public static JSONArray listePromotionCategorie (String cat) throws DBException, JSONException {
 		try { 
 			// Requete
-			String requete = "SELECT  `idPromo`,`referencePromo`,`idMagasin` FROM `Promotions` WHERE `categorie`=\""+cat+"\" AND `active`=1";
+			String requete = "SELECT  `idPromo`,`referencePromo`,`idMagasin`,`description` FROM `Promotions` WHERE `categorie`=\""+cat+"\" AND `active`=1";
 
 			// Ouverture de la connexion
 			Connection c = DataBase.getMySQLConnection();
@@ -282,11 +295,15 @@ public class DBPromotions {
 				int idPromo = rs.getInt("idPromo");
 				String referencePromo = rs.getString("referencePromo");
 				int idMagasin = rs.getInt("idMagasin");  
+				String desc = rs.getString("description");
+				String adresse = DBMagasinsTools.getAdresseMagasinFromId(idMagasin);
 
 				JSONObject tmp = new JSONObject();
 				tmp.put("idPromo", idPromo);
 				tmp.put("referencePromo", referencePromo);
 				tmp.put("idMagasin", idMagasin);
+				tmp.put("description", desc);
+				tmp.put("adresse", adresse);
 				js.put(tmp);
 			}
 
@@ -306,14 +323,14 @@ public class DBPromotions {
 	 * @param categorie
 	 * @param distance
 	 * @param longitude
-	 * @param lattitude
+	 * @param Latitude
 	 * @return un json array avec tous les promotions actives d'une catégorie
 	 * @throws BDException
 	 */
 	public static JSONArray listePromotionCategorieProche (String cat,int distance, float latitude, float longitude) throws DBException, JSONException {
 		try { 
 			// Requete
-			String requete = "SELECT  `idPromo`,`referencePromo`,`idMagasin` FROM `Promotions` WHERE `categorie`=\""+cat+"\" AND `active`=1";
+			String requete = "SELECT  `idPromo`,`referencePromo`,`idMagasin`,`description` FROM `Promotions` WHERE `categorie`=\""+cat+"\" AND `active`=1";
 
 			// Ouverture de la connexion
 			Connection c = DataBase.getMySQLConnection();
@@ -335,11 +352,16 @@ public class DBPromotions {
 				int idPromo = rs.getInt("idPromo");
 				String referencePromo = rs.getString("referencePromo");
 				int idMagasin = rs.getInt("idMagasin");  
+				String desc = rs.getString("description");
+				String adresse = DBMagasinsTools.getAdresseMagasinFromId(idMagasin);
+
 				if (listeMag.contains(idMagasin)) {
 					JSONObject tmp = new JSONObject();
 					tmp.put("idPromo", idPromo);
 					tmp.put("referencePromo", referencePromo);
 					tmp.put("idMagasin", idMagasin);
+					tmp.put("description", desc);
+					tmp.put("adresse", adresse);
 					js.put(tmp);
 				}
 			}
@@ -364,7 +386,7 @@ public class DBPromotions {
 	public static JSONArray listePromotionMagasin (int idMag) throws DBException, JSONException {
 		try { 
 			// Requete
-			String requete = "SELECT  `idPromo`,`referencePromo`,`idMagasin` FROM `Promotions` WHERE `idMagasin`=\""+idMag+"\" AND `active`=1";
+			String requete = "SELECT  `idPromo`,`referencePromo`,`idMagasin`,`description` FROM `Promotions` WHERE `idMagasin`=\""+idMag+"\" AND `active`=1";
 
 			// Ouverture de la connexion
 			Connection c = DataBase.getMySQLConnection();
@@ -379,11 +401,15 @@ public class DBPromotions {
 				int idPromo = rs.getInt("idPromo");
 				String referencePromo = rs.getString("referencePromo");
 				int idMagasin = rs.getInt("idMagasin");  
+				String desc = rs.getString("description");
+				String adresse = DBMagasinsTools.getAdresseMagasinFromId(idMagasin);
 
 				JSONObject tmp = new JSONObject();
 				tmp.put("idPromo", idPromo);
 				tmp.put("referencePromo", referencePromo);
 				tmp.put("idMagasin", idMagasin);
+				tmp.put("description", desc);
+				tmp.put("adresse", adresse);
 				js.put(tmp);
 			}
 
@@ -406,7 +432,7 @@ public class DBPromotions {
 	public static JSONArray listePromotionPréférences (int id) throws DBException, JSONException {
 		try { 
 			// Requete
-			String requete = "SELECT  `idPromo`,`referencePromo`,`idMagasin`,`categorie` FROM `Promotions` WHERE `active`=1";
+			String requete = "SELECT  `idPromo`,`referencePromo`,`idMagasin`,`categorie`,`description` FROM `Promotions` WHERE `active`=1";
 			ArrayList<Integer> mag = DBPreferencesTools.ListePrefMagasin(id);
 			ArrayList<String> cat = DBPreferencesTools.ListePrefCat(id);
 			// Ouverture de la connexion
@@ -423,12 +449,16 @@ public class DBPromotions {
 				String referencePromo = rs.getString("referencePromo");
 				int idMagasin = rs.getInt("idMagasin"); 
 				String cate = rs.getString("categorie");
+				String desc = rs.getString("description");
+				String adresse = DBMagasinsTools.getAdresseMagasinFromId(idMagasin);
 
 				if (mag.contains(idMagasin)||cat.contains(cate)) {
 					JSONObject tmp = new JSONObject();
 					tmp.put("idPromo", idPromo);
 					tmp.put("referencePromo", referencePromo);
 					tmp.put("idMagasin", idMagasin);
+					tmp.put("description", desc);
+					tmp.put("adresse", adresse);
 					js.put(tmp);
 				}
 			}
@@ -494,7 +524,7 @@ public class DBPromotions {
 			}
 
 			// Requete
-			requete = "SELECT  `nomMagasin`,`addresseMagasin`,`LattitudeMagasin`,`LongitudeMagasin`"
+			requete = "SELECT  `nomMagasin`,`addresseMagasin`,`LatitudeMagasin`,`LongitudeMagasin`"
 					+"FROM `Magasin`"
 					+ "WHERE idMagasin=\""+idMagasin+"\"";
 
@@ -502,7 +532,7 @@ public class DBPromotions {
 
 			rs = s.getResultSet();
 			while (rs.next()) {
-				Float latitude  = rs.getFloat("LattitudeMagasin");
+				Float latitude  = rs.getFloat("LatitudeMagasin");
 				Float longitude  = rs.getFloat("LongitudeMagasin");
 				String nomMagasin = rs.getString("nomMagasin"); 
 				String adresseMagasin = rs.getString("addresseMagasin"); 

@@ -26,7 +26,7 @@ import magasins.traitement.MagasinsTraitements;
  *	"nomMagasin": "nomMagasin",
  * 	"addresseMagasin": "17 rue de l'exemple 11111 Exemple"	
  * 	"idMagasin": 44,
- * 	"LattitudeMagasin": 22,
+ * 	"LatitudeMagasin": 22,
  * 	"LongitudeMagasin": 1
  * }
  */

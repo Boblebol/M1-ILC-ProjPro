@@ -56,7 +56,7 @@ public class DBMagasinsTools {
 
 			return rez;
 		}catch (SQLException e) {
-			throw new DBException("DBMagasinTools.magasinExistance : " + e.getMessage());
+			throw new DBException("DBMagasinTools.getIdMagasinFromMail : " + e.getMessage());
 		}
 	}
 	
@@ -83,7 +83,7 @@ public class DBMagasinsTools {
 
 			return rez;
 		}catch (SQLException e) {
-			throw new DBException("DBMagasinTools.magasinExistance : " + e.getMessage());
+			throw new DBException("DBMagasinTools.getIdMagasinFromNom : " + e.getMessage());
 		}
 	}
 	
@@ -110,7 +110,34 @@ public class DBMagasinsTools {
 
 			return rez;
 		}catch (SQLException e) {
-			throw new DBException("DBMagasinTools.magasinExistance : " + e.getMessage());
+			throw new DBException("DBMagasinTools.getNomMagasinFromId : " + e.getMessage());
+		}
+	}
+	
+	public static String getAdresseMagasinFromId(int id) throws DBException{
+		try { 
+			String rez = "";
+			String query = "SELECT addresseMagasin FROM Magasin WHERE idMagasin=" + id + "";
+			
+			Connection c = DataBase.getMySQLConnection();
+			Statement s = c.createStatement();
+			s.executeQuery(query);
+			ResultSet rs = s.getResultSet();
+
+			boolean bool = rs.next();
+			if (bool) {
+				rez = rs.getString("addresseMagasin"); 
+				
+			}
+
+			// Fermeture de la connexion
+			rs.close();
+			s.close();
+			c.close();
+
+			return rez;
+		}catch (SQLException e) {
+			throw new DBException("DBMagasinTools.getAdresseMagasinFromId : " + e.getMessage());
 		}
 	}
 	

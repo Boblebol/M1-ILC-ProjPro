@@ -45,12 +45,12 @@ public class DetailProServlet extends HttpServlet  {
 	public void doPost(HttpServletRequest req, HttpServletResponse rep) {
 		try {
 			
-			String idpromoStr = req.getParameter("idpromo"); 
-			int idpromo = Integer.parseInt(idpromoStr);
+			String idPromoStr = req.getParameter("idPromo"); 
+			int idPromo = Integer.parseInt(idPromoStr);
 			
 			rep.setContentType("text/plain");
 			PrintWriter out = rep.getWriter();
-			out.println(PromotionsTraitements.detailPromotion(idpromo));
+			out.println(PromotionsTraitements.detailPromotion(idPromo));
 
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -35,8 +35,8 @@ public class UpdPosClientServlet  extends HttpServlet  {
 			String mail = req.getParameter("mail");  
 			String longitudeStr = req.getParameter("longitude");
 			String lattitudeStr = req.getParameter("lattitude");
-			int longitude = Integer.parseInt(longitudeStr);
-			int lattitude = Integer.parseInt(lattitudeStr);
+			float longitude = Float.parseFloat(longitudeStr);
+			float lattitude = Float.parseFloat(lattitudeStr);
 
 			rep.setContentType("text/plain");
 			PrintWriter out = rep.getWriter();

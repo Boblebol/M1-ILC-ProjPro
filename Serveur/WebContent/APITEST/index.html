@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Titre de la page</title>
+<link rel="stylesheet" href="style.css">
+<script src="script.js"></script>
+</head>
+<body>
+
+	<h1>Ajout d'un magasin</h1>
+	<p>
+	<form action="http://destock.u-strasbg.fr:8080/Destock/magasin/add"
+		method="post">
+		Mail: <input type="text" name="mail"><br> MDp: <input
+			type="text" name="mdp"><br> Nom: <input type="text"
+			name="nom"><br> adresse: <input type="text"
+			name="adresse"><br> latitude: <input type="text"
+			name="latitude"><br> longitude: <input type="text"
+			name="longitude"><br> <input type="submit"
+			value="Submit">
+	</form>
+	</p>
+
+	<h1>Ajout d'une promotion</h1>
+	<p>
+	<form action="http://destock.u-strasbg.fr:8080/Destock/promo/add"
+		method="post">
+		ref: <input type="text" name="ref"><br> 
+		marque: <input type="text" name="marque"><br>
+		nomprod: <input type="text"name="nomprod"><br>
+		categorie: <input type="text"
+			name="categorie"><br> 
+		description: <input type="text"
+			name="description"><br> ancienprix: <input type="text"
+			name="ancienprix"><br> 
+			nouveauprix: <input type="text"
+			name="nouveauprix"><br>
+			duree: <input type="text"
+			name="duree"><br>
+			active: <input type="text"
+			name="active"><br>
+			idmag: <input type="text"
+			name="idmag"><br>
+			<input type="submit"
+			value="Submit">
+	</form>
+	</p>
+
+</body>
+</html>

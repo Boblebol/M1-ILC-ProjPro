@@ -19,19 +19,23 @@ import promotions.traitement.PromotionsTraitements;
  * @apiParam {Float} latitude Latitude du point de référence.
  * @apiParam {Float} longitude Longitude du point de référence.
  * 
- * @apiSuccess {JSON[]} JSON[] Tableau de JSON contenant le nom, l'id du magasin et l'id d'une promotion.
+ * @apiSuccess {JSON[]} JSON[] Tableau de JSON contenant le nom, l'id et l'adresse du magasin, l'id et la description d'une promotion.
  * 
  * @apiSuccessExample Reponse si succes:
  * 	[
  * 		{
  * 			"referencePromo":"refExemple",
  * 			"idMagasin":1,
- * 			"idPromo":1
+ * 			"idPromo":1,
+ * 			"description" : "une courte desc.",
+ * 			"adresse" : "AdresseDuMagasin"
  * 		},
  * 		{
  * 			"referencePromo":"ref2",
  * 			"idMagasin":0,
- * 			"idPromo":2
+ * 			"idPromo":2,
+ * 			"description" : "une courte desc.",
+ * 			"adresse" : "AdresseDuMagasin"
  * 		}
  * 	]
  */

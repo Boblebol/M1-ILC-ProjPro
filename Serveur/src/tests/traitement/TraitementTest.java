@@ -58,10 +58,11 @@ public class TraitementTest {
 		System.out.println(PromotionsTraitements.listePrommotionsActives ());
 		
 		System.out.println("### Modification promo p2 du mag1 ###");
-		System.out.println("Refaire update promotions");
+		int idpromo2 = DBPromotionsTools.getIdPromo("p2", idmag1);
+		System.out.println(PromotionsTraitements.updatePromotion("p2", "marque", "nomprod2", "categorie2", "description2", oldP, newP, 3, 1, idmag1));
 		
 		System.out.println("### Detail promo p2 du mag1 ###");
-		int idpromo2 = DBPromotionsTools.getIdPromo("p2", idmag1);
+		
 		System.out.println(PromotionsTraitements.detailPromotion(idpromo2));
 		
 		System.out.println("### Ajout preference cli1 mag1 ###");

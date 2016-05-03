@@ -46,8 +46,9 @@ public class UpdProServlet extends HttpServlet  {
 			String ancienprixStr = req.getParameter("ancienprix"); 
 			String nouveauprixStr = req.getParameter("nouveauprix"); 
 			String dureeStr = req.getParameter("duree"); 
-			String active = req.getParameter("active"); 
-			String idmagStr = req.getParameter("idmag");  
+			String activeStr = req.getParameter("active"); 
+			String idmagStr = req.getParameter("idmag"); 
+			int active = Integer.parseInt(activeStr);
 			float ancienprix = Float.parseFloat(ancienprixStr);
 			float nouveauprix = Float.parseFloat(nouveauprixStr);
 			int duree = Integer.parseInt(dureeStr);
