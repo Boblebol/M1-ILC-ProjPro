@@ -26,12 +26,11 @@
 
 
 
-    <a class="item item-thumbnail-left" ng-repeat="promo in Resultat track by $index | filter:recherche" href="/#/offres/{{promo.idPromo}}" >
+    <a class="item item-thumbnail-left" ng-repeat="promo in Resultat | filter:recherche" href="/#/offres/{{promo.idPromo}}" >
       <img src="http://img1.lesnumeriques.com/produits/71/30989/apple-iphone-se_969b397dba526fb4_450x400.jpg" />
       <h2>{{promo.referencePromo}}</h2>
-      <p>Id magasin : {{promo.idMagasin}}</p>
-      <p>Adresse : {{promo.adresse}}</p>
-      <p>Id promo : {{promo.idPromo}}</p> 
+      <p><b>Adresse :</b> {{promo.adresse}}</p>
+      <p><b>Description</b><br /> {{ promo.description }}</p>
     </a>
 
 

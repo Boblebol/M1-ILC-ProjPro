@@ -102,7 +102,7 @@ if (status == google.maps.GeocoderStatus.OK)
       title: valeur.referencePromo
   });   
   
-        var contenu = " <img src='/img/Offres/nirvana.jpg' style='width:100px;'/> <br /><b>" + valeur.referencePromo + "<br /><br />Description :</b><br />" + valeur.description;
+        var contenu = " <img src='http://img1.lesnumeriques.com/produits/71/30989/apple-iphone-se_969b397dba526fb4_450x400.jpg' style='width:100px;'/> <br /><b>" + valeur.referencePromo + "<br /><br />Description :</b><br />" + valeur.description;
   var infowindow = new google.maps.InfoWindow({
     content: contenu
   });

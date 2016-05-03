@@ -22,7 +22,7 @@ angular.module('demo.admin.ctrl', [])
             var dataOBJ = {idMag: $scope.CookieId};
         
 
-                console.log("Recuperation des donnees");
+                console.log("Envoi au serveur : " + JSON.stringify(dataOBJ));
             
             var req = {
 			 method: 'POST',
@@ -134,15 +134,15 @@ $http(req)
                 console.log("Donnes recues par le serveur : " + JSON.stringify(data) );
                 
 			  
-                if (JSON.stringify(data) != "{}")
+                if (JSON.stringify(data) == "{}")
                 {
 						$arg = false;
-                        $scope.Resultat = "Offre enregistrer !!!!!";
+                        $scope.Resultat = "Offre enregistrée !!!!!";
                 }
                 else
                 {
 					    $arg = true;
-                        $scope.Resultat = "Offre non enregistrer !!!!!";	
+                        $scope.Resultat = "Offre non enregistrée !!!!!";	
                 }
                 
                 

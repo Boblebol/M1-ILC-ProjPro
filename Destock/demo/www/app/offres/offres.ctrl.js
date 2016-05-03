@@ -69,8 +69,24 @@ var options = {timeout: 10000, enableHighAccuracy: true};
  
     var latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
  
+   
+    
+   //Wait until the map is loaded
+ 
+ 
+var geocoder = new google.maps.Geocoder();
+ 
+ 
+
+
+
+geocoder.geocode( { "address": data.adresseMagasin }, function(results, status) {
+
+if (status == google.maps.GeocoderStatus.OK)
+{
+
     var mapOptions = {
-      center: latLng,
+      center: results[0].geometry.location,
       zoom: 15,
       mapTypeId: google.maps.MapTypeId.ROADMAP
     };
@@ -90,24 +106,8 @@ var options = {timeout: 10000, enableHighAccuracy: true};
   google.maps.event.addListener(marker, 'click', function () {
       infoWindow.open($scope.map, marker);
   });
-   
-    
-   //Wait until the map is loaded
+
 google.maps.event.addListenerOnce($scope.map, 'idle', function(){
- 
- 
-var geocoder = new google.maps.Geocoder();
- 
- 
-
-
-
-geocoder.geocode( { "address": data.adresseMagasin }, function(results, status) {
-
-if (status == google.maps.GeocoderStatus.OK)
-{
-
-
   var marker = new google.maps.Marker({
       map: $scope.map,
       animation: google.maps.Animation.DROP,
@@ -118,12 +118,12 @@ if (status == google.maps.GeocoderStatus.OK)
   var infowindow = new google.maps.InfoWindow({
     content: data.referencePromo
   });
-
+        
   marker.addListener('click', function() {
     infowindow.open($scope.map, marker);
   });
  
-
+  });          
 
      } else {
       alert("Le geocodage n\'a pu etre effectue pour la raison suivante: " + status);
@@ -132,7 +132,7 @@ if (status == google.maps.GeocoderStatus.OK)
                  
                     
                         
-     });                   
+            
                         
                         
                 
@@ -172,8 +172,8 @@ var options = {timeout: 10000, enableHighAccuracy: true};
 
         
             var dataOBJ = {
-                distance: 50000,
-                latitude: position.coords.latitude,
+                distance: 50,
+                lattitude: position.coords.latitude,
                 longitude: position.coords.longitude
             };      
         

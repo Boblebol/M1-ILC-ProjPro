@@ -45,6 +45,8 @@ function MyCtrl($scope) {
   
         if (formulaireValide)
         {  
+        
+                console.log("type : " + $scope.type);
                      
             if ($scope.type == 'customer')
             {
@@ -53,7 +55,6 @@ function MyCtrl($scope) {
 					nom: $scope.nom,
 					prenom: $scope.prenom,
 					mail: $scope.mail,
-					pseudo: $scope.pseudo,
 					mdp: $scope.mdp
 				};
 				
@@ -66,52 +67,10 @@ function MyCtrl($scope) {
 							'Content-Type': 'application/x-www-form-urlencoded'
 							},
 					data: $httpParamSerializer(dataOBJ)
-				};          
-            }
-			
-            else if ($scope.type == 'provider')
-            {
-            
-            
-            
-
-var geocoder = new google.maps.Geocoder();
-  geocoder.geocode({'address': $scope.chosenPlace}, function(results, status) {
-    if (status === google.maps.GeocoderStatus.OK) {
-    
-
-      console.log(results[0].geometry.location);
-      
-      
-      
-      
-      
-      
-
-            
-				var dataOBJ = {
-				mail: $scope.mail,
-				mdp: $scope.mdp,
-                nom: $scope.nom,            
-                latitude: results[0].geometry.location.lat(),
-                longitude: results[0].geometry.location.lng(),
-                adresse: $scope.chosenPlace
-				};
-           
-           console.log("Donnes envoyees au serveur provider: " + JSON.stringify(dataOBJ) );
-		   
-           var req = {
-				method: 'POST',
-				url: 'http://destock.u-strasbg.fr:8080/Destock/magasin/add',
-				headers: {
-						'Content-Type': 'application/x-www-form-urlencoded'
-						},
-				data: $httpParamSerializer(dataOBJ)
-			};         
+				};               
+                              
+                              
      
-   
-			
-	
 			
 			$http(req)
             
@@ -149,31 +108,129 @@ var geocoder = new google.maps.Geocoder();
             })
             .error(function (data, status, header, config) {
                 console.log("ERREUR : " + JSON.stringify(data) + JSON.stringify(status) );
-            });      
+            });                               
+                              
+                              
+                              
+                              
+            }
+			
+            else if ($scope.type == 'provider')
+            {
+            
+            
+            
+     
+   
+
+var geocoder = new google.maps.Geocoder();
+  geocoder.geocode({'address': $scope.chosenPlace}, function(results, status) {
+  
+  
+      console.log("dans le geocode " + $scope.chosenPlace);
+  
+    if (status === google.maps.GeocoderStatus.OK) {
+    
+
+      console.log("Status geocode OK");
+      console.log(results[0].geometry.location);
       
       
       
       
       
       
-    } else {
+
+            
+				var dataOBJ = {
+				mail: $scope.mail,
+				mdp: $scope.mdp,
+                nom: $scope.nom,            
+                latitude: results[0].geometry.location.lat(),
+                longitude: results[0].geometry.location.lng(),
+                adresse: $scope.chosenPlace
+				};
+           
+           console.log("Donnes envoyees au serveur provider: " + JSON.stringify(dataOBJ) );
+		   
+           var req = {
+				method: 'POST',
+				url: 'http://destock.u-strasbg.fr:8080/Destock/magasin/add',
+				headers: {
+						'Content-Type': 'application/x-www-form-urlencoded'
+						},
+				data: $httpParamSerializer(dataOBJ)
+			};       
+     
+			
+			$http(req)
+            
+			
+            .success(function (data, status, headers, config) {
+                console.log("Donnes recues par le serveur : " + JSON.stringify(data) );
+                
+                var page = function () {
+					
+					if($arg == true) {
+						$scope.Resultat = "Inscription reussie !!!!!";	
+						$location.path('menu'); 						
+					}
+					
+					else {
+						$scope.Resultat = "Inscription echoue !!!!!";
+						$scope.Erreur = data.error;  
+					}				  
+				}  
+				
+                if (JSON.stringify(data) == "{}")
+                {
+                        $arg = true;                      
+						$scope.Loading = "Chargement...";
+						$timeout(page, 2000);				
+                }
+                else
+                {
+                        $arg = false;                      
+						$scope.Loading = "Chargement...";
+						$timeout(page, 2000);						                                   
+                }
+                
+                
+            })
+            .error(function (data, status, header, config) {
+                console.log("ERREUR : " + JSON.stringify(data) + JSON.stringify(status) );
+            }); 
+            
+            
+                        
+                } else {
       alert('Geocode was not successful for the following reason: ' + status);
+      var stop = true;
     }
-  });
-
-
-
-      }
+    
+            });
+           }
 		   
            else
            {
                 $scope.Erreur = "ERREUR type";
-           }
+           }       
+               
+    
+
+     
+      }
+      
+      };
+   
+      
+
+
+
+
             
             
-            }                
-        };		           				
-  })
+            })
   
   .directive('googleplace', function() {
     return {
