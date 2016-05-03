@@ -17,7 +17,7 @@ import promotions.traitement.PromotionsTraitements;
  *
  * @apiParam {String} categorie Categorie de promotions à chercher.
  * @apiParam {Integer} distance Rayon de recherche de promotions autour d'un point de référence donné.
- * @apiParam {Float} latitude Latitude du point de référence.
+ * @apiParam {Float} lattitude Latitude du point de référence.
  * @apiParam {Float} longitude Longitude du point de référence.
  *
  * @apiSuccess {JSON[]} JSON[] Tableau de JSON contenant le nom, l'id et l'adresse du magasin, l'id et la description d'une promotion.
@@ -50,7 +50,7 @@ public class ListeGeoProCatServlet  extends HttpServlet  {
 			
 			String categorie = req.getParameter("categorie"); 
 			String distanceStr = req.getParameter("distance"); 
-			String latitudeStr = req.getParameter("latitude");
+			String latitudeStr = req.getParameter("lattitude");
 			String longitudeStr = req.getParameter("longitude");
 			int distance = Integer.parseInt(distanceStr);
 			float latitude = Float.parseFloat(latitudeStr);

@@ -54,6 +54,10 @@ public class TraitementTest {
 		System.out.println("### Liste promos ###");
 		System.out.println(PromotionsTraitements.listePrommotions());
 		
+		System.out.println("### Liste promos Actives Proches###");
+		float a = new Float(90.0);
+		System.out.println(PromotionsTraitements.listePromotionActivesProche(50000000, a,a));
+		
 		System.out.println("### Liste promos Actives###");
 		System.out.println(PromotionsTraitements.listePrommotionsActives ());
 		
