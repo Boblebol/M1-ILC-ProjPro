@@ -3,7 +3,7 @@
 
  	 	
 	<div class="list" >	
-		  <form name="form" method="GET" novalidate>
+		  <form name="form" method="GET" ng-submit="SendData()" novalidate>
 		  
 		  
 	    <label class="item item-input">
@@ -26,7 +26,7 @@
         </label>		  
 
 		
-			<button class="button button-block button-positive" type="submit" ng-disabled="!form.$valid" ng-click="SendData()">
+			<button class="button button-block button-positive" type="submit" ng-disabled="!form.$valid" ng-submit="SendData()" ng-click="SendData()">
 				Connexion
 				<i class="icon ion-locked"></i>
 			</button>
